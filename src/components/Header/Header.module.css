@@ -1,0 +1,24 @@
+.header {
+    background: rgb(39, 84, 223);
+    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
+}
+
+.typo {
+    color: white !important;
+    font-family: poppins;
+
+}
+
+.logo {
+    width: 120px;
+    padding: 15px
+}
+
+.menuButton{
+    background-color: white !important;
+}
+
+.offcanvasBody{
+    background: rgb(39, 84, 223);
+    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
+}
