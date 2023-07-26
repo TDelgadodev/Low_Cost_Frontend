@@ -1,6 +1,6 @@
 import { Button, Form } from "react-bootstrap";
 import * as Yup from "yup";
-import { Field, Formik } from "formik";
+import { ErrorMessage, Field, Formik } from "formik";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 
@@ -40,6 +40,11 @@ export const Login = () => {
               as={Form.Control}
               className="shadow border-secondary"
             ></Field>
+                <ErrorMessage
+                name='email'
+                component={Form.Text}
+                className="text-danger ms-2"
+                ></ErrorMessage>
           </Form.Group>
           <Form.Group className="mb-2 form-box">
             <Form.Label htmlFor="password">Contraseña</Form.Label>
@@ -51,8 +56,13 @@ export const Login = () => {
               as={Form.Control}
               className="shadow border-secondary"
             ></Field>
+            <ErrorMessage
+              name="password"
+              component={Form.Text}
+              className="text-danger ms-2"
+            ></ErrorMessage>
             <button className={styles.formBox}>
-            <i className="fa-solid fa-eye"></i>
+              <i className="fa-solid fa-eye"></i>
             </button>
           </Form.Group>
           {["checkbox"].map((type) => (
@@ -80,7 +90,9 @@ export const Login = () => {
           </div>
           <div className="d-flex gap-2 mt-3">
             <p className={styles.title}>¿No tienes una cuenta?</p>
-            <Link className="text-decoration-none " to={'/register'}>Registrate</Link>
+            <Link className="text-decoration-none " to={"/register"}>
+              Registrate
+            </Link>
           </div>
         </Form>
       )}
