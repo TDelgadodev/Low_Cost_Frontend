@@ -1,1 +1,5 @@
-<h1>hola</h1>
+export const Footer = () => {
+  return (
+    <div>hola</div>
+  )
+}

@@ -9,7 +9,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 
-function OffcanvasExample() {
+function Header() {
     return (
         <>
             {['sm'].map((expand) => (
@@ -54,4 +54,4 @@ function OffcanvasExample() {
     );
 }
 
-export default OffcanvasExample;
+export default Header;
