@@ -1,0 +1,15 @@
+.form-control{
+    font-weight: 500;
+}
+.formBox{
+    background-color: transparent;
+    border: none;
+    display: block;
+    position: absolute;
+    font-size: 15px;
+    top: 307px;
+    right: 32px;
+}
+.title{
+    font-weight: 600;
+}
