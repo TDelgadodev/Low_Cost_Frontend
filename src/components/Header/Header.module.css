@@ -3,10 +3,14 @@
     background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
 }
 
+.headerContainer {
+    max-width: 1200px;
+    margin: auto;
+}
+
 .typo {
     color: white !important;
     font-family: poppins;
-
 }
 
 .logo {
@@ -14,11 +18,11 @@
     padding: 15px
 }
 
-.menuButton{
+.menuButton {
     background-color: white !important;
 }
 
-.offcanvasBody{
-    background: rgb(39, 84, 223);
-    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
+.offcanvasBody {
+    /* background: rgb(39, 84, 223);
+    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%); */
 }

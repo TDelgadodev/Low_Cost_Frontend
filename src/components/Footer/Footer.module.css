@@ -1,0 +1,52 @@
+.footer{
+    background: rgb(39, 84, 223);
+    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    padding: 5px;
+}
+
+.footerContainer {
+    max-width: 1200px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.footerLogo {
+    width: 90px;
+    margin-bottom: 20px;
+}
+
+.footerIcons{
+    color: white;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.footerText{
+    color: white;
+    font-family: poppins;
+    font-weight: 300;
+}
+
+.footerTitle{
+    color: white;
+    font-family: poppins;
+    margin-bottom: 40px;
+}
+
+.contactIcons{
+    margin-right: 10px;
+}
+
+.footerCopyright{
+    border-top: 1px solid rgb(45, 100, 223) !important;
+}
+
+.footerTextCopyright{
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+}

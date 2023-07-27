@@ -12,9 +12,9 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 function Header() {
     return (
         <>
-            {['sm'].map((expand) => (
+            {['lg'].map((expand) => (
                 <Navbar key={expand} expand={expand} className={`mb-3 ${styles.header}`}>
-                    <Container fluid>
+                    <Container className={`${styles.headerContainer}`} fluid>
                         <Navbar.Brand href="#"><img src="./public/logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={`${styles.menuButton}`} />
                         <Navbar.Offcanvas
@@ -29,7 +29,7 @@ function Header() {
                             </Offcanvas.Header>
                             <Offcanvas.Body className={`${styles.offcanvasBody}`}>
                                 <Nav className={`justify-content-end flex-grow-1 pe-5`}>
-                                    <Form className="d-flex pe-3">
+                                    <Form className="d-flex align-items-center pe-3">
                                         <Form.Control
                                             type="search"
                                             placeholder="Buscar Productos"
@@ -38,12 +38,12 @@ function Header() {
                                         />
                                         <Button><SearchIcon></SearchIcon></Button>
                                     </Form>
-                                    <Nav.Link href="#action1" className={`${styles.typo}`}>INICIO</Nav.Link>
-                                    <Nav.Link href="#action2" className={`${styles.typo}`}>TIENDA</Nav.Link>
-                                    <Nav.Link href="#action3" className={`${styles.typo}`}>REVISTA</Nav.Link>
-                                    <Nav.Link href="#action4" className={`${styles.typo}`}>CONTACTO</Nav.Link>
-                                    <Nav.Link href="#action5" className={`${styles.typo}`}><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Nav.Link>
-                                    <Nav.Link href="#action6" className={`${styles.typo}`}><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Nav.Link>
+                                    <Nav.Link href="#action1" className={`${styles.typo}`}><Button>Inicio</Button></Nav.Link>
+                                    <Nav.Link href="#action2" className={`${styles.typo}`}><Button>Tienda</Button></Nav.Link>
+                                    <Nav.Link href="#action3" className={`${styles.typo}`}><Button>Revista</Button></Nav.Link>
+                                    <Nav.Link href="#action4" className={`${styles.typo}`}><Button>Contacto</Button></Nav.Link>
+                                    <Nav.Link href="#action5" className={`${styles.typo}`}><Button><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
+                                    <Nav.Link href="#action6" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
