@@ -15,7 +15,7 @@ function Header() {
             {['lg'].map((expand) => (
                 <Navbar key={expand} expand={expand} className={`mb-3 ${styles.header}`}>
                     <Container className={`${styles.headerContainer}`} fluid>
-                        <Navbar.Brand href="#"><img src="./public/logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
+                        <Navbar.Brand href="#"><img src="./logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={`${styles.menuButton}`} />
                         <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}

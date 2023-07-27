@@ -15,7 +15,7 @@ function Footer() {
       <Container className={`${styles.footerContainer}`} fluid>
         <Row>
           <Col sm={12} md={6} className="p-4">
-            <img src="./public/logowhite.png" alt="" className={`${styles.footerLogo}`} />
+            <img src="./logowhite.png" alt="" className={`${styles.footerLogo}`} />
             <p className={`${styles.footerText}`}>Más de 15.000 Productos para tu satisfacción. <br /> Confiabilidad para lo que importa.</p>
             <a href="#"><FacebookIcon className={`${styles.footerIcons}`}></FacebookIcon></a>
             <a href="#"><TwitterIcon className={`${styles.footerIcons}`}></TwitterIcon></a>
