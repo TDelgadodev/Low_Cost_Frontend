@@ -1,7 +1,8 @@
 import { ErrorMessage, Field, Formik } from "formik";
-import { Button, Form } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import * as Yup from "yup";
+import styles from "./index.module.css";
 
 export const ResetPassword = () => {
   const initialValues = {
@@ -26,7 +27,8 @@ export const ResetPassword = () => {
         validationSchema={validationSchema}
       >
         {(formik) => (
-          <Form onSubmit={formik.handleSubmit}>
+          <Form onSubmit={formik.handleSubmit} className={`m-3 ${styles.formResetPass}`}>
+            <Col xs={10} sm={6} md={6} lg={4} xl={4}>
             <h2>Nueva Contraseña</h2>
             <Form.Group className="mb-2">
             <Field
@@ -74,6 +76,7 @@ export const ResetPassword = () => {
             <p className="font-weight-bold">¿Ya tienes una cuenta?</p>
             <Link to={'/login'} className="text-decoration-none">Ingresar</Link>
           </div>
+          </Col>
           </Form>
         )}
       </Formik>
