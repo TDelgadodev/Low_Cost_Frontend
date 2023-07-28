@@ -67,13 +67,13 @@ export const Login = () => {
           </Form.Group>
           {["checkbox"].map((type) => (
             <div key={`default-${type}`} className=" d-flex w-100 gap-2">
-              <Form.Check // prettier-ignore
+              <Form.Check 
                 type={type}
                 className="m-0 "
                 id={`default-${type}`}
                 label={"Recuerdame"}
               />
-              <span className="text-danger">Olvido su contraseña?</span>
+              <Link className="text-danger text-decoration-none" to={'/resetPassword'}>Olvido su contraseña?</Link>
             </div>
           ))}
           <div className="mt-3">
