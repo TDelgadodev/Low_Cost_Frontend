@@ -1,3 +1,19 @@
 .homeContainer{
     max-width: 1200px;
 }
+
+.homeTitle{
+    font-family: Poppins;
+}
+
+.homeText{
+    font-family: Poppins;
+    color: grey ;
+}
+
+.textItems{
+    border: solid 2px;
+    border-radius: 4px;
+    background-color: white;    
+    border-color: #3861a5;
+}

@@ -74,7 +74,7 @@ export const Login = () => {
                   id={`default-${type}`}
                   label={"Recuerdame"}
                 />
-                <Link className="text-danger text-decoration-none" to={'/resetPassword'}>Olvido su contraseña?</Link>
+                <Link className="text-danger text-decoration-none" to={'/resetPassword'}>¿Olvidó su contraseña?</Link>
               </div>
             ))}
             <div className="mt-3">
