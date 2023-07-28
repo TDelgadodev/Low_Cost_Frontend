@@ -12,6 +12,7 @@ import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined
 function Header() {
     return (
         <>
+        <div className={`${styles.HeaderUp}`}>Venta Telefónica: 0810-345-0602</div>
             {['lg'].map((expand) => (
                 <Navbar key={expand} expand={expand} className={`mb-3 ${styles.header}`}>
                     <Container className={`${styles.headerContainer}`} fluid>

@@ -1,3 +1,21 @@
+@media (max-width: 1024px) {
+    .HeaderUp {
+        display: none;
+    }
+}
+
+@media (min-width: 1025px) {
+    .HeaderUp {
+        background-color: lightblue;
+        color: darkblue;
+        font-family: poppins;
+        font-weight: 400;
+        font-size: 14px;
+        padding: 3px;
+        text-align: center;
+    }
+}
+
 .header {
     background: rgb(39, 84, 223);
     background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
