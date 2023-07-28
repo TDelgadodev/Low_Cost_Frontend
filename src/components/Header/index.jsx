@@ -16,7 +16,7 @@ function Header() {
             {['lg'].map((expand) => (
                 <Navbar key={expand} expand={expand} className={`mb-3 ${styles.header}`}>
                     <Container className={`${styles.headerContainer}`} fluid>
-                        <Navbar.Brand href="#"><img src="./logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
+                        <Navbar.Brand href="/"><img src="./logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={`${styles.menuButton}`} />
                         <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
@@ -39,12 +39,12 @@ function Header() {
                                         />
                                         <Button><SearchIcon></SearchIcon></Button>
                                     </Form>
-                                    <Nav.Link href="#action1" className={`${styles.typo}`}><Button>Inicio</Button></Nav.Link>
+                                    <Nav.Link href="/" className={`${styles.typo}`}><Button>Inicio</Button></Nav.Link>
                                     <Nav.Link href="#action2" className={`${styles.typo}`}><Button>Tienda</Button></Nav.Link>
                                     <Nav.Link href="#action3" className={`${styles.typo}`}><Button>Revista</Button></Nav.Link>
                                     <Nav.Link href="#action4" className={`${styles.typo}`}><Button>Contacto</Button></Nav.Link>
                                     <Nav.Link href="#action5" className={`${styles.typo}`}><Button><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
-                                    <Nav.Link href="#action6" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
+                                    <Nav.Link href="/login" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>
