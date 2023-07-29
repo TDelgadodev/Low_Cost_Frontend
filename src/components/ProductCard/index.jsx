@@ -1,7 +1,7 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-function ProductCard() {
+const ProductCard = () => {
     return (
         <Card /* className="w-50" */>
             <Card.Img variant="top" src="./auto.jpg" style={{ width: '100%', margin: '0 auto' }} />
