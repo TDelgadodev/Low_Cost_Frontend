@@ -103,13 +103,14 @@ export const Login = () => {
               </div>
             ))}
             <div className="mt-3">
-              <div className={`d-grid gap-2 ${styles.btnTablet}`}>
+              <div className={`d-grid gap-2`}>
                 <Button
                   variant="primary"
-                  className="w-100 p-2 mx-auto"
+                  className="p-2"
                   type="submit"
+                  size="md"
                 >
-                  Ingresar
+                  Registrarse
                 </Button>
               </div>
             </div>
