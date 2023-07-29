@@ -5,6 +5,7 @@ import { Register } from "../pages/Register";
 import { ResetPassword } from "../pages/ResetPassword";
 import { Profile } from "../pages/Profile";
 import { Detail } from "../pages/Detail";
+import { CompletedPurchase } from "../pages/CompletedPurchase";
 
 
 
@@ -17,6 +18,7 @@ export const AppRoutes = () => {
       <Route path="/login" element={<Login />} />
       <Route path="/resetPassword" element={<ResetPassword />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/finish-buying" element={<CompletedPurchase />} />
     </Routes>
   );
 };
