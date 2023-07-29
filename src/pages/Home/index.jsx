@@ -26,21 +26,24 @@ export const Home = () => {
         <PaginationCard></PaginationCard>
       </Container>
       <Container>
-        <Row className="justify-items-center align-items-center mb-3">
-          <Col className={`${styles.textItems}`}>
-            <DeliveryDining></DeliveryDining>
-            <p>ENTREGA INMEDIATA</p>
-            <small>Recibí el producto dentro de las 48hs</small>
+        <Row className={`justify-items-center align-items-center justify-content-center mb-5 ${styles.itemsContainer}`}>
+          <Col xs='auto' className={`d-flex align-items-center mx-3 ${styles.textItems}`}>
+            <DeliveryDining className={`${styles.itemsIcon}`}></DeliveryDining>
+            <div>
+              <p>ENTREGA INMEDIATA</p><small>Recibí el producto dentro de las 48hs</small>
+            </div>
           </Col>
-          <Col className={`${styles.textItems}`}>
-            <Autorenew></Autorenew>
-            <p>TIEMPO DE PRUEBA</p>
-            <small>Tenés 72hs para probar el producto</small>
+          <Col xs='auto' className={`d-flex align-items-center mx-3 ${styles.textItems}`}>
+            <Autorenew className={`${styles.itemsIcon}`}></Autorenew>
+            <div>
+              <p>TIEMPO DE PRUEBA</p><small>Tenés 72hs para probar el producto</small>
+            </div>
           </Col>
-          <Col className={`${styles.textItems}`}>
-            <AttachMoney></AttachMoney>
-            <p>ENVÍO GRATUITO</p>
-            <small>Sin costo dentro de las zonas</small>
+          <Col xs='auto' className={`d-flex align-items-center mx-3 ${styles.textItems}`}>
+            <AttachMoney className={`${styles.itemsIcon}`}></AttachMoney>
+            <div>
+              <p>ENVÍO GRATUITO</p><small>Sin costo dentro de las zonas</small>
+            </div>
           </Col>
         </Row>
       </Container>
