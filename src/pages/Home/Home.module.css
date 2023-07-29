@@ -1,5 +1,13 @@
-.homeContainer {
-    max-width: 1200px;
+@media (min-width: 1024px) {
+    .bannerCarousel {
+        display: block;
+    }
+}
+
+@media (max-width: 1023px) {
+    .bannerCarousel {
+        display: none;
+    }
 }
 
 .homeTitle {
@@ -17,6 +25,12 @@
     background-color: white;
     border-color: #007BFF;
     padding: 10px;
+    transition: all 0.3s;
+}
+
+.textItems:hover {
+    background-color: #007BFF;
+    color: white;
 }
 
 .textItems p {
@@ -30,6 +44,7 @@
     font-family: Poppins;
     font-weight: 300;
     margin-right: 15px;
+    font-size: 12px;
 }
 
 .itemsIcon {

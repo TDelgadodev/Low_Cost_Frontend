@@ -1,9 +1,21 @@
-.sliderContainer {
+.sliderContainerDesktop {
     width: 100%;
     margin: 5% auto;
 }
 
-.sliderContainer img {
+.sliderContainerDesktop img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    margin: auto;
+}
+
+.sliderContainerMobile {
+    width: 100%;
+    margin: 5% auto;
+}
+
+.sliderContainerMobile img {
     width: 100%;
     aspect-ratio: 3/2;
     object-fit: contain;
