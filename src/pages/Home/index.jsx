@@ -23,9 +23,6 @@ export const Home = () => {
         <h3 className={`${styles.homeTitle} pb-4`}>Destacados del Mes</h3>
       </Container>
       <Container>
-        <PaginationCard></PaginationCard>
-      </Container>
-      <Container>
         <Row className={`justify-items-center align-items-center justify-content-center mb-5 ${styles.itemsContainer}`}>
           <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
             <DeliveryDining className={`${styles.itemsIcon}`}></DeliveryDining>
@@ -46,6 +43,9 @@ export const Home = () => {
             </div>
           </Col>
         </Row>
+      </Container>
+      <Container>
+        <PaginationCard></PaginationCard>
       </Container>
     </>
   );

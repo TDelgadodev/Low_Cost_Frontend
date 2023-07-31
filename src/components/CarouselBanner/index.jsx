@@ -7,9 +7,9 @@ class CarouselBanner extends Component {
         const settings = {
             dots: false,
             infinite: true,
-            speed: 6500,
+            speed: 1000,
             autoplay: true,
-            autoplaySpeed: 4500,
+            autoplaySpeed: 5500,
             slidesToShow: 1,
             slidesToScroll: 1
         };

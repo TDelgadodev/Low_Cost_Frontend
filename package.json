@@ -15,6 +15,7 @@
     "@fontsource/roboto": "^5.0.5",
     "@mui/icons-material": "^5.14.1",
     "@mui/material": "^5.14.2",
+    "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "formik": "^2.4.2",
     "localforage": "^1.10.0",

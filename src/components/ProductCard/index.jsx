@@ -3,7 +3,7 @@ import Card from 'react-bootstrap/Card';
 
 const ProductCard = () => {
     return (
-        <Card /* className="w-50" */>
+        <Card>
             <Card.Img variant="top" src="./auto.jpg" style={{ width: '100%', margin: '0 auto' }} />
             <Card.Body>
                 <Card.Title>MOTOMEL CG 150. Cilindrada: 149,5 cc. </Card.Title>

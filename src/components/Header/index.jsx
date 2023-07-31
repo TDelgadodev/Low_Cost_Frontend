@@ -14,7 +14,7 @@ function Header() {
         <>
         <div className={`${styles.HeaderUp}`}>Venta Telefónica: 0810-345-0602</div>
             {['lg'].map((expand) => (
-                <Navbar key={expand} expand={expand} className={`mb-3 ${styles.header}`}>
+                <Navbar key={expand} expand={expand} className={`mb-3 sticky-top ${styles.header}`}>
                     <Container className={`${styles.headerContainer}`} fluid>
                         <Navbar.Brand href="/"><img src="./logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={`${styles.menuButton}`} />
