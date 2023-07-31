@@ -43,3 +43,19 @@
         right: -310px;
     }
   }
+
+  @media (min-width: 1024px){
+    .formBoxLInksTablet{
+        gap: 2;
+        font-size: 18px;
+    }
+    .formBox{
+        right: -269px;
+    }
+  }
+
+  @media (min-width : 1440px){
+    .formBox{
+        right: -389px;
+    }
+  }
