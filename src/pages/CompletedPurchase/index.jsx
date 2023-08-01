@@ -142,19 +142,19 @@ export const CompletedPurchase = () => {
             </Form.Group>
             <Container>
         <Row className={`justify-items-center align-items-center justify-content-center mb-5 ${styles.itemsContainer}`}>
-          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
             <DeliveryDining className={`${styles.itemsIcon}`}></DeliveryDining>
             <div>
               <p>ENTREGA INMEDIATA</p><small>Recibí el producto dentro de las 48hs</small>
             </div>
           </Col>
-          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
             <Autorenew className={`${styles.itemsIcon}`}></Autorenew>
             <div>
               <p>TIEMPO DE PRUEBA</p><small>Tenés 72hs para probar el producto</small>
             </div>
           </Col>
-          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
+          <Col xs={12} sm={12} md={12} lg={12} xl={12} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
             <AttachMoney className={`${styles.itemsIcon}`}></AttachMoney>
             <div>
               <p>ENVÍO GRATUITO</p><small>Sin costo dentro de las zonas</small>
