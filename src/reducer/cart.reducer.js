@@ -6,68 +6,39 @@ export const cartInitialState = {
 
 export function cartReducer(state, { type, payload = {} }) {
     const { idProduct } = payload
+    const { cartItems } = state
 
-    let productInCart = state.cartItems.find((item) => item.idProduct === idProduct)
+    /* let productInCart = cartItems.find((item) => item.idProduct === idProduct) */
+
     switch (type) {
         case actionTypes.ADD_TO_CART:
-            if (productInCart) {
-                let cartItemUpdated = state.cartItems.map(item => {
-                    if (item.idProduct === idProduct) {
-                        return { ...item, ...{ quantity: ++item.quantity } }
-                    }
-                    return item
-                })
-                return {
-                    ...state, ...{
-                        cartItems: cartItemUpdated
-                    }
-                }
-            } else {
-                payload.quantity = 1
-                return {
-                    ...state,
-                    cartItems: [...state.cartItems, payload]
-                }
-            }
-        case actionTypes.REMOVE_ONE_FROM_CART:
-            if (productInCart.quantity > 1) {
-                let cartItemUpdated = state.cartItems.map(item => {
-                    if (item.idProduct === idProduct) {
-                        return {
-                            ...item,
-                            quantity: item.quantity - 1
-                        }
-                    }
-                    return item
-                })
-                console.log('remove one', cartItemUpdated);
-                return {
-                    ...state,
-                    cartItems: cartItemUpdated
-                }
-            } else {
-                let cartItemUpdated = state.cartItems.filter(item => item.idProduct !== idProduct)
+            var existingProduct = cartItems.find((item) => item.idProduct === idProduct);
 
-                return {
-                    ...state,
-                    cartItems: cartItemUpdated
-                }
+            if (existingProduct) {
+                const cartItemUpdated = cartItems.map(item =>
+                    item.idProduct === idProduct ? { ...item, quantity: item.quantity + 1 } : item
+                );
+                return { ...state, cartItems: cartItemUpdated };
+            } else {
+                const newProduct = { ...payload, quantity: 1 }; // Crear un nuevo objeto para el nuevo producto
+                return { ...state, cartItems: [...cartItems, newProduct] };
             }
+
+        case actionTypes.REMOVE_ONE_FROM_CART:
+            var cartItemUpdated = cartItems.map((item) =>
+                item.idProduct === idProduct ? { ...item, quantity: item.quantity - 1 } : item
+            );
+            cartItemUpdated = cartItemUpdated.filter((item) => item.quantity > 0);
+            return { ...state, cartItems: cartItemUpdated };
+
         case actionTypes.REMOVE_ALL_FROM_CART:
-            if (productInCart) {
-                let cartItemUpdated = state.cartItems.filter(item => item.idProduct !== idProduct)
-                return {
-                    ...state,
-                    cartItems: cartItemUpdated
-                }
-            }
-            return state
+            cartItemUpdated = cartItems.filter((item) => item.idProduct !== idProduct);
+            return { ...state, cartItems: cartItemUpdated };
+
         case actionTypes.CLEAR_CART:
-            /* localStorage.removeItem("cart") */
-            /* sessionStorage.clear() */
-            return {
-                ...state,
-                cartItems: []
-            }
+            return { ...state, cartItems: [] };
+
+        default:
+            return state;
     }
 }

@@ -11,8 +11,10 @@ export default function ProductCardOffer({ product }) {
     const { addToCart } = useCart()
 
     function handleAddToCart(product) {
-        addToCart(product)
-    }
+        const { id, name, price } = product;
+        const productToAdd = { idProduct: id, name, price };
+        addToCart(productToAdd);
+      }
     /* console.log("lista de productos en ofertA", product) */
 
     const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : 'nofoto.png';
@@ -25,6 +27,9 @@ export default function ProductCardOffer({ product }) {
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>
                     <b>${product.price}</b>
+                </Card.Text>
+                <Card.Text>
+                   id: {product.id}
                 </Card.Text>
                 <Button variant="primary"
                     onClick={() => {
