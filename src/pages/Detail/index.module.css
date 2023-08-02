@@ -1,0 +1,102 @@
+.textItems {
+    border: solid 3px;
+    border-radius: 5px;
+    background-color: white;
+    border-color: #007BFF;
+    padding: 10px;
+    transition: all 0.3s;
+}
+
+.textItems:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+.textItems p {
+    font-family: Poppins;
+    font-weight: 500;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.textItems small {
+    font-family: Poppins;
+    font-weight: 300;
+    margin-right: 15px;
+    font-size: 12px;
+}
+
+.itemsIcon {
+    margin-right: 15px;
+    margin-left: 5px;
+}
+
+.containerCustomDetails p{
+  font-weight: bold;
+}
+
+.containerCustomDetails h2{
+  font-size: 1.5rem;
+}
+
+.containerCustomcharacteristics p{
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+.containerCustomcharacteristics ul{
+  font-size: 0.9rem;
+}
+
+/* Estilos para vista de tablet (768px) */
+@media screen and (min-width: 768px) {
+
+  .containerCustomDetails{
+    display: flex;
+  }
+    .product-details h2 {
+      font-size: 1.2rem;
+    }
+  
+    .product-details p {
+      font-weight: bold;
+    }
+  
+    .product-details ul {
+      font-size: 0.8rem;
+      list-style: circle;
+      margin-left: 1.5rem;
+    }
+  
+    .textItems {
+      margin-bottom: 1rem;
+    }
+  
+    .itemsIcon {
+      font-size: 1.5rem;
+      margin-right: 10px;
+    }
+    
+    .containerCustomButton{
+      width: 50%;
+    }
+
+    .containerCustomDetails p{
+      font-size: 20px;
+    }
+    .containerCustomDetails h2{
+      font-size: 1.9rem;
+    }
+
+    .containerCustomcharacteristics p{
+      font-size: 24px;
+    }
+    .containerCustomcharacteristics ul{ 
+      display: flex;
+      width: 40%;
+    }
+    .containerCustomcharacteristics li{
+      font-size: 20px;
+      padding: 6px;
+    }
+  }
+  
