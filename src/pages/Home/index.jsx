@@ -7,6 +7,7 @@ import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
 import ShoppingCart from "../../components/CartModal";
 
 export const Home = () => {
+
   return (
     <>
       <Container>
@@ -49,7 +50,7 @@ export const Home = () => {
         </Row>
       </Container>
 
-        <ShoppingCart></ShoppingCart>
+      <ShoppingCart></ShoppingCart>
 
     </>
   );

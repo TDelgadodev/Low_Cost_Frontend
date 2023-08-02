@@ -4,6 +4,8 @@ import { AppRoutes } from './routes'
 import { CartProvider } from './context/cartProvider'
 import { ProductsProvider } from './context/productProvider'
 import { ModalProvider } from './context/modalProvider'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
 
@@ -18,6 +20,7 @@ function App() {
           </MainLayout>
         </CartProvider>
       </ModalProvider>
+      <ToastContainer position="bottom-left" reverseOrder={false} />
     </BrowserRouter>
   )
 }

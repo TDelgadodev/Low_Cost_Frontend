@@ -2,6 +2,7 @@ import { Card, Button } from "react-bootstrap"
 import PropTypes from 'prop-types'
 import { useCart } from '../../hooks/useCart'
 import styles from './ProductCardOffer.module.css'
+import { toast } from 'react-toastify'
 
 export default function ProductCardOffer({ product }) {
 
@@ -14,6 +15,7 @@ export default function ProductCardOffer({ product }) {
         const { id, name, price, imageUrls } = product;
         const productToAdd = { idProduct: id, name, price, imageUrls };
         addToCart(productToAdd);
+        toast.success('¡Producto agregado con éxito!');
     }
     /* console.log("lista de productos en ofertA", product) */
 
@@ -32,7 +34,7 @@ export default function ProductCardOffer({ product }) {
                     id: {product.id}
                 </Card.Text>
                 <Button variant="primary"
-                    onClick={() => {
+                        onClick={() => {
                         handleAddToCart(product)
                     }}
                     style={{ width: '100%' }}>Agregar al Carrito</Button>
