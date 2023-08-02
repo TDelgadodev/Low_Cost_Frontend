@@ -4,6 +4,7 @@ import MyCarousel from "../../components/Carousel";
 import CarouselBanner from "../../components/CarouselBanner";
 import PaginationCard from "../../components/PaginationCards";
 import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
+import ShoppingCart from "../../components/CartModal";
 
 export const Home = () => {
   return (
@@ -46,6 +47,9 @@ export const Home = () => {
             </div>
           </Col>
         </Row>
+      </Container>
+      <Container>
+        <ShoppingCart></ShoppingCart>
       </Container>
     </>
   );

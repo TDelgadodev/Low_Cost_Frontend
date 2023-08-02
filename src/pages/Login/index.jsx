@@ -110,7 +110,7 @@ export const Login = () => {
                   type="submit"
                   size="md"
                 >
-                  Registrarse
+                  Iniciar Sesión
                 </Button>
               </div>
             </div>
