@@ -40,7 +40,22 @@
     background-color: white !important;
 }
 
-.offcanvasBody {
-    /* background: rgb(39, 84, 223);
-    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%); */
+.buttonContainer {
+    position: relative;
+    display: inline-block;
+}
+
+.shopNumber {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    color: #007BFF;
+    font-size: 12px;
+    border-radius: 50%;
 }

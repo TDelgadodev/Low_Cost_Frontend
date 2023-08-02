@@ -10,9 +10,13 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { LogoutOutlined } from '@mui/icons-material';
 import useModal from '../../hooks/useModal';
+import { getTotalProductsInCart } from '../../utils/cart.utils'
+import { useCart } from '../../hooks/useCart';
 
 function Header() {
     const { toogleModal } = useModal()
+    const { cart } = useCart()
+    const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
     /* console.log(toogleModal) */
     return (
         <>
@@ -47,7 +51,7 @@ function Header() {
                                     <Nav.Link href="#action2" className={`${styles.typo}`}><Button>Tienda</Button></Nav.Link>
                                     <Nav.Link href="#action3" className={`${styles.typo}`}><Button>Revista</Button></Nav.Link>
                                     <Nav.Link href="#action4" className={`${styles.typo}`}><Button>Contacto</Button></Nav.Link>
-                                    <Nav.Link className={`${styles.typo}`}><Button onClick={toogleModal}><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
+                                    <Nav.Link className={`${styles.typo}`}><Button onClick={toogleModal} className={`${styles.buttonContainer}`}><span className={`${styles.shopNumber}`}>{totalProductsInCart}</span><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
                                     <Nav.Link href="/login" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
                                     <Nav.Link href="#logout" className={`${styles.typo}`}><Button><LogoutOutlined></LogoutOutlined></Button></Nav.Link>
                                 </Nav>

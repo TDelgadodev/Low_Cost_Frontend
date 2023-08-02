@@ -4,14 +4,12 @@ import CartProduct from './CartProduct';
 import { useCart } from '../../hooks/useCart';
 import CancelIcon from '@mui/icons-material/Cancel';
 import useModal from '../../hooks/useModal';
+import { getTotalProductsInCart } from '../../utils/cart.utils';
 
 const ShoppingCart = () => {
     const { isOpen, toogleModal } = useModal()
-    const {
-        cart,
-        clearCart,
-        sendOrder,
-        orderTotal } = useCart()
+    const { cart, clearCart, sendOrder, orderTotal } = useCart()
+    const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
 
     return (
         <>
@@ -28,9 +26,9 @@ const ShoppingCart = () => {
                                         <Row className="g-0">
                                             <Col lg={8}>
                                                 <div className={`p-4`}>
-                                                    <div className="d-flex justify-content-between align-items-center mb-5">
-                                                        <h2 className="fw-bold mb-0 text-black">Carrito</h2>
-                                                        <small className="mb-0 text-muted">Items</small>
+                                                    <div className="pt-1 mt-2 d-flex justify-content-between align-items-center mb-5">
+                                                        <h3 className="fw-bold mb-0 text-black">Carrito</h3>
+                                                        <small className="mb-0 px-5 text-muted">{totalProductsInCart} Items</small>
                                                     </div>
                                                     <hr className="my-4" />
                                                     <div className={`${styles.productsContainer} p-5 overflow-auto`}>
