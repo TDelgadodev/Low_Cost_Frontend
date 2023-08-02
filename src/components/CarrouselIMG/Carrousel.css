@@ -13,14 +13,14 @@
 }
 
 .custom-carousel-item img {
-  max-width: 100%;
-  max-height: 200px; 
-  object-fit: contain;
+  width: 100%; /* Ancho máximo */
+  max-width: 100%; /* Evita que las imágenes sean más grandes que su tamaño original */
+  height: auto;
+  object-fit: contain; 
   margin: 0 auto;
 }
 
 .custom-carousel-control {
-  width: auto;
   padding: 10px;
 }
 
@@ -32,6 +32,9 @@
   right: 10px;
 }
 
+.carousel-inner {
+  scroll-snap-type: none;
+}
 
 .custom-carousel-control-prev-icon,
 .custom-carousel-control-next-icon {
@@ -40,4 +43,36 @@
   background-size: 100% 100%;
   opacity: 1;
   color: #00aaff;
+}
+
+/* Estilos para la vista de tablet (768px) y mayores */
+@media screen and (min-width: 768px) {
+  .carousel-container {
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  .custom-carousel-item {
+    max-width: 100%;
+  }
+
+  .custom-carousel-item img {
+    width: 60%;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .custom-carousel-control-prev,
+  .custom-carousel-control-next {
+    width: auto;
+    padding: 10px;
+  }
+
+  .custom-carousel-control-prev {
+    left: 10px;
+  }
+
+  .custom-carousel-control-next {
+    right: 10px;
+  }
 }
