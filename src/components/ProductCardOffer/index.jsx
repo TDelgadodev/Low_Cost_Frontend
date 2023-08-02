@@ -4,14 +4,16 @@ import { useCart } from '../../hooks/useCart'
 import styles from './ProductCardOffer.module.css'
 
 export default function ProductCardOffer({ product }) {
-    
+
     /* console.log("Product in ProductCardOffer:", product); */
 
     /*     const { handleModalClick, handleProductIdClick } = useProducts() */
     const { addToCart } = useCart()
 
     function handleAddToCart(product) {
-        addToCart(product)
+        const { id, name, price, imageUrls } = product;
+        const productToAdd = { idProduct: id, name, price, imageUrls };
+        addToCart(productToAdd);
     }
     /* console.log("lista de productos en ofertA", product) */
 
@@ -24,7 +26,10 @@ export default function ProductCardOffer({ product }) {
             <Card.Body>
                 <Card.Title>{product.name}</Card.Title>
                 <Card.Text>
-                    <b>${product.price}</b>
+                    <b>${product.price.toLocaleString('es-AR')}</b>
+                </Card.Text>
+                <Card.Text>
+                    id: {product.id}
                 </Card.Text>
                 <Button variant="primary"
                     onClick={() => {

@@ -1,0 +1,48 @@
+/* @media (max-width: 425px) {
+    .sectionCustom {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .sectionCustom {
+        width: 85%;
+        margin: auto;
+        margin-bottom: 20px;
+    }
+} */
+
+.sectionCustom {
+    width: 75%;
+    border: 3px solid #007BFF;
+    border-radius: 5px;
+    font-family: Poppins;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-height: 80vh
+}
+
+.productsContainer {
+    max-height: 250px;
+}
+
+
+.cancelButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.iconClose {
+    font-size: 24px;
+    color: #007BFF;
+}

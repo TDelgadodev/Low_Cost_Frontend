@@ -39,6 +39,7 @@ function CartProvider({ children }) {
         alert(JSON.stringify(state))
     }
 
+
     const cartValues = {
         cart: state,
         addToCart,
