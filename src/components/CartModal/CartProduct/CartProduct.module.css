@@ -1,0 +1,36 @@
+@media (max-width: 425px) {
+    .productContainer h6 {
+        padding-top: 25px;
+        padding-bottom: 25px
+    }
+}
+
+@media (min-width: 768px) {
+    .productContainer h6 {
+        padding-top: 25px;
+        padding-bottom: 25px
+    }
+}
+
+.imageContainer {
+    width: 100%;
+    aspect-ratio: 3/3;
+    object-fit: contain;
+    margin: '0 auto';
+    border-radius: 15px;
+    border: 1px solid grey
+}
+
+.formControl {
+    padding-right: 20px
+}
+
+.formControl[type="number"]::-webkit-inner-spin-button,
+.formControl[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.formControl[type="number"] {
+    -moz-appearance: textfield;
+}

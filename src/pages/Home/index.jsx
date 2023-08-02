@@ -48,9 +48,9 @@ export const Home = () => {
           </Col>
         </Row>
       </Container>
-      <Container>
+
         <ShoppingCart></ShoppingCart>
-      </Container>
+
     </>
   );
 };

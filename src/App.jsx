@@ -3,18 +3,21 @@ import MainLayout from './layout'
 import { AppRoutes } from './routes'
 import { CartProvider } from './context/cartProvider'
 import { ProductsProvider } from './context/productProvider'
+import { ModalProvider } from './context/modalProvider'
 
 function App() {
 
   return (
     <BrowserRouter>
-      <CartProvider>
-        <MainLayout>
-          <ProductsProvider>
-            <AppRoutes />
-          </ProductsProvider>
-        </MainLayout>
-      </CartProvider>
+      <ModalProvider>
+        <CartProvider>
+          <MainLayout>
+            <ProductsProvider>
+              <AppRoutes />
+            </ProductsProvider>
+          </MainLayout>
+        </CartProvider>
+      </ModalProvider>
     </BrowserRouter>
   )
 }

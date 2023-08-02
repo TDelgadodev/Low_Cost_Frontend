@@ -1,17 +1,6 @@
-/* @media (min-width: 1025px) {
-    .sectionCustom {
-        height: 100vh !important;
-    }
-} */
-
-@media (max-width: 425px) {
+/* @media (max-width: 425px) {
     .sectionCustom {
         width: 100%;
-    }
-
-    .productContainer h6 {
-        padding-top: 25px;
-        padding-bottom: 25px
     }
 }
 
@@ -21,50 +10,39 @@
         margin: auto;
         margin-bottom: 20px;
     }
-
-    .productContainer h6 {
-        padding-top: 25px;
-        padding-bottom: 25px
-    }
-}
+} */
 
 .sectionCustom {
+    width: 75%;
     border: 3px solid #007BFF;
     border-radius: 5px;
     font-family: Poppins;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    max-height: 80vh
 }
 
-/* .imageContainer {
-    width: 100%;
-    aspect-ratio: 3/2;
-    object-fit: contain;
-    margin: '0 auto'
-} */
-
-.formControl {
-    padding-right: 20px
+.productsContainer {
+    max-height: 250px;
 }
 
-.formControl[type="number"]::-webkit-inner-spin-button,
-.formControl[type="number"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+
+.cancelButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
 }
 
-.formControl[type="number"] {
-    -moz-appearance: textfield;
-}
-
-@media (min-width: 992px) {
-    .cardRegistration2 .bg-grey {
-        border-top-right-radius: 1px;
-        border-bottom-right-radius: 1px;
-    }
-}
-
-@media (max-width: 991px) {
-    .cardRegistration2 .bg-grey {
-        border-bottom-left-radius: 1px;
-        border-bottom-right-radius: 1px;
-    }
+.iconClose {
+    font-size: 24px;
+    color: #007BFF;
 }
