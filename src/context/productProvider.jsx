@@ -1,6 +1,6 @@
 import { useState, useEffect, createContext } from 'react'
 import PropTypes from 'prop-types'
-import { filterProductsByOffer, getProductService } from '../services/product.service'
+import { filterProductsByOffer, getProductService, filterProductsByKeyword } from '../services/product.service'
 
 const ProductContext = createContext()
 
@@ -9,6 +9,7 @@ const ProductsProvider = ({ children }) => {
     const [modal, setModal] = useState(false)
     const [productId, setProductId] = useState(null)
     const [filteredProducts, setFilteredProducts] = useState(null)
+    const [filteredKeyword, setFilteredKeyword] = useState(null)
     const [loading, setLoading] = useState(false)
 
     function handleModalClick() {
@@ -48,24 +49,50 @@ const ProductsProvider = ({ children }) => {
             setLoading(false)
         }
     }
+
+    async function getProductKeyword(keyword) {
+        /* if (!keyword || keyword.trim() === '') {
+            console.error("La palabra clave es inválida.");
+            return;
+        } */
+        try {
+            setLoading(true)
+            const productKeywordData = await filterProductsByKeyword(keyword)
+            productKeywordData.forEach((product) => {
+                product.imageUrls = JSON.parse(product.imageUrls);
+            })
+            setFilteredKeyword(productKeywordData)
+            console.log("Product Keyword Data:", productKeywordData);
+        } catch (error) {
+            console.error("Error fetching product keyword data:", error.message);
+        } finally {
+            setLoading(false)
+        }
+    }
     /* useEffect(() => {
         getProduct()
     }, [productId]) */
 
     useEffect(() => {
+        console.log("filteredKeyword:", filteredKeyword);
+        if (filteredKeyword !== null) {
+            getProductKeyword(filteredKeyword);
+        }
         getProductOffer()
-    }, [productId])
+    }, [filteredKeyword, productId])
 
     /* console.log(getProductOffer); */
     const contextValues = {
         products,
         filteredProducts,
+        filteredKeyword,
         modal,
         loading,
         handleModalClick,
         handleProductIdClick,
         getProduct,
-        getProductOffer
+        getProductOffer,
+        getProductKeyword
     }
 
     return (

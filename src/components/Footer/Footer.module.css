@@ -2,6 +2,7 @@
     background: rgb(39, 84, 223);
     background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
     width: 100%;
+    height: 100%;
     bottom: 0;
     padding: 5px;
 }

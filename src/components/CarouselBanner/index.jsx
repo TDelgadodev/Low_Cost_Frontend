@@ -9,7 +9,7 @@ class CarouselBanner extends Component {
             infinite: true,
             speed: 1000,
             autoplay: true,
-            autoplaySpeed: 5500,
+            autoplaySpeed: 4000,
             slidesToShow: 1,
             slidesToScroll: 1
         };

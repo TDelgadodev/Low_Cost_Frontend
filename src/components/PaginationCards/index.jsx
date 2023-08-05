@@ -1,7 +1,7 @@
 import { Pagination, Stack } from '@mui/material';
 import { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import ProductCardOffer from '../ProductCardOffer';
+import ProductCard from '../ProductCard';
 import { useProducts } from '../../hooks/useProduct';
 
 export default function PaginationCard() {
@@ -32,7 +32,7 @@ export default function PaginationCard() {
                 <Row>
                     {currentProducts.map((product) => (
                         <Col xs={6} sm={6} md={4} lg={3} xl={3} key={product.id} className="pb-5">
-                            <ProductCardOffer product={product} />
+                            <ProductCard product={product} />
                         </Col>
                     ))}
                 </Row>

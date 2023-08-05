@@ -6,6 +6,7 @@ import { ResetPassword } from "../pages/ResetPassword";
 import { Profile } from "../pages/Profile";
 import { Detail } from "../pages/Detail";
 import { CompletedPurchase } from "../pages/CompletedPurchase";
+import Search from "../pages/Search";
 
 
 
@@ -13,6 +14,7 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
+      <Route path="/search" element={<Search />} />
       <Route path="/:id" element={<Detail />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
