@@ -18,6 +18,7 @@
     "axios": "^1.4.0",
     "bootstrap": "^5.3.0",
     "formik": "^2.4.2",
+    "jwt-decode": "^3.1.2",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "prop-types": "^15.8.1",

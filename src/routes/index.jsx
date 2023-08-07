@@ -7,8 +7,7 @@ import { Profile } from "../pages/Profile";
 import { Detail } from "../pages/Detail";
 import { CompletedPurchase } from "../pages/CompletedPurchase";
 import Search from "../pages/Search";
-
-
+/* import { ProtectedRoutes } from "./protectedRoutes"; */
 
 export const AppRoutes = () => {
   return (

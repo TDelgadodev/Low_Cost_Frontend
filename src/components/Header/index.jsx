@@ -12,6 +12,7 @@ import { LogoutOutlined } from '@mui/icons-material';
 import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils'
 import { useCart } from '../../hooks/useCart';
+import useAuth from '../../hooks/useAuth';
 /* import { useState } from 'react';
 import { useNavigate  } from 'react-router-dom'; */
 
@@ -20,7 +21,10 @@ function Header() {
     const { toogleModal } = useModal()
     const { cart } = useCart()
     const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
-
+    const { user, logout } = useAuth();
+    const handleLogout = () => {
+        logout()
+    }
 /*     const [keyword, setKeyword] = useState('');
     const navigate = useNavigate ();
 
@@ -35,7 +39,7 @@ function Header() {
             {['lg'].map((expand) => (
                 <Navbar key={expand} expand={expand} className={`mb-3 sticky-top ${styles.header}`}>
                     <Container className={`${styles.headerContainer}`} fluid>
-                        <Navbar.Brand href="/"><img src="./logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
+                        <Navbar.Brand href="/"><img src="../logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={`${styles.menuButton}`} />
                         <Navbar.Offcanvas
                             id={`offcanvasNavbar-expand-${expand}`}
@@ -65,8 +69,19 @@ function Header() {
                                     <Nav.Link href="#action3" className={`${styles.typo}`}><Button>Revista</Button></Nav.Link>
                                     <Nav.Link href="#action4" className={`${styles.typo}`}><Button>Contacto</Button></Nav.Link>
                                     <Nav.Link className={`${styles.typo}`}><Button onClick={toogleModal} className={`${styles.buttonContainer}`}><span className={`${styles.shopNumber}`}>{totalProductsInCart}</span><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
-                                    <Nav.Link href="/login" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
-                                    <Nav.Link href="#logout" className={`${styles.typo}`}><Button><LogoutOutlined></LogoutOutlined></Button></Nav.Link>
+                                    {
+                                        user ? 
+                                        <>
+                                        <Nav.Link href="/profile" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>   
+                                        <Nav.Link className={`${styles.typo}`}>
+                                            <Button onClick={handleLogout}>
+                                                <LogoutOutlined></LogoutOutlined>
+                                            </Button>
+                                        </Nav.Link> 
+                                        </>
+                                        :
+                                        <Nav.Link href="/login" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
+                                    }
                                 </Nav>
                             </Offcanvas.Body>
                         </Navbar.Offcanvas>

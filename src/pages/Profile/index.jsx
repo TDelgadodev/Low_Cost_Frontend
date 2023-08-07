@@ -1,8 +1,12 @@
 import { ErrorMessage, Field, Formik } from "formik";
 import { Image, Form, Button, Col, Container } from "react-bootstrap";
 import styles from "./index.module.css";
+import { useEffect } from "react";
+import useAuth from "../../hooks/useAuth";
 
 export const Profile = () => {
+  const { profile } = useAuth();
+  const token = sessionStorage.getItem('LowCostToken')
   const initialValues = {
     nameSurnmae: "",
     phoneWithArea: "",
@@ -17,6 +21,10 @@ export const Profile = () => {
     console.log(values);
   };
 
+
+  useEffect(() => {
+    profile(token)
+  }, []);
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {(formik) => (
@@ -25,10 +33,10 @@ export const Profile = () => {
             <Col xs={10} sm={6} md={6} lg={4} xl={4} className="center">
               <Image
                 className={`${styles.profile}`}
-                src="./default-img-user.jpg"
+                src="default-img-user.jpg"
               />
               <div className="text-center">
-                <h2>Nombre de usuario</h2>
+                <h2></h2>
               </div>
               <div className="p-2 m-2 mb-5">
                 <Form.Group className="mb-2 mt-2">
