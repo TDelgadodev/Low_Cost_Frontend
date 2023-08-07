@@ -5,6 +5,7 @@ import CarouselBanner from "../../components/CarouselBanner";
 import PaginationCard from "../../components/PaginationCards";
 import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
 import ShoppingCart from "../../components/CartModal";
+import WhatsApp from "../../components/WhatsApp";
 
 export const Home = () => {
 
@@ -49,9 +50,8 @@ export const Home = () => {
           </Col>
         </Row>
       </Container>
-
+      <WhatsApp></WhatsApp>
       <ShoppingCart></ShoppingCart>
-
     </>
   );
 };

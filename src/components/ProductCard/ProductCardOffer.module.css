@@ -4,3 +4,14 @@
     object-fit: contain;
     margin: '0 auto'
 }
+
+.cardName {
+    text-align: center;
+    color: grey !important;
+    font-family: poppins;
+}
+
+.cardPrice {
+    text-align: center;
+    font-family: poppins;
+}

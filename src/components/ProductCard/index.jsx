@@ -22,13 +22,13 @@ export default function ProductCard({ product }) {
             <Card.Img variant="top" src={imageUrl}
                 className={`${styles.cardImg}`} />
             <Card.Body>
-                <Card.Title>{product.name}</Card.Title>
-                <Card.Text>
+                <Card.Title className={`pb-3 ${styles.cardName}`}>{product.name}</Card.Title>
+                <Card.Text className={`${styles.cardPrice}`}>
                     <b>${product.price.toLocaleString('es-AR')}</b>
                 </Card.Text>
-                <Card.Text>
+                {/* <Card.Text>
                     id: {product.id}
-                </Card.Text>
+                </Card.Text> */}
                 <Button variant="primary"
                         onClick={() => {
                         handleAddToCart(product)

@@ -1,11 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-/* import Form from 'react-bootstrap/Form'; */
+import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import styles from "./Header.module.css"
-/* import SearchIcon from '@mui/icons-material/Search'; */
+import SearchIcon from '@mui/icons-material/Search';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import { LogoutOutlined } from '@mui/icons-material';
@@ -13,8 +13,8 @@ import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils'
 import { useCart } from '../../hooks/useCart';
 import useAuth from '../../hooks/useAuth';
-/* import { useState } from 'react';
-import { useNavigate  } from 'react-router-dom'; */
+import { useState } from 'react';
+import { useNavigate  } from 'react-router-dom';
 
 
 function Header() {
@@ -33,9 +33,21 @@ function Header() {
         navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
     }; */
 
+        const [keyword, setKeyword] = useState('');
+        const navigate = useNavigate ();
+    
+        const handleSearchSubmit = (event) => {
+            event.preventDefault();
+            navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
+        };
+
     return (
         <>
-            <div className={`${styles.HeaderUp}`}>Venta Telefónica: 0810-345-0602</div>
+            <div className={`d-flex justify-content-around py-2 ${styles.HeaderUp}`}>
+                {/* <div></div> */}
+                <div>Envíos a todo el país</div>
+                {/* <div>Venta Telefónica: 0810-345-0602</div> */}
+            </div>
             {['lg'].map((expand) => (
                 <Navbar key={expand} expand={expand} className={`mb-3 sticky-top ${styles.header}`}>
                     <Container className={`${styles.headerContainer}`} fluid>
@@ -53,7 +65,7 @@ function Header() {
                             </Offcanvas.Header>
                             <Offcanvas.Body className={`${styles.offcanvasBody}`}>
                                 <Nav className={`justify-content-end flex-grow-1 pe-5`}>
-                                    {/* <Form className="d-flex align-items-center pe-3" onSubmit={handleSearchSubmit}>
+                                    <Form className="d-flex align-items-center pe-3" onSubmit={handleSearchSubmit}>
                                         <Form.Control
                                             type="search"
                                             placeholder="Buscar Productos"
@@ -63,7 +75,7 @@ function Header() {
                                             onChange={(event) => setKeyword(event.target.value)}
                                         />
                                         <Button type="submit"><SearchIcon /></Button>
-                                    </Form> */}
+                                    </Form>
                                     <Nav.Link href="/" className={`${styles.typo}`}><Button>Inicio</Button></Nav.Link>
                                     <Nav.Link href="/search" className={`${styles.typo}`}><Button>Tienda</Button></Nav.Link>
                                     <Nav.Link href="#action3" className={`${styles.typo}`}><Button>Revista</Button></Nav.Link>
