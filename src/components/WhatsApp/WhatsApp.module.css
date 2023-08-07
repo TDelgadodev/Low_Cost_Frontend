@@ -1,0 +1,12 @@
+.whatsAppLogo {
+    position: fixed;
+    bottom: 45px;
+    right: 45px;
+    z-index: 9999;
+    width: 50px;
+    transition: transform 0.5s ease-in-out;
+}
+
+.whatsAppLogo:hover {
+    opacity: 0.8;
+}

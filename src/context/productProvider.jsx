@@ -74,7 +74,7 @@ const ProductsProvider = ({ children }) => {
     }, [productId]) */
 
     useEffect(() => {
-        console.log("filteredKeyword:", filteredKeyword);
+        /* console.log("filteredKeyword:", filteredKeyword); */
         if (filteredKeyword !== null) {
             getProductKeyword(filteredKeyword);
         }
