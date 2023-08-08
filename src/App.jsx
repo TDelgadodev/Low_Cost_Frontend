@@ -6,26 +6,29 @@ import { ProductsProvider } from './context/productProvider'
 import { ModalProvider } from './context/modalProvider'
 import { ToastContainer } from 'react-toastify';
 import { CategoriesProvider } from './context/CategoriesProvider'
+import { AuthProvider } from "./context/authProvider";
 import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
-
   return (
     <BrowserRouter>
-      <ModalProvider>
-        <CartProvider>
-          <CategoriesProvider>
-            <MainLayout>
-              <ProductsProvider>
-                <AppRoutes />
-              </ProductsProvider>
-            </MainLayout>
-          </CategoriesProvider>
-        </CartProvider>
-      </ModalProvider>
-      <ToastContainer position="bottom-left" reverseOrder={false} />
+      <AuthProvider>
+        <ModalProvider>
+          <CartProvider>
+            <CategoriesProvider>
+              <MainLayout>
+                <ProductsProvider>
+                  <AppRoutes />
+                </ProductsProvider>
+              </MainLayout>
+            </CategoriesProvider>
+          </CartProvider>
+          <ToastContainer position="bottom-left" reverseOrder={false} />
+        </ModalProvider>
+      </AuthProvider>
     </BrowserRouter>
-  )
+  );
 }
 
-export default App
+
+export default App;

@@ -1,11 +1,18 @@
-import { Button, Col, Form } from "react-bootstrap";
+import { Alert, Button, Col, Form } from "react-bootstrap";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import useAuth from "../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+
+
 
 export const Login = () => {
+  const { login, alert } = useAuth();
+  const navigate = useNavigate();
+
   const initialValues = {
     email: "",
     password: "",
@@ -16,9 +23,20 @@ export const Login = () => {
     password: Yup.string().required("La contraseña es obligatoria"),
   });
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleRedirect = () => {
+    navigate("/");
   };
+  const handleSubmit = async (values, { setSubmitting }) => {
+    try {
+      await login(values);
+      handleRedirect();
+    } catch (error) {
+      throw new Error(error.response.data.error.message)
+    } finally {
+      setSubmitting(false);
+    }
+  };
+  
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -38,6 +56,7 @@ export const Login = () => {
             xl={4}
             className={`${styles.loginForm} mb-5`}
           >
+            {alert && <Alert variant="danger">{alert}</Alert>}
             <div>
               <h2>Hola, Bienvenido!</h2>
             </div>
