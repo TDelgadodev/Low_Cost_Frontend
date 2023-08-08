@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useCategories } from '../../hooks/useCategories';
+import { useBrands } from '../../hooks/useBrands';
 import { RingLoader } from 'react-spinners';
-import styles from './CategoriesList.module.css';
+import styles from './BrandsList.module.css';
 
-export default function CategoriesList() {
+export default function BrandsList() {
     const [expanded, setExpanded] = useState(false);
-    const context = useCategories();
-    const categories = context.categories;
+    const context = useBrands();
+    const brands = context.brands;
 
     const toggleMenu = () => {
         setExpanded(!expanded);
     };
 
-    if (!categories) {
+    if (!brands) {
         return (
             <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
                 <RingLoader color="#00BFFF" size={80} />
@@ -29,11 +29,11 @@ export default function CategoriesList() {
                     <Navbar.Toggle onClick={toggleMenu} />
                     <Navbar.Collapse in={expanded}>
                         <Nav>
-                            <NavDropdown title="Categorías" id="basic-nav-dropdown" className={`${styles.menuButton}`}>
+                            <NavDropdown title="Marcas" id="basic-nav-dropdown" className={`${styles.menuButton}`}>
                                 <ul className={`${styles.categoriesList}`} >
-                                    {categories.map((category) => (
-                                        <li key={category.id}>
-                                            <Link to={`/search/${category.id}`}>{category.name}</Link>
+                                    {brands.map((brand) => (
+                                        <li key={brand.id}>
+                                            <Link to={`/search/${brand.id}`}>{brand.name}</Link>
                                         </li>
                                     ))}
                                 </ul>

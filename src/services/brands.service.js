@@ -5,8 +5,10 @@ const apiUrl = import.meta.env.VITE_BRAND_API_URL
 export const getBrandsService = async () => {
     try {
         const url = `${apiUrl}`
-        const { data } = await axios(url)
-        return data.products || []
+        const response = await axios.get(url);
+        const brands = response.data.data
+        /* console.log('respuesta', brands) */
+        return brands
     } catch (error) {
         console.log(error)
         throw new Error("Hubo un error al obtener las categorías")

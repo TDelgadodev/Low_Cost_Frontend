@@ -6,6 +6,7 @@ import PaginationCard from "../../components/PaginationCards";
 import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
 import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
+import BrandsList from "../../components/BrandsList";
 
 export const Home = () => {
 
@@ -50,6 +51,7 @@ export const Home = () => {
           </Col>
         </Row>
       </Container>
+      <BrandsList></BrandsList>
       <WhatsApp></WhatsApp>
       <ShoppingCart></ShoppingCart>
     </>

@@ -6,6 +6,7 @@ import { ProductsProvider } from './context/productProvider'
 import { ModalProvider } from './context/modalProvider'
 import { ToastContainer } from 'react-toastify';
 import { CategoriesProvider } from './context/CategoriesProvider'
+import { BrandsProvider } from './context/BrandsProvider'
 import { AuthProvider } from "./context/authProvider";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,13 +16,15 @@ function App() {
       <AuthProvider>
         <ModalProvider>
           <CartProvider>
-            <CategoriesProvider>
-              <MainLayout>
-                <ProductsProvider>
-                  <AppRoutes />
-                </ProductsProvider>
-              </MainLayout>
-            </CategoriesProvider>
+            <BrandsProvider>
+              <CategoriesProvider>
+                <MainLayout>
+                  <ProductsProvider>
+                    <AppRoutes />
+                  </ProductsProvider>
+                </MainLayout>
+              </CategoriesProvider>
+            </BrandsProvider>
           </CartProvider>
           <ToastContainer position="bottom-left" reverseOrder={false} />
         </ModalProvider>
