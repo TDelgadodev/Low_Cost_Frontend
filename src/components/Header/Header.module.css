@@ -1,6 +1,11 @@
 @media (max-width: 1024px) {
     .HeaderUp {
         display: none;
+        background-color: #007BFF;
+        color: white;
+        font-family: poppins;
+        font-weight: 400;
+        text-align: center;
     }
 }
 
@@ -33,7 +38,7 @@
 
 .logo {
     width: 120px;
-    padding: 15px
+    padding-bottom: 10px;
 }
 
 .menuButton {
@@ -58,4 +63,8 @@
     color: #007BFF;
     font-size: 12px;
     border-radius: 50%;
+}
+
+.categoriesButton {
+    background-color: #007BFF;
 }

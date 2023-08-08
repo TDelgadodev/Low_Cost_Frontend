@@ -11,11 +11,11 @@ export const Home = () => {
 
   return (
     <>
-      <Container>
-        <MyCarousel></MyCarousel>
-      </Container>
       <Container className={`${styles.bannerCarousel} mb-5`}>
         <CarouselBanner styles={{ maxWidth: '100%' }}></CarouselBanner>
+      </Container>
+      <Container>
+        <MyCarousel></MyCarousel>
       </Container>
       <Container>
         <h2 className={`${styles.homeTitle}`} style={{ color: '#007BFF' }}>¡Conocé todas nuestras ofertas!</h2>

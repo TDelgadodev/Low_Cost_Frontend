@@ -11,7 +11,7 @@ export default function Search() {
 
             <PaginationSearch />
 
-            <WhatsApp></WhatsApp>
+            <WhatsApp />
 
             <ShoppingCart />
         </div>

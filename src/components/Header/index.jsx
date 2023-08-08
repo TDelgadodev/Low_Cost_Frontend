@@ -13,7 +13,8 @@ import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils'
 import { useCart } from '../../hooks/useCart';
 import { useState } from 'react';
-import { useNavigate  } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import CategoriesList from '../CategoriesList';
 
 
 function Header() {
@@ -21,23 +22,23 @@ function Header() {
     const { cart } = useCart()
     const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
 
-        const [keyword, setKeyword] = useState('');
-        const navigate = useNavigate ();
-    
-        const handleSearchSubmit = (event) => {
-            event.preventDefault();
-            navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
-        };
+    const [keyword, setKeyword] = useState('');
+    const navigate = useNavigate();
+
+    const handleSearchSubmit = (event) => {
+        event.preventDefault();
+        navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
+    };
 
     return (
         <>
-            <div className={`d-flex justify-content-around py-2 ${styles.HeaderUp}`}>
+            <div className={`justify-content-around py-2 d-none d-md-flex ${styles.HeaderUp}`}>
                 {/* <div></div> */}
                 <div>Envíos a todo el país</div>
                 {/* <div>Venta Telefónica: 0810-345-0602</div> */}
             </div>
             {['lg'].map((expand) => (
-                <Navbar key={expand} expand={expand} className={`mb-3 sticky-top ${styles.header}`}>
+                <Navbar key={expand} expand={expand} className={`sticky-top ${styles.header}`}>
                     <Container className={`${styles.headerContainer}`} fluid>
                         <Navbar.Brand href="/"><img src="./logowhite.png" alt="logo" className={`${styles.logo}`} /></Navbar.Brand>
                         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} className={`${styles.menuButton}`} />
@@ -77,6 +78,9 @@ function Header() {
                     </Container>
                 </Navbar>
             ))}
+            <div className={`${styles.categoriesButton} ms-auto d-flex align-items-center justify-content-center`}>
+                <CategoriesList></CategoriesList>
+            </div>
         </>
     );
 }
