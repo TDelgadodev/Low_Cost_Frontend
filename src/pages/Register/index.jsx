@@ -14,7 +14,8 @@ export const Register = () => {
   const navigate = useNavigate(); // Agrega esto
 
   const initialValues = {
-    nameSurname: "",
+    name: "",
+    surname:"",
     email: "",
     phone: "",
     password: "",

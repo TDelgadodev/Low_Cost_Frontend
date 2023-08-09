@@ -23,13 +23,10 @@ export const Login = () => {
     password: Yup.string().required("La contraseña es obligatoria"),
   });
 
-  const handleRedirect = () => {
-    navigate("/");
-  };
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       await login(values);
-      handleRedirect();
+  
     } catch (error) {
       throw new Error(error.response.data.error.message)
     } finally {

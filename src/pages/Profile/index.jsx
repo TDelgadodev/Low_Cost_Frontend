@@ -1,14 +1,14 @@
 import { ErrorMessage, Field, Formik } from "formik";
 import { Image, Form, Button, Col, Container } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import { useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
+ import useAuth from "../../hooks/useAuth";
 
 export const Profile = () => {
-  const {  getProfile, userProfile, user } = useAuth();
-  const navigate = useNavigate();
-
+  const {  getProfile, userProfile, /* user */ } = useAuth();
+/*   const navigate = useNavigate();
+ */
   const initialValues = {
     nameSurnmae: "",
     phoneWithArea: "",
@@ -26,11 +26,7 @@ export const Profile = () => {
 
   useEffect(() => {
     getProfile();
-
-    if (!user) {
-      navigate("/login");
-    }
-  }, [user, navigate, getProfile]);
+  }, []);
 
 
   return (
