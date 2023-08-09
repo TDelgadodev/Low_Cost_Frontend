@@ -1,0 +1,11 @@
+.banner {
+    border: 1px solid #ddd;
+    padding: 0px;
+    text-align: center;
+}
+
+.banner img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+}

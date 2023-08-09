@@ -12,6 +12,9 @@
 
 .homeTitle {
     font-family: Poppins;
+    text-align: center;
+    color: #007BFF;
+    letter-spacing: 8px;
 }
 
 .homeText {

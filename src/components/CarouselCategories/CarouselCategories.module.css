@@ -8,7 +8,12 @@
     aspect-ratio: 3/2;
     object-fit: contain;
     margin: auto;
+    /* transition: all 0.3s; */
 }
+
+/* .sliderContainerDesktop img:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+} */
 
 .sliderContainerMobile {
     width: 100%;

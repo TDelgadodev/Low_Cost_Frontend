@@ -7,6 +7,7 @@ import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
 import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
 import CarouselCategories from "../../components/CarouselCategories";
+import BannerStatic from "../../components/BannersHomeStatic";
 
 export const Home = () => {
 
@@ -19,13 +20,14 @@ export const Home = () => {
         <MyCarousel></MyCarousel>
       </Container>
       <Container>
-        <h2 className={`${styles.homeTitle}`} style={{ color: '#007BFF', textAlign: 'center' }}>¡Conocé todas nuestras ofertas!</h2>
-        <p className={`${styles.homeText} pt-3`}>En LowCost, satisfacemos todas tus necesidades. Obtené el equipamiento
+        <h2 className={`pb-5 ${styles.homeTitle}`} style={{ color: '#007BFF', textAlign: 'center' }}>¡CONOCÉ TODAS NUESTRAS OFERTAS!</h2>
+        <BannerStatic></BannerStatic>
+        {/* <p className={`${styles.homeText} pt-3`}>En LowCost, satisfacemos todas tus necesidades. Obtené el equipamiento
           comercial que requiere tu negocio pagando una cómoda cuota diaria.</p>
         <p className={`${styles.homeText} pb-2`}>Además, también ofrecemos todo lo necesario para equipar tu hogar.
-          ¡Empezá a disfrutar ahora mismo!</p>
+          ¡Empezá a disfrutar ahora mismo!</p> */}
         <CarouselCategories></CarouselCategories>
-        <h3 className={`${styles.homeTitle} pb-4`}>Destacados del Mes</h3>
+        <h3 className={`${styles.homeTitle} pb-4`}>DESTACADOS DEL MES</h3>
       </Container>
       <Container>
         <PaginationCard></PaginationCard>

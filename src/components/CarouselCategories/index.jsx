@@ -28,7 +28,7 @@ function CarouselCategories() {
             <Slider {...desktopSettings} className={`${styles.sliderContainerDesktop} d-none d-md-block`}>
                 {categories.map((category) => (
                     <div key={category.id} className={`${styles.structure}`}>
-                        <a href={`/search/${category.id}`}><img src={`/categories/${category.image}`} alt={category.name} style={{ width: '150px' }} /></a>
+                        <a href={`/search/${category.id}`}><img src={`/categories/${category.image}`} alt={category.name} style={{ width: '135px' }} /></a>
                         <p>{category.name}</p>
                     </div>
                 ))}
