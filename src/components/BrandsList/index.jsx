@@ -3,6 +3,7 @@ import { Navbar, Container, Nav, NavDropdown } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useBrands } from '../../hooks/useBrands';
 import { RingLoader } from 'react-spinners';
+import MyCarousel from '../Carousel';
 import styles from './BrandsList.module.css';
 
 export default function BrandsList() {
@@ -42,6 +43,7 @@ export default function BrandsList() {
                     </Navbar.Collapse>
                 </Container>
             </Navbar>
+            <MyCarousel brands={brands} />
         </>
     );
 }
