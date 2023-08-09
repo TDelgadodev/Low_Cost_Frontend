@@ -2,18 +2,28 @@ import { Button, Col, Form } from "react-bootstrap";
 import * as Yup from "yup";
 import { ErrorMessage, Field, Formik } from "formik";
 import styles from "./index.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; 
+import useAuth from "../../hooks/useAuth"; 
+import { useState } from "react";
+
 
 export const Register = () => {
+  const { register } = useAuth(); 
+  const [registrationSuccess, setRegistrationSuccess] = useState(false);
+  const navigate = useNavigate(); // Agrega esto
+
   const initialValues = {
-    nameSurname: "",
+    name: "",
+    surname:"",
     email: "",
     phone: "",
     password: "",
   };
 
   const validationSchema = Yup.object({
-    nameSurname: Yup.string().required("Debes ingresar tu nombre y apellido"),
+    name: Yup.string().required("Debes ingresar tu nombre"),
+    surname: Yup.string().required("Debes ingresar tu apellido"),
     email: Yup.string().required("Debe ingresar un email").email(),
     phone: Yup.number()
       .required("Debe ingresar su numero de telefono")
@@ -22,9 +32,21 @@ export const Register = () => {
     password: Yup.string().required("La contraseña es obligatoria"),
   });
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    try {
+      await register(values);
+      toast.success("Registro exitoso");
+      setRegistrationSuccess(true);
+      navigate("/login"); 
+    } catch (error) {
+      throw new Error(error.response.data.error.message)
+    }
   };
+
+
+  if (registrationSuccess) {
+    return null; 
+  }
 
   return (
     <Formik
@@ -42,18 +64,35 @@ export const Register = () => {
               <h2>Hola, Bienvenido!</h2>
             </div>
             <Form.Group className="mb-2">
-              <Form.Label htmlFor="email">Nombre y apellido</Form.Label>
+              <Form.Label htmlFor="email">Nombre</Form.Label>
               <Field
-                id="nameSurname"
+                id="name"
                 type="text"
-                placeholder="Ingresa su nombre y apellido"
-                name="nameSurname"
+                placeholder="Ingresa su nombre"
+                name="name"
                 as={Form.Control}
                 className="shadow border-secondary"
-                onFocus={() => formik.setFieldError("nameSurname", "")}
+                onFocus={() => formik.setFieldError("name", "")}
               ></Field>
               <ErrorMessage
-                name="nameSurname"
+                name="name"
+                component={Form.Text}
+                className="text-danger ms-2"
+              ></ErrorMessage>
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label htmlFor="email">Apellido</Form.Label>
+              <Field
+                id="surname"
+                type="text"
+                placeholder="Ingresa su apellido"
+                name="surname"
+                as={Form.Control}
+                className="shadow border-secondary"
+                onFocus={() => formik.setFieldError("surname", "")}
+              ></Field>
+              <ErrorMessage
+                name="surname"
                 component={Form.Text}
                 className="text-danger ms-2"
               ></ErrorMessage>

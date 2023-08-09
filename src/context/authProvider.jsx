@@ -1,13 +1,18 @@
 import { useState, createContext } from "react";
 import PropTypes from "prop-types";
-import { loginAuthService, profileUserService } from "../services/auth.service";
+import { loginAuthService, profileUserService, registerAuthService } from "../services/auth.service";
 import jwtDecode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify"; 
+
 
 const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [alert, setAlert] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
+  const navigate = useNavigate(); 
 
   const handleAlert = (error) => {
     setAlert(error.message);
@@ -16,21 +21,44 @@ const AuthProvider = ({ children }) => {
     }, 3000);
   };
 
-  const login = async (info) => {
+  const register = async (info) => {
     try {
-      const { token } = await loginAuthService(info);
-      sessionStorage.setItem('LowCostToken',token)
-      const decodedToken = token ? jwtDecode(token) : null;
-      setUser(decodedToken.user)
+      await registerAuthService(info); 
     } catch (error) {
       handleAlert(error);
     }
-  };
+  }
 
-  const profile = async (token) => {
+  const login = async (info) => {
     try {
+      const { token } = await loginAuthService(info);
+      sessionStorage.setItem('LowCostToken', token);
+      const decodedToken = token ? jwtDecode(token) : null;
+  
+      if (token && decodedToken && decodedToken.user) {
+        setUser(decodedToken.user);
+        setAlert(null);
+        toast.success("Inicio de sesión exitoso");
+        navigate("/");
+      } else {
+        handleAlert({ message: "Error en el inicio de sesión." });
+      }
+    } catch (error) {
+      handleAlert(error);
+    } 
+  };
+  
+
+  const getProfile = async () => {
+    try {
+      const token = sessionStorage.getItem('LowcostToken');
+      if(!token){
+        return null
+      }
+      
       const response = await profileUserService(token);
-      return response
+    console.log(response);
+    //setUserProfile(response) 
     } catch (error) {
       handleAlert(error);
     }
@@ -42,10 +70,12 @@ const AuthProvider = ({ children }) => {
 
   const contextValue = {
     user,
+    userProfile,
+    register,
     login,
     logout,
     alert,
-    profile,
+    getProfile,
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

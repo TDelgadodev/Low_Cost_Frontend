@@ -1,12 +1,14 @@
 import { ErrorMessage, Field, Formik } from "formik";
 import { Image, Form, Button, Col, Container } from "react-bootstrap";
+//import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import { useEffect } from "react";
-import useAuth from "../../hooks/useAuth";
+ import useAuth from "../../hooks/useAuth";
 
 export const Profile = () => {
-  const { profile } = useAuth();
-  const token = sessionStorage.getItem('LowCostToken')
+  const {  getProfile, userProfile, /* user */ } = useAuth();
+/*   const navigate = useNavigate();
+ */
   const initialValues = {
     nameSurnmae: "",
     phoneWithArea: "",
@@ -23,8 +25,10 @@ export const Profile = () => {
 
 
   useEffect(() => {
-    profile(token)
+    getProfile();
   }, []);
+
+
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {(formik) => (
@@ -36,7 +40,13 @@ export const Profile = () => {
                 src="default-img-user.jpg"
               />
               <div className="text-center">
-                <h2></h2>
+              {
+                userProfile && (
+                  <div>
+                    {userProfile.name}
+                  </div>
+                )
+              }
               </div>
               <div className="p-2 m-2 mb-5">
                 <Form.Group className="mb-2 mt-2">

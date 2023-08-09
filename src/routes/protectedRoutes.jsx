@@ -1,7 +1,15 @@
-import { Navigate, Outlet } from "react-router-dom";
+import PropTypes from "prop-types";
+import { Route, Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
-export const ProtectedRoutes = () => {
+const ProtectedRoute = ({ element: Element, ...rest }) => {
   const { user } = useAuth();
-  return user ? <Outlet /> : <Navigate to={"/login"} replace />;
+
+  return user ? <Route {...rest} element={<Element />} /> : <Navigate to="/login" />;
 };
+
+ProtectedRoute.propTypes = {
+  element: PropTypes.elementType.isRequired,
+};
+
+export default ProtectedRoute;
