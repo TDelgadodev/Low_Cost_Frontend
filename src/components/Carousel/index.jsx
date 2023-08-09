@@ -10,9 +10,9 @@ class MyCarousel extends Component {
             slidesToShow: 5,
             slidesToScroll: 1,
             autoplay: true,
-            speed: 3500,
+            speed: 2500,
             autoplaySpeed: 500,
-            cssEase: "linear"
+            cssEase: "ease"
         };
 
         const mobileSettings = {

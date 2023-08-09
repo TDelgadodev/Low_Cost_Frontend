@@ -1,0 +1,46 @@
+.menuButton {
+    background-color: #007BFF;
+    display: flex;
+}
+
+.menuButton a {
+    color: white;
+    font-family: Poppins;
+    transition: color 0.3s ease-in-out;
+}
+
+.menuButton a:hover {
+    color: greenyellow;
+    font-family: Poppins;
+}
+
+.categoriesList {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 60px;
+    background-color: #007BFF;
+    text-align: justify;
+    line-height: 35px;
+    justify-content: center;
+    width: 100%;
+}
+
+.categoriesList li {
+    margin-right: 10px;
+    font-size: 0.9rem;
+    font-family: Poppins;
+    font-weight: 300;
+}
+
+.categoriesList a {
+    color: white;
+    text-decoration: none;
+    transition: 0.5s;
+}
+
+.categoriesList a:hover {
+    color: greenyellow
+}

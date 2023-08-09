@@ -8,7 +8,7 @@ export default function CartProduct({ product }) {
     const { removeAllFromCart, removeOneFromCart, addToCart } = useCart()
     const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : 'nofoto.png';
     const totalProductPrice = product.price * product.quantity;
-    console.log('producto del carrito', product)
+    /* console.log('producto del carrito', product) */
     return (
         <Row className={`mb-4 d-flex justify-content-between align-items-center ${styles.productContainer}`}>
             <Col xs={4} md={2} lg={2} xl={2}>

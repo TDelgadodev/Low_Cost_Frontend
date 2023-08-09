@@ -51,10 +51,6 @@ const ProductsProvider = ({ children }) => {
     }
 
     async function getProductKeyword(keyword) {
-        /* if (!keyword || keyword.trim() === '') {
-            console.error("La palabra clave es inválida.");
-            return;
-        } */
         try {
             setLoading(true)
             const productKeywordData = await filterProductsByKeyword(keyword)
