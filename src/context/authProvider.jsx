@@ -1,6 +1,6 @@
 import { useState, createContext } from "react";
 import PropTypes from "prop-types";
-import { loginAuthService, profileUserService } from "../services/auth.service";
+import { loginAuthService, profileUserService, registerAuthService } from "../services/auth.service";
 import jwtDecode from "jwt-decode";
 
 const AuthContext = createContext(null);
@@ -8,6 +8,7 @@ const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [alert, setAlert] = useState(null);
+  const [userProfile, setUserProfile] = useState(null);
 
   const handleAlert = (error) => {
     setAlert(error.message);
@@ -15,6 +16,14 @@ const AuthProvider = ({ children }) => {
       setAlert(null);
     }, 3000);
   };
+
+  const register = async (info) => {
+    try {
+      await registerAuthService(info); 
+    } catch (error) {
+      handleAlert(error);
+    }
+  }
 
   const login = async (info) => {
     try {
@@ -24,13 +33,20 @@ const AuthProvider = ({ children }) => {
       setUser(decodedToken.user)
     } catch (error) {
       handleAlert(error);
-    }
+    } 
   };
 
-  const profile = async (token) => {
+  const getProfile = async () => {
     try {
+      const token = sessionStorage.getItem('LowcostToken');
+
+      if(!token){
+        return null
+      }
+      
       const response = await profileUserService(token);
-      return response
+    console.log(response);
+    setUserProfile(response) 
     } catch (error) {
       handleAlert(error);
     }
@@ -42,10 +58,12 @@ const AuthProvider = ({ children }) => {
 
   const contextValue = {
     user,
+    userProfile,
+    register,
     login,
     logout,
     alert,
-    profile,
+    getProfile,
   };
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
