@@ -1,0 +1,38 @@
+.sliderContainerDesktop {
+    width: 100%;
+    margin: 5% auto;
+}
+
+.sliderContainerDesktop img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    margin: auto;
+}
+
+.sliderContainerMobile {
+    width: 100%;
+    margin: 5% auto;
+}
+
+.sliderContainerMobile img {
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: contain;
+    margin: auto;
+}
+
+.structure {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.structure p {
+    font-family: Poppins;
+    font-size: 0.9rem;
+    padding-top: 25px;
+}

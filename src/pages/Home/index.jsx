@@ -1,12 +1,12 @@
 import { Col, Container, Row } from "react-bootstrap"
 import styles from "./Home.module.css"
-import MyCarousel from "../../components/Carousel";
+import MyCarousel from "../../components/CarouselBrands";
 import CarouselBanner from "../../components/CarouselBanner";
 import PaginationCard from "../../components/PaginationCards";
 import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
 import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
-import BrandsList from "../../components/BrandsList";
+import CarouselCategories from "../../components/CarouselCategories";
 
 export const Home = () => {
 
@@ -19,11 +19,12 @@ export const Home = () => {
         <MyCarousel></MyCarousel>
       </Container>
       <Container>
-        <h2 className={`${styles.homeTitle}`} style={{ color: '#007BFF' }}>¡Conocé todas nuestras ofertas!</h2>
+        <h2 className={`${styles.homeTitle}`} style={{ color: '#007BFF', textAlign: 'center' }}>¡Conocé todas nuestras ofertas!</h2>
         <p className={`${styles.homeText} pt-3`}>En LowCost, satisfacemos todas tus necesidades. Obtené el equipamiento
           comercial que requiere tu negocio pagando una cómoda cuota diaria.</p>
         <p className={`${styles.homeText} pb-2`}>Además, también ofrecemos todo lo necesario para equipar tu hogar.
           ¡Empezá a disfrutar ahora mismo!</p>
+        <CarouselCategories></CarouselCategories>
         <h3 className={`${styles.homeTitle} pb-4`}>Destacados del Mes</h3>
       </Container>
       <Container>
@@ -51,7 +52,6 @@ export const Home = () => {
           </Col>
         </Row>
       </Container>
-      <BrandsList></BrandsList>
       <WhatsApp></WhatsApp>
       <ShoppingCart></ShoppingCart>
     </>

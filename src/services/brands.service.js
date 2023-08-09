@@ -7,7 +7,7 @@ export const getBrandsService = async () => {
         const url = `${apiUrl}`
         const response = await axios.get(url);
         const brands = response.data.data
-        console.log('respuesta', brands)
+        /* console.log('respuesta', brands) */
         return brands
     } catch (error) {
         console.log(error)

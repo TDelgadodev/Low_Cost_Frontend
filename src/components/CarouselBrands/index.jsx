@@ -15,7 +15,7 @@ function MyCarousel() {
         autoplay: true,
         speed: 2500,
         autoplaySpeed: 500,
-        cssEase: "ease"
+        cssEase: "ease-out"
     };
 
     const mobileSettings = {
@@ -28,14 +28,14 @@ function MyCarousel() {
             <Slider {...desktopSettings} className={`${styles.sliderContainerDesktop} d-none d-md-block`}>
                 {brands.map((brand) => (
                     <div key={brand.id}>
-                        <a href="#"><img src={`/brands/${brand.image}`} alt={brand.name} style={{ width: '100px' }} /></a>
+                        <a href={`/search/${brand.id}`}><img src={`/brands/${brand.image}`} alt={brand.name} style={{ width: '100px' }} /></a>
                     </div>
                 ))}
             </Slider>
             <Slider {...mobileSettings} className={`${styles.sliderContainerDesktop} d-md-none`}>
                 {brands.map((brand) => (
                     <div key={brand.id}>
-                        <a href="#"><img src={`/brands/${brand.image}`} alt={brand.name} style={{ width: '75px' }} /></a>
+                        <a href={`/search/${brand.id}`}><img src={`/brands/${brand.image}`} alt={brand.name} style={{ width: '75px' }} /></a>
                     </div>
                 ))}
             </Slider>

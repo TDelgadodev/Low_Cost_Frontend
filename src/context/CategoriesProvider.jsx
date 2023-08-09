@@ -42,6 +42,4 @@ CategoriesProvider.propTypes = {
     children: PropTypes.node.isRequired
 }
 
-export { CategoriesProvider }
-
-export default CategoriesContext
+export { CategoriesProvider, CategoriesContext };
