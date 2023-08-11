@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Pagination, Stack } from '@mui/material';
 import { Col, Container, Row } from 'react-bootstrap';
 import ProductCard from '../ProductCard';
 import { useProducts } from '../../hooks/useProduct';
 
 export default function PaginationSearch() {
-    const { filteredKeyword } = useProducts();
+    const { filteredKeyword, filteredProductsCategory, getProductByCategory } = useProducts();
     const ProductsPerPage = 12;
 
     const [currentPage, setCurrentPage] = useState(1);
@@ -14,6 +14,12 @@ export default function PaginationSearch() {
         /* console.log("Page changed:", pageNumber); */
         setCurrentPage(pageNumber);
     };
+
+    useEffect(() => {
+        if (filteredProductsCategory) {
+            getProductByCategory(filteredProductsCategory)
+        }
+    }, [filteredProductsCategory])
 
     const startIndex = (currentPage - 1) * ProductsPerPage;
     const endIndex = startIndex + ProductsPerPage;
