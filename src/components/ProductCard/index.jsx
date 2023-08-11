@@ -22,7 +22,7 @@ export default function ProductCard({ product }) {
             <Card.Img variant="top" src={imageUrl}
                 className={`${styles.cardImg}`} />
             <Card.Body>
-                <Card.Title className={`pb-3 ${styles.cardName}`}>{product.name}</Card.Title>
+                <p className={`pb-3 ${styles.cardName}`}>{product.name}</p>
                 <Card.Text className={`${styles.cardPrice}`}>
                     <b>${product.price.toLocaleString('es-AR')}</b>
                 </Card.Text>

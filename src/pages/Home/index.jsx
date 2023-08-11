@@ -20,14 +20,14 @@ export const Home = () => {
         <MyCarousel></MyCarousel>
       </Container>
       <Container>
-        <h2 className={`pb-5 ${styles.homeTitle}`} style={{ color: '#007BFF', textAlign: 'center' }}>¡CONOCÉ TODAS NUESTRAS OFERTAS!</h2>
+        <h2 className={`pb-5 pt-2 ${styles.homeTitle}`} style={{ color: '#007BFF', textAlign: 'center' }}>¡CONOCÉ TODAS NUESTRAS OFERTAS!</h2>
         <BannerStatic></BannerStatic>
         {/* <p className={`${styles.homeText} pt-3`}>En LowCost, satisfacemos todas tus necesidades. Obtené el equipamiento
           comercial que requiere tu negocio pagando una cómoda cuota diaria.</p>
         <p className={`${styles.homeText} pb-2`}>Además, también ofrecemos todo lo necesario para equipar tu hogar.
           ¡Empezá a disfrutar ahora mismo!</p> */}
         <CarouselCategories></CarouselCategories>
-        <h3 className={`${styles.homeTitle} pb-4`}>DESTACADOS DEL MES</h3>
+        <h3 className={`${styles.homeTitle} pb-4 pt-4`}>DESTACADOS DEL MES</h3>
       </Container>
       <Container>
         <PaginationCard></PaginationCard>
