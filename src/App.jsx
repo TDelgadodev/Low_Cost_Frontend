@@ -18,11 +18,11 @@ function App() {
           <CartProvider>
             <BrandsProvider>
               <CategoriesProvider>
-                <MainLayout>
-                  <ProductsProvider>
+                <ProductsProvider>
+                  <MainLayout>
                     <AppRoutes />
-                  </ProductsProvider>
-                </MainLayout>
+                  </MainLayout>
+                </ProductsProvider>
               </CategoriesProvider>
             </BrandsProvider>
           </CartProvider>

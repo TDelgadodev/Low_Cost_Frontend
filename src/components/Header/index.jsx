@@ -16,30 +16,32 @@ import useAuth from '../../hooks/useAuth';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CategoriesList from '../CategoriesList';
+import { useProducts } from '../../hooks/useProduct';
 
 
 function Header() {
+    const navigate = useNavigate();
     const { toogleModal } = useModal()
     const { cart } = useCart()
     const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
     const { user, logout } = useAuth();
+
     const handleLogout = () => {
         logout()
     }
-/*     const [keyword, setKeyword] = useState('');
-    const navigate = useNavigate ();
 
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-        navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
-    }; */
-
+    const { getProductKeyword } = useProducts();
     const [keyword, setKeyword] = useState('');
-    const navigate = useNavigate();
+    /* const navigate = useNavigate(); */
 
-    const handleSearchSubmit = (event) => {
+    const handleSubmit = (event) => {
         event.preventDefault();
+        getProductKeyword(keyword);
         navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
+    };
+
+    const handleChange = (event) => {
+        setKeyword(event.target.value);
     };
 
     return (
@@ -66,14 +68,14 @@ function Header() {
                             </Offcanvas.Header>
                             <Offcanvas.Body className={`${styles.offcanvasBody}`}>
                                 <Nav className={`justify-content-end flex-grow-1 pe-5`}>
-                                    <Form className="d-flex align-items-center pe-3" onSubmit={handleSearchSubmit}>
+                                    <Form className="d-flex align-items-center pe-3" onSubmit={handleSubmit}>
                                         <Form.Control
                                             type="search"
                                             placeholder="Buscar Productos"
                                             className="me-2"
                                             aria-label="Search"
                                             value={keyword}
-                                            onChange={(event) => setKeyword(event.target.value)}
+                                            onChange={handleChange}
                                         />
                                         <Button type="submit"><SearchIcon /></Button>
                                     </Form>
@@ -83,17 +85,17 @@ function Header() {
                                     <Nav.Link href="#action4" className={`${styles.typo}`}><Button>Contacto</Button></Nav.Link>
                                     <Nav.Link className={`${styles.typo}`}><Button onClick={toogleModal} className={`${styles.buttonContainer}`}><span className={`${styles.shopNumber}`}>{totalProductsInCart}</span><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
                                     {
-                                        user ? 
-                                        <>
-                                        <Nav.Link href="/profile" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>   
-                                        <Nav.Link className={`${styles.typo}`}>
-                                            <Button onClick={handleLogout}>
-                                                <LogoutOutlined></LogoutOutlined>
-                                            </Button>
-                                        </Nav.Link> 
-                                        </>
-                                        :
-                                        <Nav.Link href="/login" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
+                                        user ?
+                                            <>
+                                                <Nav.Link href="/profile" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
+                                                <Nav.Link className={`${styles.typo}`}>
+                                                    <Button onClick={handleLogout}>
+                                                        <LogoutOutlined></LogoutOutlined>
+                                                    </Button>
+                                                </Nav.Link>
+                                            </>
+                                            :
+                                            <Nav.Link href="/login" className={`${styles.typo}`}><Button><AccountCircleOutlinedIcon></AccountCircleOutlinedIcon></Button></Nav.Link>
                                     }
                                 </Nav>
                             </Offcanvas.Body>
