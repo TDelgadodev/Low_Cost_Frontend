@@ -4,11 +4,18 @@ import { Link } from 'react-router-dom';
 import { useCategories } from '../../hooks/useCategories';
 import { RingLoader } from 'react-spinners';
 import styles from './CategoriesList.module.css';
+import { useProducts } from '../../hooks/useProduct';
 
 export default function CategoriesList() {
     const [expanded, setExpanded] = useState(false);
     const context = useCategories();
     const categories = context.categories;
+
+    const { getProductByCategory } = useProducts()
+
+    const handleCategoryClick = (categoryId) => {
+        getProductByCategory(categoryId)
+    }
 
     const toggleMenu = () => {
         setExpanded(!expanded);
@@ -33,7 +40,7 @@ export default function CategoriesList() {
                                 <ul className={`${styles.categoriesList}`} >
                                     {categories.map((category) => (
                                         <li key={category.id}>
-                                            <Link to={`/search/${category.id}`}>{category.name}</Link>
+                                            <Link to={`/search`} onClick={() => handleCategoryClick(category.id)}>{category.name}</Link>
                                         </li>
                                     ))}
                                 </ul>
