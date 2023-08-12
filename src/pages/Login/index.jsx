@@ -5,13 +5,13 @@ import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+/* import { useNavigate } from "react-router-dom"; */
 
 
 
 export const Login = () => {
   const { login, alert } = useAuth();
-  const navigate = useNavigate();
+  /* const navigate = useNavigate(); */
 
   const initialValues = {
     email: "",
@@ -26,14 +26,14 @@ export const Login = () => {
   const handleSubmit = async (values, { setSubmitting }) => {
     try {
       await login(values);
-  
+
     } catch (error) {
       throw new Error(error.response.data.error.message)
     } finally {
       setSubmitting(false);
     }
   };
-  
+
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -44,7 +44,7 @@ export const Login = () => {
       validationSchema={validationSchema}
     >
       {(formik) => (
-        <Form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit} className="py-5">
           <Col
             xs={10}
             sm={6}
@@ -54,7 +54,7 @@ export const Login = () => {
             className={`${styles.loginForm} mb-5`}
           >
             {alert && <Alert variant="danger">{alert}</Alert>}
-            <div>
+            <div className="pb-3">
               <h2>Hola, Bienvenido!</h2>
             </div>
             <Form.Group className="mb-2">
@@ -131,7 +131,7 @@ export const Login = () => {
               </div>
             </div>
             <div className={`d-flex gap-2 mt-3 ${styles.formBoxLinks}`}>
-              <p className={styles.title}>¿No tienes una cuenta?</p>
+              <p className={styles.title}>¿No tenés una cuenta?</p>
               <Link className="text-decoration-none" to={"/register"}>
                 Registrate
               </Link>

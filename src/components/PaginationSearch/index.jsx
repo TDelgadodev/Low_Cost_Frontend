@@ -33,34 +33,31 @@ export default function PaginationSearch() {
         }
     }, [filteredKeyword, filteredProductsCategory, filteredProductsBrand, currentPage]);
 
-
-    /* if (!currentProducts || currentProducts.length === 0) {
-        return (
-            <Row className="p-5 m-5">
-                <h2 className="text-center">¡Buscá algún producto!</h2>
-            </Row>
-        );
-    } */
-    /* console.log("productos actuales:", currentProducts) */
-
     return (
-        <Container>
-            <Row>
-                {currentProducts.map((product) => (
-                    <Col xs={6} sm={6} md={4} lg={3} xl={3} key={product.id} className="pb-5">
-                        <ProductCard product={product} />
-                    </Col>
-                ))}
-                {console.log("productos actuales:", currentProducts)}
-            </Row>
-            <Stack spacing={2} className='mb-5 justify-content-center align-items-center'>
-                <Pagination
-                    count={Math.ceil(currentProducts.length / ProductsPerPage)}
-                    page={currentPage}
-                    onChange={handlePageChange}
-                    color="primary"
-                />
-            </Stack>
-        </Container>
+        <>
+            {!currentProducts || currentProducts.length === 0 ? (
+                <Row className='p-5 m-5'>
+                    <h2 className='text-center'>¡Buscá algún producto!</h2>
+                </Row>
+            ) : (
+                <Container>
+                    <Row>
+                        {currentProducts.map((product) => (
+                            <Col xs={6} sm={6} md={4} lg={3} xl={3} key={product.id} className="pb-5">
+                                <ProductCard product={product} />
+                            </Col>
+                        ))}
+                    </Row>
+                    <Stack spacing={2} className='mb-5 justify-content-center align-items-center'>
+                        <Pagination
+                            count={Math.ceil(currentProducts.length / ProductsPerPage)}
+                            page={currentPage}
+                            onChange={handlePageChange}
+                            color="primary"
+                        />
+                    </Stack>
+                </Container>
+            )}
+        </>
     );
 }

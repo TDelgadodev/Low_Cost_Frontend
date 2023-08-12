@@ -18,7 +18,7 @@ export default function SearchForm() {
     };
 
     return (
-        <Container className='pb-5'>
+        <Container className='pb-5 pt-5'>
             <Row className="justify-content-center align-items-center">
                 <Col xs={10} sm={10} md={10} lg={10} xl={10}>
                     <Form onSubmit={handleSubmit} className="d-flex align-items-center">

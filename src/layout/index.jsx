@@ -8,7 +8,7 @@ export default function MainLayout({ children }) {
   return (
     <div className={styles.main}>
       <Header />
-      <Container className="mt-4">{children}</Container >
+      <Container className="mt-5 pb-4">{children}</Container >
       <Footer />
     </div>
   )

@@ -101,13 +101,8 @@ const ProductsProvider = ({ children }) => {
     }
 
     useEffect(() => {
-        if (filteredKeyword !== null) {
-            getProductKeyword(filteredKeyword);
-        }
-    }, [filteredKeyword]);
-
-    useEffect(() => {
         if (filteredProductsCategory !== null) {
+            setFilteredKeyword(null);
             getProductByCategory(filteredProductsCategory);
         }
     }, [filteredProductsCategory]);
@@ -117,6 +112,12 @@ const ProductsProvider = ({ children }) => {
             getProductByBrand(filteredProductsBrand);
         }
     }, [filteredProductsBrand]);
+
+    useEffect(() => {
+        if (filteredKeyword !== null) {
+            getProductKeyword(filteredKeyword);
+        }
+    }, [filteredKeyword]);
 
     useEffect(() => {
         getProductOffer();

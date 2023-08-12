@@ -11,7 +11,7 @@ export default function CategoriesList() {
     const context = useCategories();
     const categories = context.categories;
 
-    const { getProductByCategory } = useProducts()
+    const { getProductByCategory} = useProducts()
 
     const handleCategoryClick = (categoryId) => {
         getProductByCategory(categoryId)
@@ -31,7 +31,7 @@ export default function CategoriesList() {
 
     return (
         <>
-            <Navbar expand="md" className='p-1 d-none d-md-flex'>
+            <Navbar className='p-1 d-flex'>
                 <Container>
                     <Navbar.Toggle onClick={toggleMenu} />
                     <Navbar.Collapse in={expanded}>
