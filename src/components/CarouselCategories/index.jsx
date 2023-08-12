@@ -2,17 +2,16 @@ import { useContext } from 'react';
 import Slider from 'react-slick';
 import styles from './CarouselCategories.module.css'
 import { CategoriesContext } from '../../context/CategoriesProvider';
-/* import { useProducts } from '../../hooks/useProduct'; */
+import { useProducts } from '../../hooks/useProduct';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
 
-function CarouselCategories({ updateFilter }) {
+function CarouselCategories() {
 
     const { categories } = useContext(CategoriesContext)
-    /* const { getProductByCategory } = useProducts() */
+    const { getProductByCategory } = useProducts()
 
     const handleCategoryClick = (categoryId) => {
-        updateFilter('category', categoryId)
+        getProductByCategory(categoryId)
     }
 
     const desktopSettings = {
@@ -36,7 +35,7 @@ function CarouselCategories({ updateFilter }) {
             <Slider {...desktopSettings} className={`${styles.sliderContainerDesktop} d-none d-md-block`}>
                 {categories.map((category) => (
                     <div key={category.id} className={`${styles.structure}`}>
-                        <Link to={`/search/${category.id}`}>
+                        <Link to={`/search`}>
                             <img src={`/categories/${category.image}`}
                                 alt={category.name}
                                 style={{ width: '135px' }}
@@ -62,9 +61,5 @@ function CarouselCategories({ updateFilter }) {
     );
 
 }
-
-CarouselCategories.propTypes = {
-    updateFilter: PropTypes.func.isRequired // Validate that updateFilter is a required function prop
-};
 
 export default CarouselCategories

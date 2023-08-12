@@ -1,18 +1,16 @@
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-/* import { useProducts } from '../../hooks/useProduct'; */
+import { useProducts } from '../../hooks/useProduct';
 import { useState } from 'react';
 import SearchIcon from '@mui/icons-material/Search';
-import PropTypes from 'prop-types'
 
-export default function SearchForm({ updateFilter }) {
+export default function SearchForm() {
+
+    const { getProductKeyword } = useProducts();
     const [keyword, setKeyword] = useState('');
-    /*     const { getProductKeyword } = useProducts(); */
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        if (keyword.trim() !== '') {
-            updateFilter('keyword', keyword);
-        }
+        getProductKeyword(keyword);
     };
 
     const handleChange = (event) => {
@@ -41,7 +39,3 @@ export default function SearchForm({ updateFilter }) {
         </Container>
     );
 }
-
-SearchForm.propTypes = {
-    updateFilter: PropTypes.func.isRequired
-};

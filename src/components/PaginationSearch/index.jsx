@@ -5,35 +5,44 @@ import ProductCard from '../ProductCard';
 import { useProducts } from '../../hooks/useProduct';
 
 export default function PaginationSearch() {
-    const { filteredKeyword, filteredProductsCategory, getProductByCategory } = useProducts();
+    const { filteredKeyword, filteredProductsCategory, filteredProductsBrand } = useProducts();
     const ProductsPerPage = 12;
-
     const [currentPage, setCurrentPage] = useState(1);
+    const [currentProducts, setCurrentProducts] = useState([]);
 
     const handlePageChange = (event, pageNumber) => {
-        /* console.log("Page changed:", pageNumber); */
         setCurrentPage(pageNumber);
     };
 
     useEffect(() => {
-        if (filteredProductsCategory) {
-            getProductByCategory(filteredProductsCategory)
+
+        const startIndex = (currentPage - 1) * ProductsPerPage;
+        const endIndex = startIndex + ProductsPerPage;
+
+        let productsToDisplay = [];
+
+        if (filteredKeyword) {
+            productsToDisplay = filteredKeyword.slice(startIndex, endIndex);
+        } else if (filteredProductsBrand) {
+            productsToDisplay = filteredProductsBrand.slice(startIndex, endIndex);
+        } else if (filteredProductsCategory) {
+            productsToDisplay = filteredProductsCategory.slice(startIndex, endIndex);
         }
-    }, [filteredProductsCategory])
+        if (productsToDisplay.length > 0) {
+            setCurrentProducts(productsToDisplay);
+        }
+    }, [filteredKeyword, filteredProductsCategory, filteredProductsBrand, currentPage]);
 
-    const startIndex = (currentPage - 1) * ProductsPerPage;
-    const endIndex = startIndex + ProductsPerPage;
-    const currentProducts = filteredKeyword ? filteredKeyword.slice(startIndex, endIndex) : [];
 
-    /* console.log("Current products:", currentProducts); */
-
-    if (!filteredKeyword || filteredKeyword.length === 0) {
+    /* if (!currentProducts || currentProducts.length === 0) {
         return (
             <Row className="p-5 m-5">
                 <h2 className="text-center">¡Buscá algún producto!</h2>
             </Row>
         );
-    }
+    } */
+    /* console.log("productos actuales:", currentProducts) */
+
     return (
         <Container>
             <Row>
@@ -42,10 +51,11 @@ export default function PaginationSearch() {
                         <ProductCard product={product} />
                     </Col>
                 ))}
+                {console.log("productos actuales:", currentProducts)}
             </Row>
             <Stack spacing={2} className='mb-5 justify-content-center align-items-center'>
                 <Pagination
-                    count={Math.ceil(filteredKeyword.length / ProductsPerPage)}
+                    count={Math.ceil(currentProducts.length / ProductsPerPage)}
                     page={currentPage}
                     onChange={handlePageChange}
                     color="primary"

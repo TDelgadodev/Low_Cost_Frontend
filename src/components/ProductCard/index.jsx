@@ -30,7 +30,7 @@ export default function ProductCard({ product }) {
                     id: {product.id}
                 </Card.Text> */}
                 <Button variant="primary"
-                        onClick={() => {
+                    onClick={() => {
                         handleAddToCart(product)
                     }}
                     style={{ width: '100%' }}>Agregar al Carrito</Button>

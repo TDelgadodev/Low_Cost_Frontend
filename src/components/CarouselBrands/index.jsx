@@ -2,10 +2,17 @@ import { useContext } from 'react';
 import Slider from 'react-slick';
 import styles from './Carousel.module.css'
 import { BrandsContext } from '../../context/BrandsProvider';
+import { useProducts } from '../../hooks/useProduct';
+import { Link } from 'react-router-dom';
 
 function MyCarousel() {
 
     const { brands } = useContext(BrandsContext)
+    const { getProductByBrand } = useProducts()
+
+    const handleCategoryClick = (brandId) => {
+        getProductByBrand(brandId)
+    }
 
     const desktopSettings = {
         dots: false,
@@ -28,14 +35,24 @@ function MyCarousel() {
             <Slider {...desktopSettings} className={`${styles.sliderContainerDesktop} d-none d-md-block`}>
                 {brands.map((brand) => (
                     <div key={brand.id}>
-                        <a href={`/search/${brand.id}`}><img src={`/brands/${brand.image}`} alt={brand.name} style={{ width: '90px' }} /></a>
+                        <Link to={`/search`}>
+                            <img src={`/brands/${brand.image}`}
+                                alt={brand.name}
+                                style={{ width: '90px' }}
+                                onClick={() => handleCategoryClick(brand.id)} />
+                        </Link>
                     </div>
                 ))}
             </Slider>
             <Slider {...mobileSettings} className={`${styles.sliderContainerDesktop} d-md-none`}>
                 {brands.map((brand) => (
                     <div key={brand.id}>
-                        <a href={`/search/${brand.id}`}><img src={`/brands/${brand.image}`} alt={brand.name} style={{ width: '75px' }} /></a>
+                        <Link to={`/search`}>
+                            <img src={`/brands/${brand.image}`}
+                                alt={brand.name}
+                                style={{ width: '75px' }}
+                                onClick={() => handleCategoryClick(brand.id)} />
+                        </Link>
                     </div>
                 ))}
             </Slider>
