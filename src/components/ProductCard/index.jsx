@@ -18,7 +18,7 @@ export default function ProductCard({ product }) {
     const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : 'nofoto.png';
 
     return (
-        <Card>
+        <Card className={`${styles.cardContainer}`}>
             <Card.Img variant="top" src={imageUrl}
                 className={`${styles.cardImg}`} />
             <Card.Body>

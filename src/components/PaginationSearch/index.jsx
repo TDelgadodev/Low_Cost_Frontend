@@ -3,6 +3,7 @@ import { Pagination, Stack } from '@mui/material';
 import { Col, Container, Row } from 'react-bootstrap';
 import ProductCard from '../ProductCard';
 import { useProducts } from '../../hooks/useProduct';
+import OrderSelector from '../OrderSelector';
 
 export default function PaginationSearch() {
     const { filteredKeyword, filteredProductsCategory, filteredProductsBrand } = useProducts();
@@ -12,6 +13,12 @@ export default function PaginationSearch() {
 
     const handlePageChange = (event, pageNumber) => {
         setCurrentPage(pageNumber);
+    };
+
+    const [orderBy, setOrderBy] = useState('')
+
+    const handleOrderByChange = (event) => {
+        setOrderBy(event.target.value);
     };
 
     useEffect(() => {
@@ -28,13 +35,26 @@ export default function PaginationSearch() {
         } else if (filteredProductsCategory) {
             productsToDisplay = filteredProductsCategory.slice(startIndex, endIndex);
         }
+
+        if (orderBy === 'name_asc') {
+            productsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
+        } else if (orderBy === 'name_desc') {
+            productsToDisplay.sort((a, b) => b.name.localeCompare(a.name));
+        } else if (orderBy === 'price_asc') {
+            productsToDisplay.sort((a, b) => a.price - b.price);
+        } else if (orderBy === 'price_desc') {
+            productsToDisplay.sort((a, b) => b.price - a.price);
+        }
+
         if (productsToDisplay.length > 0) {
             setCurrentProducts(productsToDisplay);
         }
-    }, [filteredKeyword, filteredProductsCategory, filteredProductsBrand, currentPage]);
+
+    }, [filteredKeyword, filteredProductsCategory, filteredProductsBrand, currentPage, orderBy]);
 
     return (
         <>
+            <OrderSelector orderBy={orderBy} handleOrderByChange={handleOrderByChange} />
             {!currentProducts || currentProducts.length === 0 ? (
                 <Row className='p-5 m-5'>
                     <h2 className='text-center'>¡Buscá algún producto!</h2>
