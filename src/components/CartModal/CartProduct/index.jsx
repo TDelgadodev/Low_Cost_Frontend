@@ -18,7 +18,7 @@ export default function CartProduct({ product }) {
                 />
             </Col>
             <Col md={3} lg={3} xl={3}>
-                <h6 className="text-muted mb-0">{product.name}</h6>
+                <small className="text-muted mb-0">{product.name}</small>
             </Col>
             <Col md={3} lg={3} xl={2} className="d-flex align-items-center justify-content-between">
                 <Button variant="link" className="px-1" onClick={() => removeOneFromCart(product.idProduct)}>

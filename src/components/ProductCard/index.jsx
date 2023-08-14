@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { useCart } from '../../hooks/useCart'
 import styles from './ProductCardOffer.module.css'
 import { toast } from 'react-toastify'
+import { Link } from "react-router-dom"
 
 export default function ProductCard({ product }) {
 
@@ -19,16 +20,15 @@ export default function ProductCard({ product }) {
 
     return (
         <Card className={`${styles.cardContainer}`}>
-            <Card.Img variant="top" src={imageUrl}
-                className={`${styles.cardImg}`} />
+            <Link>
+                <Card.Img variant="top" src={imageUrl}
+                    className={`${styles.cardImg}`} />
+            </Link>
             <Card.Body>
-                <p className={`pb-3 ${styles.cardName}`}>{product.name}</p>
+                <Link className={`${styles.cardLink}`}><p className={`pb-3 ${styles.cardName}`}>{product.name}</p></Link>
                 <Card.Text className={`${styles.cardPrice}`}>
                     <b>${product.price.toLocaleString('es-AR')}</b>
                 </Card.Text>
-                {/* <Card.Text>
-                    id: {product.id}
-                </Card.Text> */}
                 <Button variant="primary"
                     onClick={() => {
                         handleAddToCart(product)

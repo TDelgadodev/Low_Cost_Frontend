@@ -7,7 +7,7 @@ import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils';
 
 const ShoppingCart = () => {
-    const { isOpen, toogleModal } = useModal()
+    const { isOpen, toggleModal } = useModal()
     const { cart, clearCart, sendOrder, orderTotal } = useCart()
     const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
 
@@ -15,9 +15,9 @@ const ShoppingCart = () => {
         <>
             {isOpen && (
                 <>
-                    <div className={`${styles.overlay}`} onClick={toogleModal} />
+                    <div className={`${styles.overlay}`} onClick={toggleModal} />
                     <section className={`${styles.sectionCustom}`}>
-                        <Button variant="link" className={`${styles.cancelButton}`} onClick={toogleModal}>
+                        <Button variant="link" className={`${styles.cancelButton}`} onClick={toggleModal}>
                             <CancelIcon className={`${styles.iconClose}`} />
                         </Button>
                         <Container className="h-100">
@@ -26,14 +26,14 @@ const ShoppingCart = () => {
                                     <div className={`${styles.cardRegistration} ${styles.cardRegistration2}`}>
                                         <div className="card-body p-0">
                                             <Row className="g-0">
-                                                <Col lg={8}>
+                                                <Col xl={8}>
                                                     <div className={`p-4`}>
                                                         <div className="pt-1 mt-2 d-flex justify-content-between align-items-center mb-5">
                                                             <h3 className="fw-bold mb-0 text-black">Carrito</h3>
                                                             <small className="mb-0 px-5 text-muted">{totalProductsInCart} Items</small>
                                                         </div>
                                                         <hr className="my-4" />
-                                                        <div className={`${styles.productsContainer} p-5 overflow-auto`}>
+                                                        <div className={`${styles.productsContainer} px-5 overflow-auto`}>
                                                             {cart.cartItems.length === 0 && (
                                                                 <h5>¡Añadí productos para comprar!</h5>
                                                             )}
@@ -44,7 +44,7 @@ const ShoppingCart = () => {
                                                         <hr className="my-4" />
                                                     </div>
                                                 </Col>
-                                                <Col lg={4} className={styles.bgGrey}>
+                                                <Col xl={4} className={styles.bgGrey}>
                                                     <div className="p-4">
                                                         <h3 className="fw-bold mb-5 mt-2 pt-1">Sumario</h3>
                                                         <hr className="my-4" />

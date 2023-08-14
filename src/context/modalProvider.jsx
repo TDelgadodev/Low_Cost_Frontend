@@ -6,14 +6,14 @@ const ModalContext = createContext()
 function ModalProvider({ children }) {
     const [isOpen, setIsOpen] = useState(false)
 
-    function toogleModal() {
+    function toggleModal() {
         setIsOpen(!isOpen)
     }
 
 
     const modalValues = {
         isOpen,
-        toogleModal
+        toggleModal
     }
 
     return (

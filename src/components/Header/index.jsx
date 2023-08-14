@@ -21,7 +21,7 @@ import { useProducts } from '../../hooks/useProduct';
 
 function Header() {
     const navigate = useNavigate();
-    const { toogleModal } = useModal()
+    const { toggleModal } = useModal()
     const { cart } = useCart()
     const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
     const { user, logout } = useAuth();
@@ -83,7 +83,7 @@ function Header() {
                                     <Nav.Link href="/search" className={`${styles.typo}`}><Button>Tienda</Button></Nav.Link>
                                     <Nav.Link href="#action3" className={`${styles.typo}`}><Button>Revista</Button></Nav.Link>
                                     <Nav.Link href="#action4" className={`${styles.typo}`}><Button>Contacto</Button></Nav.Link>
-                                    <Nav.Link className={`${styles.typo}`}><Button onClick={toogleModal} className={`${styles.buttonContainer}`}><span className={`${styles.shopNumber}`}>{totalProductsInCart}</span><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
+                                    <Nav.Link className={`${styles.typo}`}><Button onClick={toggleModal} className={`${styles.buttonContainer}`}><span className={`${styles.shopNumber}`}>{totalProductsInCart}</span><ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon></Button></Nav.Link>
                                     {
                                         user ?
                                             <>
