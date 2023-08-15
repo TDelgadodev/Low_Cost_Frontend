@@ -14,7 +14,7 @@ import { getTotalProductsInCart } from "../../utils/cart.utils";
 import { useCart } from "../../hooks/useCart";
 import useAuth from "../../hooks/useAuth";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import CategoriesList from "../CategoriesList";
 import { useProducts } from "../../hooks/useProduct";
 
@@ -124,23 +124,23 @@ function Header() {
                   </Nav.Link>
                   {user ? (
                     <>
-                      <Nav.Link href="/profile" className={`${styles.typo}`}>
+                      <Link to="/profile" className={`${styles.typo}`}>
                         <Button>
                           <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
                         </Button>
-                      </Nav.Link>
-                      <Nav.Link className={`${styles.typo}`}>
+                      </Link>
+                      <Link className={`${styles.typo}`}>
                         <Button onClick={handleLogout}>
                           <LogoutOutlined></LogoutOutlined>
                         </Button>
-                      </Nav.Link>
+                      </Link>
                     </>
                   ) : (
-                    <Nav.Link href="/login" className={`${styles.typo}`}>
+                    <Link to="/login" className={`${styles.typo}`}>
                       <Button>
                         <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
                       </Button>
-                    </Nav.Link>
+                    </Link>
                   )}
                 </Nav>
               </Offcanvas.Body>

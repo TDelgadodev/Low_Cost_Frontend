@@ -43,7 +43,7 @@ export const Profile = () => {
               {
                 userProfile && (
                   <div>
-                    Bienvenido {userProfile.name}
+                    Bienvenido {userProfile.user.name}
                   </div>
                 )
               }
@@ -84,7 +84,6 @@ export const Profile = () => {
                     id="email"
                     type="email"
                     placeholder="Email"
-                    value={userProfile.email}
                     name="email"
                     as={Form.Control}
                     className="shadow border-secondary"
