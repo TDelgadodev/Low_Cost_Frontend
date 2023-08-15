@@ -20,12 +20,14 @@ export default function ProductCard({ product }) {
 
     return (
         <Card className={`${styles.cardContainer}`}>
-            <Link>
+            <Link to={`./product/${product.id}`}>
                 <Card.Img variant="top" src={imageUrl}
                     className={`${styles.cardImg}`} />
             </Link>
             <Card.Body>
-                <Link className={`${styles.cardLink}`}><p className={`pb-3 ${styles.cardName}`}>{product.name}</p></Link>
+                <Link to={`/product/${product.id}`} className={`${styles.cardLink}`}>
+                    <p className={`pb-3 ${styles.cardName}`}>{product.name}</p>
+                </Link>
                 <Card.Text className={`${styles.cardPrice}`}>
                     <b>${product.price.toLocaleString('es-AR')}</b>
                 </Card.Text>
@@ -43,6 +45,7 @@ ProductCard.propTypes = {
     product: PropTypes.shape({
         imageUrls: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)]),
         name: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired
     }).isRequired

@@ -5,30 +5,18 @@ import { filterProductsByOffer, getProductService, filterProductsByKeyword, filt
 const ProductContext = createContext()
 
 const ProductsProvider = ({ children }) => {
-    const [products, setProducts] = useState([])
-    const [modal, setModal] = useState(false)
-    const [productId, setProductId] = useState(null)
+    const [idProduct, setProductId] = useState(null)
     const [filteredProducts, setFilteredProducts] = useState(null)
     const [filteredKeyword, setFilteredKeyword] = useState(null)
     const [filteredProductsCategory, setFilteredProductsCategory] = useState(null)
     const [filteredProductsBrand, setFilteredProductsBrand] = useState(null)
     const [loading, setLoading] = useState(false)
 
-    function handleModalClick() {
-        setModal(!modal)
-    }
-
-    function handleProductIdClick(id) {
-        setProductId(id)
-    }
-
-    async function getProduct() {
-        if (!productId) return
-
+    async function getProduct(idProduct) {
         try {
-            setLoading(true)
-            const productData = await getProductService(productId)
-            setProducts(productData)
+            const productData = await getProductService(idProduct);
+            productData.imageUrls = JSON.parse(productData.imageUrls);
+            return productData
         } catch (error) {
             console.error(error.message)
         } finally {
@@ -101,6 +89,13 @@ const ProductsProvider = ({ children }) => {
     }
 
     useEffect(() => {
+        if (idProduct !== null) {
+            setProductId(null);
+            getProduct(idProduct)
+        }
+    }, [idProduct]);
+
+    useEffect(() => {
         if (filteredProductsCategory !== null) {
             setFilteredKeyword(null);
             getProductByCategory(filteredProductsCategory);
@@ -124,15 +119,12 @@ const ProductsProvider = ({ children }) => {
     }, []);
 
     const contextValues = {
-        products,
+        idProduct,
         filteredProducts,
         filteredKeyword,
         filteredProductsCategory,
         filteredProductsBrand,
-        modal,
         loading,
-        handleModalClick,
-        handleProductIdClick,
         getProduct,
         getProductOffer,
         getProductKeyword,

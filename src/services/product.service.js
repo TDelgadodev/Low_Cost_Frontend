@@ -9,8 +9,9 @@ const apiProductByBrandUrl = import.meta.env.VITE_PRODUCT_BY_BRAND_API_URL
 const getProductService = async (productId) => {
     try {
         const url = `${apiProductIdUrl}${productId}`
-        const { data } = await axios.get(url)
-        return data.products[0]
+        const response = await axios.get(url);
+        const product = response.data.data;
+        return product
     } catch (error) {
         console.error(error)
         throw new Error('Hubo un error al obtener el producto')

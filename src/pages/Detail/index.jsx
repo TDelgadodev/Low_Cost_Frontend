@@ -1,16 +1,66 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
-import CarouselIMG from "../../components/CarrouselIMG";
 import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
 import styles from "./index.module.css";
+import WhatsApp from "../../components/WhatsApp";
+import ShoppingCart from "../../components/CartModal";
+import { useParams } from "react-router-dom";
+import { useProducts } from '../../hooks/useProduct'
+import { useEffect, useState } from "react";
+import { useCart } from "../../hooks/useCart";
+import { toast } from 'react-toastify'
+import Carrousel from "../../components/CarrouselIMG";
 
 export const Detail = () => {
+  const { id } = useParams();
+  const { getProduct } = useProducts();
+
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    const loadProductDetails = async () => {
+      try {
+        const productDetails = await getProduct(id);
+        setProduct(productDetails);
+      } catch (error) {
+        console.error("Error obteniendo el detalle de producto:", error);
+      }
+    };
+
+    loadProductDetails();
+  }, [id, getProduct]);
+
+  const { addToCart } = useCart()
+
+  function handleAddToCart(product) {
+    const { id, name, price, imageUrls } = product;
+    const productToAdd = { idProduct: id, name, price, imageUrls };
+    addToCart(productToAdd);
+    toast.success('¡Producto agregado con éxito!');
+  }
+
+  const imageUrls = product && product.imageUrls && Array.isArray(product.imageUrls) ? product.imageUrls : [];
+
+  if (!product) {
+    return <p>El producto no esta disponible.</p>;
+  }
+
+  console.log(product)
+
   return (
     <>
       <Container className={`${styles.containerCustomDetails}`}>
-        <CarouselIMG></CarouselIMG>
+        {imageUrls && imageUrls.length > 0 ? (
+          <Carrousel images={imageUrls} />
+        ) : (
+          <img
+            className="d-block w-100 custom-carousel-item img-fluid"
+            src="/nofoto.png"
+            alt="No hay imágenes disponibles"
+          />
+        )}
         <div className="m-3">
-          <h2>Titulo del producto</h2>
-          <p>$167.999,00</p>
+          <h2>{product.name}</h2>
+          <b>${product.price.toLocaleString('es-AR')}</b>
           <Row className={`mb-5 p-3`}>
             <Col
               xs={12}
@@ -62,31 +112,25 @@ export const Detail = () => {
       <Container>
         <div className={`m-3 ${styles.containerCustomButton}`}>
           <div className={`d-grid gap-2`}>
-            <Button variant="primary" className="p-2" type="submit" size="md">
-              Agregar al carrito
-            </Button>
+            <Button variant="primary"
+              onClick={() => {
+                handleAddToCart(product)
+              }}
+              style={{ width: '100%' }}>Agregar al Carrito</Button>
           </div>
         </div>
         <div className={`m-3 ${styles.containerCustomcharacteristics}`}>
           <p>
             Lo que tenes que saber de este producto:
           </p>
-          <ul> 
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-          </ul>
-          <ul>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-            <li>Lorem ipsum dolor sit amet consectetur adipisicing.</li>
-          </ul>
+          <small>{product.description}</small>
         </div>
       </Container>
+      {/* <Container>
+        <h2>PRODUCTOS RELACIONADOS</h2>
+      </Container> */}
+      <WhatsApp></WhatsApp>
+      <ShoppingCart></ShoppingCart>
     </>
   );
 };
