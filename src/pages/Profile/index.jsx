@@ -1,6 +1,5 @@
 import { ErrorMessage, Field, Formik } from "formik";
 import { Image, Form, Button, Col, Container } from "react-bootstrap";
-//import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css";
 import { useEffect } from "react";
  import useAuth from "../../hooks/useAuth";
@@ -23,10 +22,11 @@ export const Profile = () => {
     console.log(values);
   };
 
-
   useEffect(() => {
-    getProfile();
+    getProfile(); 
   }, []);
+
+  console.log("userProfile:", userProfile);
 
 
   return (
@@ -43,7 +43,7 @@ export const Profile = () => {
               {
                 userProfile && (
                   <div>
-                    {userProfile.name}
+                    Bienvenido {userProfile.name}
                   </div>
                 )
               }
@@ -84,6 +84,7 @@ export const Profile = () => {
                     id="email"
                     type="email"
                     placeholder="Email"
+                    value={userProfile.email}
                     name="email"
                     as={Form.Control}
                     className="shadow border-secondary"

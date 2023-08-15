@@ -7,13 +7,11 @@ import { CompletedPurchase } from "../pages/CompletedPurchase";
 import Search from "../pages/Search";
 import { Detail } from "../pages/Detail";
 import { Profile } from "../pages/Profile";
-
+/* import ProtectedRoutes from "./protectedRoutes";
+ */
 export const AppRoutes = () => {
-
-/*   const renderProtectedRoute = (element) => {
-    return user ? element : <Navigate to="/login" />;
-  }; */
-
+/*   const user = sessionStorage.getItem('LowCostToken')
+ */
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -22,7 +20,10 @@ export const AppRoutes = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/resetPassword" element={<ResetPassword />} />
-      <Route path="/profile" element={(<Profile />)} />
+      <Route path="/profile" element={<Profile />} />
+    {/*   <Route element={<ProtectedRoutes canActivate={user} redirectPath="login" />}>
+        <Route path="/profile" element={<Profile />} />
+      </Route> */}
       <Route path="/finish-buying" element={<CompletedPurchase />} />
     </Routes>
   );

@@ -10,8 +10,8 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [alert, setAlert] = useState(null);
   const [userProfile, setUserProfile] = useState(null);
+  const [alert, setAlert] = useState(null);
   const navigate = useNavigate(); 
 
   const handleAlert = (error) => {
@@ -51,14 +51,14 @@ const AuthProvider = ({ children }) => {
 
   const getProfile = async () => {
     try {
-      const token = sessionStorage.getItem('LowcostToken');
+      const token = sessionStorage.getItem('LowCostToken');
       if(!token){
         return null
       }
       
       const response = await profileUserService(token);
     console.log(response);
-    //setUserProfile(response) 
+    setUserProfile(response) 
     } catch (error) {
       handleAlert(error);
     }
