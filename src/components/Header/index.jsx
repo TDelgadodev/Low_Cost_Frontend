@@ -60,13 +60,13 @@ function Header() {
           className={`sticky-top ${styles.header}`}
         >
           <Container className={`${styles.headerContainer}`} fluid>
-            <Navbar.Brand href="/">
+            <Link to="/">
               <img
                 src="../logowhite.png"
                 alt="logo"
                 className={`${styles.logo}`}
               />
-            </Navbar.Brand>
+            </Link>
             <Navbar.Toggle
               aria-controls={`offcanvasNavbar-expand-${expand}`}
               className={`${styles.menuButton}`}
