@@ -2,35 +2,53 @@ import { ErrorMessage, Field, Formik } from "formik";
 import { Image, Form, Button, Col, Container } from "react-bootstrap";
 import styles from "./index.module.css";
 import { useEffect } from "react";
- import useAuth from "../../hooks/useAuth";
+import * as Yup from "yup";
+import useAuth from "../../hooks/useAuth";
 
 export const Profile = () => {
-  const {  getProfile, userProfile, /* user */ } = useAuth();
-/*   const navigate = useNavigate();
- */
+  const { getProfile, userProfile /* user */ } = useAuth();
+
   const initialValues = {
-    nameSurnmae: "",
-    phoneWithArea: "",
-    email: "",
+    nameSurname: userProfile?.user?.name || "",
+    phone: userProfile?.user?.phone.toString() || "",
+    email: userProfile?.user?.email || "",
     postCode: "",
     address: "",
     location: "",
     zone: "",
   };
+  const validationSchema = Yup.object({
+    nameSurname: Yup.string().required("Debes ingresar tu nombre y apellido"),
+    phone: Yup.string().required("Debe ingresar su número de teléfono").matches(/^\d+$/, "El teléfono debe ser numérico"),
+    email: Yup.string().required("Debe ingresar un email").email(),
+    postCode: Yup.number().integer(),
+    address: Yup.string(),
+    location: Yup.string(),
+    zone: Yup.string(),
+  });
 
-  const handleSubmit = (values) => {
-    console.log(values);
+  const handleSubmit = async (values) => {
+    try {
+      const formattedValues = {
+        ...values,
+        phone: parseInt(values.phone),
+      };
+        console.log(formattedValues);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
-    getProfile(); 
-  }, []);
+    if (!userProfile) {
+      getProfile();
+    }
+  }, [getProfile, userProfile]);
 
   console.log("userProfile:", userProfile);
 
-
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
           <Container className="d-flex justify-content-center">
@@ -40,13 +58,11 @@ export const Profile = () => {
                 src="default-img-user.jpg"
               />
               <div className="text-center">
-              {
-                userProfile && (
+                {userProfile && (
                   <div>
-                    Bienvenido {userProfile.user.name}
+                    <h2> Bienvenido {userProfile.user.name}</h2>
                   </div>
-                )
-              }
+                )}
               </div>
               <div className="p-2 m-2 mb-5">
                 <Form.Group className="mb-2 mt-2">

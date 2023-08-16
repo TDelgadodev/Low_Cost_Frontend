@@ -7,11 +7,12 @@ import { CompletedPurchase } from "../pages/CompletedPurchase";
 import Search from "../pages/Search";
 import { Detail } from "../pages/Detail";
 import { Profile } from "../pages/Profile";
-/* import ProtectedRoutes from "./protectedRoutes";
- */
+import ProtectedRoutes from "./protectedRoutes";
+import useAuth from "../hooks/useAuth";
+
 export const AppRoutes = () => {
-/*   const user = sessionStorage.getItem('LowCostToken')
- */
+  const { user } = useAuth();
+
   return (
     <Routes>
       <Route path="/" element={<Home />} />
@@ -20,10 +21,11 @@ export const AppRoutes = () => {
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
       <Route path="/resetPassword" element={<ResetPassword />} />
-      <Route path="/profile" element={<Profile />} />
-    {/*   <Route element={<ProtectedRoutes canActivate={user} redirectPath="login" />}>
+      <Route
+        element={<ProtectedRoutes canActive={user} redirectPath="login" />}
+      >
         <Route path="/profile" element={<Profile />} />
-      </Route> */}
+      </Route>
       <Route path="/finish-buying" element={<CompletedPurchase />} />
     </Routes>
   );

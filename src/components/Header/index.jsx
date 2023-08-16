@@ -24,7 +24,6 @@ function Header() {
   const { cart } = useCart();
   const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
   const { user, logout } = useAuth();
-  console.log("user en header:", user);
 
   const handleLogout = () => {
     logout();
