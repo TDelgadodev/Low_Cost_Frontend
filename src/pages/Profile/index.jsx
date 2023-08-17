@@ -1,22 +1,26 @@
 import { ErrorMessage, Field, Formik } from "formik";
 import { Image, Form, Button, Col, Container } from "react-bootstrap";
 import styles from "./index.module.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import useAuth from "../../hooks/useAuth";
 
 export const Profile = () => {
   const { getProfile, userProfile /* user */ } = useAuth();
+  const [isLoading, setIsLoading] = useState(true);
+
+  
 
   const initialValues = {
     nameSurname: userProfile?.user?.name || "",
     phone: userProfile?.user?.phone.toString() || "",
     email: userProfile?.user?.email || "",
-    postCode: "",
-    address: "",
-    location: "",
-    zone: "",
+    postCode: userProfile?.user?.address?.postalCode || "",
+    address: userProfile?.user?.address?.street || "",
+    location: userProfile?.user?.address?.location || "",
+    zone: userProfile?.user?.address?.province || "",
   };
+  
   const validationSchema = Yup.object({
     nameSurname: Yup.string().required("Debes ingresar tu nombre y apellido"),
     phone: Yup.string().required("Debe ingresar su número de teléfono").matches(/^\d+$/, "El teléfono debe ser numérico"),
@@ -29,25 +33,41 @@ export const Profile = () => {
 
   const handleSubmit = async (values) => {
     try {
+      setIsLoading(true);
       const formattedValues = {
         ...values,
         phone: parseInt(values.phone),
       };
-        console.log(formattedValues);
+      console.log(formattedValues);
+      setIsLoading(false);
     } catch (error) {
       console.error(error);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
     if (!userProfile) {
+      setIsLoading(true); // Muestra el loader
       getProfile();
     }
   }, [getProfile, userProfile]);
+  
+  useEffect(() => {
+    if (userProfile) {
+      setIsLoading(false); // Oculta el loader
+    }
+  }, [userProfile]);
 
   console.log("userProfile:", userProfile);
 
   return (
+    <div>
+      {isLoading && (
+        <div className="loader-container">
+          <span className="loader"></span>
+        </div>
+      )}
     <Formik initialValues={initialValues} onSubmit={handleSubmit} validationSchema={validationSchema}>
       {(formik) => (
         <Form onSubmit={formik.handleSubmit}>
@@ -189,5 +209,6 @@ export const Profile = () => {
         </Form>
       )}
     </Formik>
+    </div>
   );
 };
