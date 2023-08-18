@@ -9,11 +9,11 @@ import { useEffect, useState } from "react";
 import { useCart } from "../../hooks/useCart";
 import { toast } from 'react-toastify'
 import Carrousel from "../../components/CarrouselIMG";
+import PaginationRelated from "../../components/PaginationRelated";
 
 export const Detail = () => {
   const { id } = useParams();
   const { getProduct } = useProducts();
-
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -31,6 +31,8 @@ export const Detail = () => {
 
   const { addToCart } = useCart()
 
+  /* const currentCategory = product && product.categoryId ? product.categoryId : null; */
+
   function handleAddToCart(product) {
     const { id, name, price, imageUrls } = product;
     const productToAdd = { idProduct: id, name, price, imageUrls };
@@ -43,8 +45,6 @@ export const Detail = () => {
   if (!product) {
     return <p>El producto no esta disponible.</p>;
   }
-
-  console.log(product)
 
   return (
     <>
@@ -126,9 +126,11 @@ export const Detail = () => {
           <small>{product.description}</small>
         </div>
       </Container>
-      {/* <Container>
-        <h2>PRODUCTOS RELACIONADOS</h2>
-      </Container> */}
+      <hr className="my-5" />
+      <Container>
+        <h3 className={`${styles.subtitulo} pb-5`}>¡OFERTAS IMPERDIBLES!</h3>
+        <PaginationRelated /* currentCategory={currentCategory} */ />
+      </Container>
       <WhatsApp></WhatsApp>
       <ShoppingCart></ShoppingCart>
     </>

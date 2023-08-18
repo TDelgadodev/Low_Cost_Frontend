@@ -17,8 +17,7 @@ export default function PaginationCard() {
         const startIndex = (currentPage - 1) * ProductsPerPage;
         const endIndex = startIndex + ProductsPerPage;
         const currentProducts = filteredProducts ? filteredProducts.slice(startIndex, endIndex) : [];
-
-
+        console.log("productosfiltrados:", filteredProducts)
 
         if (!filteredProducts || filteredProducts.length === 0) {
             return (

@@ -64,6 +64,7 @@ const ProductsProvider = ({ children }) => {
             productByCategoryData.forEach((product) => {
                 product.imageUrls = JSON.parse(product.imageUrls);
             });
+            
             setFilteredProductsCategory(productByCategoryData);
         } catch (error) {
             console.error("Error fetching product by category data:", error.message);

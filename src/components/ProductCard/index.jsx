@@ -16,7 +16,7 @@ export default function ProductCard({ product }) {
         toast.success('¡Producto agregado con éxito!');
     }
 
-    const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : 'nofoto.png';
+    const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : '/nofoto.png';
 
     return (
         <Card className={`${styles.cardContainer}`}>
