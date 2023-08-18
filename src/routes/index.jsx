@@ -20,11 +20,11 @@ export const AppRoutes = () => {
       <Route path="/product/:id" element={<Detail />} />
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
-      <Route path="/resetPassword" element={<ResetPassword />} />
       <Route
         element={<ProtectedRoutes canActive={user} redirectPath="login" />}
       >
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/resetPassword" element={<ResetPassword />} />
       </Route>
       <Route path="/finish-buying" element={<CompletedPurchase />} />
     </Routes>
