@@ -37,17 +37,31 @@ export const loginAuthService = async (info) => {
   }
 };
 
-export const profileUserService = async (token) => {
+export const profileUserService = async (userId,token) => {
   try {
-    const url = `${apiUrlAuth}profile`;
+    const url = `${apiUrlAuth}profile/${userId}`;
     const { data } = await axios.get(url, {
       headers: {
-        Authorization: token,
+        Authorization: `${token}`,
       },
     });
 
     return data;
   } catch (error) {
     throw new Error(error.response.data.error.message)
+  }
+};
+
+export const updateProfileService = async (updatedData, token) => {
+  try {
+    const url = `${apiUrlAuth}${updatedData.id}`;
+    await axios.put(url, updatedData, {
+      headers: {
+        Authorization: token,
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    throw new Error(error.response.data.error.message);
   }
 };

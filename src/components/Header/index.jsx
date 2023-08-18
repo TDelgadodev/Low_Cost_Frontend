@@ -123,7 +123,7 @@ function Header() {
                   </Nav.Link>
                   {user ? (
                     <>
-                      <Link to="/profile" className={`${styles.typo}`}>
+                      <Link to={`/profile/${user.id}`} className={`${styles.typo}`}>
                         <Button>
                           <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
                         </Button>
