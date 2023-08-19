@@ -31,28 +31,49 @@
   margin-left: 5px;
 }
 
-.containerCustomDetails p {
-  font-weight: bold;
-}
-
-.containerCustomDetails h2 {
-  font-size: 1.5rem;
-}
-
-.containerCustomcharacteristics p {
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-
-.containerCustomcharacteristics ul {
-  font-size: 0.9rem;
-}
-
 .subtitulo {
   font-family: Poppins;
   text-align: center;
   color: #007BFF;
-  letter-spacing: 8px;
+  letter-spacing: 5px;
+}
+
+.categoryName {
+  text-transform: uppercase;
+  color: gray;
+  letter-spacing: 5px;
+  font-family: Poppins;
+}
+
+.productName {
+  text-transform: capitalize;
+  font-family: Poppins;
+  font-weight: 600;
+  font-size: 2rem !important;
+}
+
+.productPrice {
+  font-family: Poppins;
+  font-weight: 400 !important;
+  font-size: 2rem !important;
+  margin-bottom: 5px !important;
+}
+
+.productStock {
+  text-transform: uppercase;
+  color: gray;
+  font-family: Poppins;
+}
+
+.productPay {
+  font-family: Poppins;
+  text-decoration: none;
+  color: #007BFF;
+  transition: 0.5s;
+}
+
+.productPay:hover {
+  color: orangered
 }
 
 /* Estilos para vista de tablet (768px) */
@@ -97,8 +118,15 @@
     font-size: 1.9rem;
   }
 
+  .containerCustomcharacteristics h4 {
+    font-family: Poppins;
+    text-align: center;
+    color: #007BFF;
+    letter-spacing: 5px;
+  }
+
   .containerCustomcharacteristics p {
-    font-size: 24px;
+    font-family: Poppins;
   }
 
   .containerCustomcharacteristics ul {

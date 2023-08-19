@@ -20,7 +20,7 @@ export default function ProductCard({ product }) {
 
     return (
         <Card className={`${styles.cardContainer}`}>
-            <Link to={`./product/${product.id}`}>
+            <Link to={`/product/${product.id}`}>
                 <Card.Img variant="top" src={imageUrl}
                     className={`${styles.cardImg}`} />
             </Link>

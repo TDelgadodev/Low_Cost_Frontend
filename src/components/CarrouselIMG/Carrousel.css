@@ -1,78 +1,67 @@
-/* Carrousel.css */
-.carousel-container {
-  margin: 0 auto;
-  max-width: 100%;
-  border: 2px solid #00aaff;
-  border-radius: 10px;
-  padding: 10px;
+.carousel-control-next-icon {
+  background-image: url(/public/next.svg);
+}
+
+.carousel-control-prev-icon {
+  background-image: url(/public/prev.svg);
 }
 
 .custom-carousel-item {
   text-align: center;
   outline: none;
+  border-radius: 6px;
 }
 
-.custom-carousel-item img {
-  width: 100%; /* Ancho máximo */
-  max-width: 100%; /* Evita que las imágenes sean más grandes que su tamaño original */
-  height: auto;
-  object-fit: contain; 
-  margin: 0 auto;
-}
-
-.custom-carousel-control {
-  padding: 10px;
-}
-
-.custom-carousel-control-prev {
-  left: 10px;
-}
-
-.custom-carousel-control-next {
-  right: 10px;
-}
-
-.carousel-inner {
-  scroll-snap-type: none;
-}
-
-.custom-carousel-control-prev-icon,
-.custom-carousel-control-next-icon {
-  width: 24px;
-  height: 24px;
-  background-size: 100% 100%;
-  opacity: 1;
-  color: #00aaff;
-}
-
-/* Estilos para la vista de tablet (768px) y mayores */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 425px) {
   .carousel-container {
-    max-width: 50%;
-    margin: 0 auto;
-  }
-
-  .custom-carousel-item {
     max-width: 100%;
+    margin: 0 auto;
+    border: 1px solid rgba(206, 206, 206, 0.795);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
   }
 
   .custom-carousel-item img {
-    width: 60%;
-    max-width: 100%;
-    height: auto;
+    width: 100%;
+    aspect-ratio: 5/4;
+    object-fit: contain;
+    margin: 0 auto;
   }
+}
 
-  .custom-carousel-control-prev,
-  .custom-carousel-control-next {
-    width: auto;
+@media screen and (min-width: 426px) and (max-width: 768px) {
+  .carousel-container {
+    max-width: 50%;
+    margin: 0 auto;
+    border: 1px solid rgba(206, 206, 206, 0.795);
+    border-radius: 10px;
     padding: 10px;
+    background-color: white;
   }
 
-  .custom-carousel-control-prev {
-    left: 10px;
+  .custom-carousel-item img {
+    width: 100%;
+    aspect-ratio: 5/4;
+    object-fit: contain;
+    margin: 50% 0;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .carousel-container {
+    max-width: 50%;
+    margin: 0 auto;
+    border: 1px solid rgba(206, 206, 206, 0.795);
+    border-radius: 10px;
+    padding: 10px;
+    background-color: white;
   }
 
-  .custom-carousel-control-next {
-    right: 10px;
+  .custom-carousel-item img {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: contain;
+    margin: 0;
   }
 }
