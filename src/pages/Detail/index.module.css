@@ -127,6 +127,7 @@
 
   .containerCustomcharacteristics p {
     font-family: Poppins;
+    line-height: 25px;
   }
 
   .containerCustomcharacteristics ul {

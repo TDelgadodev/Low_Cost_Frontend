@@ -11,19 +11,23 @@
 
 @media (min-width: 1025px) {
     .HeaderUp {
-        background-color: #007BFF;
         color: white;
         font-family: poppins;
         font-weight: 400;
         font-size: 14px;
         padding: 3px;
         text-align: center;
+        background-color: #007BFF;
     }
 }
 
 .header {
-    background: rgb(39, 84, 223);
-    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%);
+    /* background: rgb(39, 84, 223);
+    background: linear-gradient(90deg, rgba(39, 84, 223, 1) 0%, rgba(11, 55, 196, 1) 100%); */
+    background: radial-gradient(circle, #0085ff 25%, transparent 26%), radial-gradient(circle at bottom left, #0085ff 12%, transparent 13%), radial-gradient(circle at bottom right, #0085ff 12%, transparent 13%), radial-gradient(circle at top left, #0085ff 12%, transparent 13%), radial-gradient(circle at top right, #0085ff 12%, transparent 13%);
+    background-size: 1em 1em;
+    background-color: #007BFF;
+    opacity: 1
 }
 
 .headerContainer {

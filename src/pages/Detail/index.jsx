@@ -1,5 +1,5 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
-import { AttachMoney, Autorenew, CreditScoreOutlined, DeliveryDining } from "@mui/icons-material";
+import { Button, Container } from "react-bootstrap";
+import { CreditScoreOutlined, DeliveryDining } from "@mui/icons-material";
 import styles from "./index.module.css";
 import WhatsApp from "../../components/WhatsApp";
 import ShoppingCart from "../../components/CartModal";
@@ -10,6 +10,7 @@ import { useCart } from "../../hooks/useCart";
 import { toast } from 'react-toastify'
 import Carrousel from "../../components/CarrouselIMG";
 import PaginationCard from "../../components/PaginationCards";
+import InfoCards from "../../components/infoCards";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -48,7 +49,7 @@ export const Detail = () => {
   /* console.log("producto:", product) */
   return (
     <>
-      <Container className={`${styles.containerCustomDetails}`}>
+      <Container className={`${styles.containerCustomDetails} pb-5`}>
         {imageUrls && imageUrls.length > 0 ? (
           <Carrousel images={imageUrls} />
         ) : (
@@ -73,28 +74,7 @@ export const Detail = () => {
             style={{ width: '100%' }}>Agregar al Carrito</Button>
         </div>
       </Container>
-      <Container className="pt-5">
-        <Row className={`justify-items-center align-items-center justify-content-center mb-5 ${styles.itemsContainer}`}>
-          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
-            <DeliveryDining className={`${styles.itemsIcon}`}></DeliveryDining>
-            <div>
-              <p>ENTREGA INMEDIATA</p><small>Recibí el producto dentro de las 48hs</small>
-            </div>
-          </Col>
-          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
-            <Autorenew className={`${styles.itemsIcon}`}></Autorenew>
-            <div>
-              <p>TIEMPO DE PRUEBA</p><small>Tenés 72hs para probar el producto</small>
-            </div>
-          </Col>
-          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
-            <AttachMoney className={`${styles.itemsIcon}`}></AttachMoney>
-            <div>
-              <p>ENVÍO GRATUITO</p><small>Sin costo dentro de las zonas</small>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <InfoCards />
       <Container>
         <div className={`m-3 ${styles.containerCustomcharacteristics}`}>
           <h4 className="my-5">
