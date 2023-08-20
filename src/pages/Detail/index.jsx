@@ -59,12 +59,12 @@ export const Detail = () => {
             alt="No hay imágenes disponibles"
           />
         )}
-        <div className="m-3">
+        <div className={`${styles.infoContainer} m-3`}>
           <small className={`${styles.categoryName}`}>Categoría - {product.category.name}</small>
           <hr className="my-3" />
           <h2 className={`${styles.productName} pt-1`}>{product.name}</h2>
           <p className={`${styles.productPrice}`}>${product.price.toLocaleString('es-AR')}</p>
-          <small className={`${styles.productStock}`}>{product.stock} Unidades Disponibles</small>
+          <p className={`${styles.productStock}`}>{product.stock} Unidades Disponibles</p>
           <hr className="my-4" />
           <a href="#" className={`${styles.productPay}`}><CreditScoreOutlined /> Ver todos los medios de pago</a>
           <hr className="my-4" />

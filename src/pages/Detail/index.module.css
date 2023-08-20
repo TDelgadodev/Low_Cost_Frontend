@@ -63,6 +63,7 @@
   text-transform: uppercase;
   color: gray;
   font-family: Poppins;
+  font-size: .875em;
 }
 
 .productPay {
@@ -74,6 +75,34 @@
 
 .productPay:hover {
   color: orangered
+}
+
+@media screen and (max-width: 425px) {
+  .infoContainer {
+    text-align: center;
+  }
+
+  .containerCustomcharacteristics h4 {
+    font-family: Poppins;
+    text-align: center;
+    color: #007BFF;
+    letter-spacing: 5px;
+  }
+
+  .containerCustomcharacteristics p {
+    font-family: Poppins;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .containerCustomcharacteristics p:hover {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+
+  }
 }
 
 /* Estilos para vista de tablet (768px) */
@@ -108,10 +137,6 @@
 
   .containerCustomButton {
     width: 50%;
-  }
-
-  .containerCustomDetails p {
-    font-size: 20px;
   }
 
   .containerCustomDetails h2 {

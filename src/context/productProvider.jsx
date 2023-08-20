@@ -64,7 +64,7 @@ const ProductsProvider = ({ children }) => {
             productByCategoryData.forEach((product) => {
                 product.imageUrls = JSON.parse(product.imageUrls);
             });
-            
+
             setFilteredProductsCategory(productByCategoryData);
         } catch (error) {
             console.error("Error fetching product by category data:", error.message);
@@ -99,6 +99,7 @@ const ProductsProvider = ({ children }) => {
     useEffect(() => {
         if (filteredProductsCategory !== null) {
             setFilteredKeyword(null);
+            setFilteredProductsBrand(null);
             getProductByCategory(filteredProductsCategory);
         }
     }, [filteredProductsCategory]);
@@ -111,6 +112,8 @@ const ProductsProvider = ({ children }) => {
 
     useEffect(() => {
         if (filteredKeyword !== null) {
+            setFilteredProductsBrand(null);
+            setFilteredProductsCategory(null);
             getProductKeyword(filteredKeyword);
         }
     }, [filteredKeyword]);
