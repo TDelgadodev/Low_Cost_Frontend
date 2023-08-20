@@ -122,7 +122,7 @@ function Header() {
                     </Button>
                   </Nav.Link>
                   {user ? (
-                    <>
+                    <Nav.Link>
                       <Link to={`/profile/${user.id}`} className={`${styles.typo}`}>
                         <Button>
                           <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
@@ -133,13 +133,15 @@ function Header() {
                           <LogoutOutlined></LogoutOutlined>
                         </Button>
                       </Link>
-                    </>
+                    </Nav.Link>
                   ) : (
-                    <Link to="/login" className={`${styles.typo}`}>
-                      <Button>
-                        <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
-                      </Button>
-                    </Link>
+                    <Nav.Link>
+                      <Link to="/login" className={`${styles.typo}`}>
+                        <Button>
+                          <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
+                        </Button>
+                      </Link>
+                    </Nav.Link>
                   )}
                 </Nav>
               </Offcanvas.Body>

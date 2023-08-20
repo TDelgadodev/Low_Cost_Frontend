@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "../../hooks/useCart";
 import { toast } from 'react-toastify'
 import Carrousel from "../../components/CarrouselIMG";
-import PaginationRelated from "../../components/PaginationRelated";
+import PaginationCard from "../../components/PaginationCards";
 
 export const Detail = () => {
   const { id } = useParams();
@@ -73,50 +73,24 @@ export const Detail = () => {
             style={{ width: '100%' }}>Agregar al Carrito</Button>
         </div>
       </Container>
-      <Container>
-        <Row>
-          <Col
-            xs={12}
-            sm={12}
-            md={3}
-            lg={3}
-            xl={3}
-            className={`d-flex align-items-center mb-4 ${styles.textItems}`}
-          >
-            <DeliveryDining
-              className={`${styles.itemsIcon}`}
-            ></DeliveryDining>
+      <Container className="pt-5">
+        <Row className={`justify-items-center align-items-center justify-content-center mb-5 ${styles.itemsContainer}`}>
+          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
+            <DeliveryDining className={`${styles.itemsIcon}`}></DeliveryDining>
             <div>
-              <p>ENTREGA INMEDIATA</p>
-              <small>Recibí el producto dentro de las 48hs</small>
+              <p>ENTREGA INMEDIATA</p><small>Recibí el producto dentro de las 48hs</small>
             </div>
           </Col>
-          <Col
-            xs={12}
-            sm={12}
-            md={3}
-            lg={3}
-            xl={3}
-            className={`d-flex align-items-center mb-4 ${styles.textItems}`}
-          >
+          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
             <Autorenew className={`${styles.itemsIcon}`}></Autorenew>
             <div>
-              <p>TIEMPO DE PRUEBA</p>
-              <small>Tenés 72hs para probar el producto</small>
+              <p>TIEMPO DE PRUEBA</p><small>Tenés 72hs para probar el producto</small>
             </div>
           </Col>
-          <Col
-            xs={12}
-            sm={12}
-            md={3}
-            lg={3}
-            xl={3}
-            className={`d-flex align-items-center ${styles.textItems}`}
-          >
+          <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
             <AttachMoney className={`${styles.itemsIcon}`}></AttachMoney>
             <div>
-              <p>ENVÍO GRATUITO</p>
-              <small>Sin costo dentro de las zonas</small>
+              <p>ENVÍO GRATUITO</p><small>Sin costo dentro de las zonas</small>
             </div>
           </Col>
         </Row>
@@ -132,7 +106,7 @@ export const Detail = () => {
       </Container>
       <Container>
         <h3 className={`${styles.subtitulo} pb-5`}>¡OFERTAS IMPERDIBLES!</h3>
-        <PaginationRelated /* currentCategory={currentCategory} */ />
+        <PaginationCard /* currentCategory={currentCategory} */ />
       </Container>
       <WhatsApp></WhatsApp>
       <ShoppingCart></ShoppingCart>
