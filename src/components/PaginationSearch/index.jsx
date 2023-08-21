@@ -7,7 +7,7 @@ import OrderSelector from '../OrderSelector';
 
 export default function PaginationSearch() {
     const { filteredKeyword, filteredProductsCategory, filteredProductsBrand } = useProducts();
-    const ProductsPerPage = 12;
+    const ProductsPerPage = 8;
     const [currentPage, setCurrentPage] = useState(1);
     const [currentProducts, setCurrentProducts] = useState([]);
 
@@ -52,6 +52,9 @@ export default function PaginationSearch() {
 
     }, [filteredKeyword, filteredProductsCategory, filteredProductsBrand, currentPage, orderBy]);
 
+    const filteredProducts = filteredKeyword || filteredProductsCategory || filteredProductsBrand;
+    const totalPages = filteredProducts ? Math.ceil(filteredProducts.length / ProductsPerPage) : 1;
+
     return (
         <>
             <OrderSelector orderBy={orderBy} handleOrderByChange={handleOrderByChange} />
@@ -70,7 +73,7 @@ export default function PaginationSearch() {
                     </Row>
                     <Stack spacing={2} className='mb-5 justify-content-center align-items-center'>
                         <Pagination
-                            count={Math.ceil(currentProducts.length / ProductsPerPage)}
+                            count={totalPages}
                             page={currentPage}
                             onChange={handlePageChange}
                             color="primary"

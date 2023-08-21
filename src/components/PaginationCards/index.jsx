@@ -18,8 +18,6 @@ export default function PaginationCard() {
         const endIndex = startIndex + ProductsPerPage;
         const currentProducts = filteredProducts ? filteredProducts.slice(startIndex, endIndex) : [];
 
-
-
         if (!filteredProducts || filteredProducts.length === 0) {
             return (
                 <Row className="p-5 m-5">
@@ -27,6 +25,7 @@ export default function PaginationCard() {
                 </Row>
             )
         }
+
         return (
             <Container>
                 <Row>

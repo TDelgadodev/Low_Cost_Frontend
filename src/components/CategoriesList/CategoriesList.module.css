@@ -1,5 +1,6 @@
 .menuButton {
-    background-color: #007BFF;
+    /* background-color: #007BFF; */
+    background-color: orangered;
     display: flex;
 }
 
@@ -21,7 +22,8 @@
     padding-top: 10px;
     padding-bottom: 10px;
     padding-right: 60px;
-    background-color: #007BFF;
+    /* background-color: #007BFF; */
+    background-color: orangered;
     text-align: justify;
     line-height: 35px;
     justify-content: center;

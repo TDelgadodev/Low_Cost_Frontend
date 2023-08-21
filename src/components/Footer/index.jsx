@@ -30,7 +30,7 @@ function Footer() {
             <p className={`${styles.footerText}`}><FmdGoodIcon className={`${styles.contactIcons}`}></FmdGoodIcon>Vieytes 730. Presidente Derqui. Pilar. CP1635</p>
           </Col>
           <Col sm={12} className={`${styles.footerCopyright}`}>
-          <p className={`${styles.footerTextCopyright}`}>© 2023 All rights reserved <br /> This website is made with ❤️ by T&G STUDIO</p>
+            <p className={`${styles.footerTextCopyright}`}>© 2023 All rights reserved <br /> This website is made with ❤️ by T&G STUDIO</p>
           </Col>
         </Row>
       </Container>

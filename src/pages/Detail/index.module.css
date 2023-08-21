@@ -1,102 +1,172 @@
 .textItems {
-    border: solid 3px;
-    border-radius: 5px;
-    background-color: white;
-    border-color: #007BFF;
-    padding: 10px;
-    transition: all 0.3s;
+  border: solid 3px;
+  border-radius: 5px;
+  background-color: white;
+  border-color: #007BFF;
+  padding: 10px;
+  transition: all 0.3s;
 }
 
 .textItems:hover {
-    background-color: #007BFF;
-    color: white;
+  background-color: #007BFF;
+  color: white;
 }
 
 .textItems p {
-    font-family: Poppins;
-    font-weight: 500;
-    padding-bottom: 0px;
-    margin-bottom: 0px;
+  font-family: Poppins;
+  font-weight: 500;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
 }
 
 .textItems small {
-    font-family: Poppins;
-    font-weight: 300;
-    margin-right: 15px;
-    font-size: 12px;
+  font-family: Poppins;
+  font-weight: 300;
+  margin-right: 15px;
+  font-size: 12px;
 }
 
 .itemsIcon {
-    margin-right: 15px;
-    margin-left: 5px;
+  margin-right: 15px;
+  margin-left: 5px;
 }
 
-.containerCustomDetails p{
-  font-weight: bold;
+.subtitulo {
+  font-family: Poppins;
+  text-align: center;
+  color: #007BFF;
+  letter-spacing: 5px;
 }
 
-.containerCustomDetails h2{
-  font-size: 1.5rem;
+.categoryName {
+  text-transform: uppercase;
+  color: gray;
+  letter-spacing: 5px;
+  font-family: Poppins;
 }
 
-.containerCustomcharacteristics p{
-  font-size: 0.9rem;
+.productName {
+  text-transform: capitalize;
+  font-family: Poppins;
   font-weight: 600;
+  font-size: 2rem !important;
 }
-.containerCustomcharacteristics ul{
-  font-size: 0.9rem;
+
+.productPrice {
+  font-family: Poppins;
+  font-weight: 400 !important;
+  font-size: 2rem !important;
+  margin-bottom: 5px !important;
+}
+
+.productStock {
+  text-transform: uppercase;
+  color: gray;
+  font-family: Poppins;
+  font-size: .875em;
+}
+
+.productPay {
+  font-family: Poppins;
+  text-decoration: none;
+  color: #007BFF;
+  transition: 0.5s;
+}
+
+.productPay:hover {
+  color: orangered
+}
+
+.specification {
+  font-family: Poppins;
+  color: grey;
+}
+
+@media screen and (max-width: 425px) {
+  .infoContainer {
+    text-align: center;
+  }
+
+  .containerCustomcharacteristics h4 {
+    font-family: Poppins;
+    text-align: center;
+    color: #007BFF;
+    letter-spacing: 5px;
+  }
+
+  .containerCustomcharacteristics p {
+    font-family: Poppins;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .containerCustomcharacteristics p:hover {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: initial;
+
+  }
 }
 
 /* Estilos para vista de tablet (768px) */
 @media screen and (min-width: 768px) {
 
-  .containerCustomDetails{
+  .containerCustomDetails {
     display: flex;
   }
-    .product-details h2 {
-      font-size: 1.2rem;
-    }
-  
-    .product-details p {
-      font-weight: bold;
-    }
-  
-    .product-details ul {
-      font-size: 0.8rem;
-      list-style: circle;
-      margin-left: 1.5rem;
-    }
-  
-    .textItems {
-      margin-bottom: 1rem;
-    }
-  
-    .itemsIcon {
-      font-size: 1.5rem;
-      margin-right: 10px;
-    }
-    
-    .containerCustomButton{
-      width: 50%;
-    }
 
-    .containerCustomDetails p{
-      font-size: 20px;
-    }
-    .containerCustomDetails h2{
-      font-size: 1.9rem;
-    }
-
-    .containerCustomcharacteristics p{
-      font-size: 24px;
-    }
-    .containerCustomcharacteristics ul{ 
-      display: flex;
-      width: 40%;
-    }
-    .containerCustomcharacteristics li{
-      font-size: 20px;
-      padding: 6px;
-    }
+  .product-details h2 {
+    font-size: 1.2rem;
   }
-  
+
+  .product-details p {
+    font-weight: bold;
+  }
+
+  .product-details ul {
+    font-size: 0.8rem;
+    list-style: circle;
+    margin-left: 1.5rem;
+  }
+
+  .textItems {
+    margin-bottom: 1rem;
+  }
+
+  .itemsIcon {
+    font-size: 1.5rem;
+    margin-right: 10px;
+  }
+
+  .containerCustomButton {
+    width: 50%;
+  }
+
+  .containerCustomDetails h2 {
+    font-size: 1.9rem;
+  }
+
+  .containerCustomcharacteristics h4 {
+    font-family: Poppins;
+    text-align: center;
+    color: #007BFF;
+    letter-spacing: 5px;
+  }
+
+  .containerCustomcharacteristics p {
+    font-family: Poppins;
+    line-height: 25px;
+  }
+
+  .containerCustomcharacteristics ul {
+    display: flex;
+    width: 40%;
+  }
+
+  .containerCustomcharacteristics li {
+    font-size: 20px;
+    padding: 6px;
+  }
+}
