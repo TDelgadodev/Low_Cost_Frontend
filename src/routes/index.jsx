@@ -24,8 +24,8 @@ export const AppRoutes = () => {
         element={<ProtectedRoutes canActive={user} redirectPath="login" />}
       >
         <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/resetPassword" element={<ResetPassword />} />
       </Route>
+        <Route path="/resetPassword" element={<ResetPassword />} />
       <Route path="/finish-buying" element={<CompletedPurchase />} />
     </Routes>
   );

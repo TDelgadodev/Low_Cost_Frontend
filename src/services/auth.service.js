@@ -54,7 +54,7 @@ export const profileUserService = async (userId,token) => {
 
 export const updateProfileService = async (updatedData, token) => {
   try {
-    const url = `${apiUrlAuth}${updatedData.id}`;
+    const url = `${apiUrlAuth}profile/${updatedData.id}`; 
     await axios.put(url, updatedData, {
       headers: {
         Authorization: token,

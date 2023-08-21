@@ -39,6 +39,7 @@ export const Profile = () => {
     try {
       setIsLoading(true);
       const formattedValues = {
+        id: userProfile.user.id,
         ...values,
         phone: parseInt(values.phone),
       };
@@ -57,7 +58,7 @@ export const Profile = () => {
       const formattedValues = {
         ...values,
         phone: parseInt(values.phone),
-        id: userProfile.user.id // Agrega el ID aquí si está disponible en userProfile
+        id: userProfile.user.id 
       };
   
       await updateProfileService(
@@ -71,6 +72,7 @@ export const Profile = () => {
     } catch (error) {
       console.error("Error updating user:", error);
       setIsLoading(false);
+      toast.error('Ocurrió un error al actualizar la información.');
     }
   };
   
