@@ -77,6 +77,11 @@
   color: orangered
 }
 
+.specification {
+  font-family: Poppins;
+  color: grey;
+}
+
 @media screen and (max-width: 425px) {
   .infoContainer {
     text-align: center;

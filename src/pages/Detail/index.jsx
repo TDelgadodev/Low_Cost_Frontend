@@ -1,4 +1,4 @@
-import { Button, Container } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { CreditScoreOutlined, DeliveryDining } from "@mui/icons-material";
 import styles from "./index.module.css";
 import WhatsApp from "../../components/WhatsApp";
@@ -46,7 +46,7 @@ export const Detail = () => {
   if (!product) {
     return <p>El producto no esta disponible.</p>;
   }
-  /* console.log("producto:", product) */
+  console.log("producto:", product)
   return (
     <>
       <Container className={`${styles.containerCustomDetails} pb-5`}>
@@ -77,6 +77,38 @@ export const Detail = () => {
       <InfoCards />
       <Container>
         <div className={`m-3 ${styles.containerCustomcharacteristics}`}>
+          <h4 className="my-5">
+            CARACTERÍSTICAS
+          </h4>
+          <Container>
+            <Row className={`${styles.specification}`}>
+              {/* Datos 1 */}
+              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
+                <h3>PESO</h3>
+                <p>{product.weight} gr</p>
+              </Col>
+
+              {/* Datos 2 */}
+              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
+                <h3>ALTO</h3>
+                <p>{product.height} cm</p>
+              </Col>
+
+              {/* Datos 3 */}
+              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
+                <h3>ANCHO</h3>
+                <p>{product.width} cm</p>
+              </Col>
+
+              {/* Datos 4 */}
+              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
+                <h3>LARGO</h3>
+                <p>{product.length} cm</p>
+              </Col>
+            </Row>
+          </Container>
+          <hr /* className="my-5" */ />
+
           <h4 className="my-5">
             DESCRIPCIÓN
           </h4>
