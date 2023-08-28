@@ -1,0 +1,7 @@
+@media (min-width: 768px) { 
+    .formResetPass{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+  }

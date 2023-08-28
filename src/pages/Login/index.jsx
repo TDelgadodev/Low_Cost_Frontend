@@ -112,7 +112,7 @@ export const Login = () => {
                 />
                 <Link
                   className="text-danger text-decoration-none white-space-nowrap"
-                  to={"/resetPassword"}
+                  to={"/get-code"}
                 >
                   ¿Olvidó su contraseña?
                 </Link>

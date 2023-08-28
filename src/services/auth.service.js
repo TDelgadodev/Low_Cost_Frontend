@@ -65,3 +65,17 @@ export const updateProfileService = async (updatedData, token) => {
     throw new Error(error.response.data.error.message);
   }
 };
+
+export const getCodeToResetPasswordService = async (email) => {
+  try {
+    const url = `${apiUrlAuth}auth/reset-password/${email}`;
+    const { data } = await axios.post(url, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error(error.response.data.error.message);
+  }
+};
