@@ -6,7 +6,7 @@ import { useCart } from "../../../hooks/useCart"
 
 export default function CartProduct({ product }) {
     const { removeAllFromCart, removeOneFromCart, addToCart } = useCart()
-    const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : 'nofoto.png';
+    const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : '/nofoto.png';
     const totalProductPrice = product.price * product.quantity;
     /* console.log('producto del carrito', product) */
     return (
