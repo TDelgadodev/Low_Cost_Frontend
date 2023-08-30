@@ -1,14 +1,47 @@
-import styles from './CartModal.module.css';
 import { Button, Col, Container, Row } from "react-bootstrap";
 import CartProduct from './CartProduct';
 import { useCart } from '../../hooks/useCart';
 import CancelIcon from '@mui/icons-material/Cancel';
 import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils';
+import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
+import { useState } from "react"
+import axios from 'axios'
+import styles from './CartModal.module.css';
+
+initMercadoPago(import.meta.env.MP_KEY);
 
 const ShoppingCart = () => {
+    const [preferenceId, setPreferenceId] = useState(null)
+
+    const createPreference = async () => {
+        try {
+            const response = await axios.post('http://localhost:3000/mp/create_preference', {
+                description: "producto1",
+                price: 100,
+                quantity: 1,
+            }, {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            const { id } = response.data;
+            return id
+        } catch (error) {
+            throw new Error('Hubo un error al realizar la compra')
+        }
+    }
+
+    const handleBuy = async () => {
+        const id = await createPreference()
+        if (id) {
+            setPreferenceId(id)
+        }
+    }
+
     const { isOpen, toggleModal } = useModal()
-    const { cart, clearCart, sendOrder, orderTotal } = useCart()
+    const { cart, clearCart, /* sendOrder, */ orderTotal } = useCart()
     const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
 
     return (
@@ -66,7 +99,10 @@ const ShoppingCart = () => {
                             </Row>
                             <Col className="d-flex justify-content-center mb-4">
                                 <Button size='md' variant="outline-danger" className="me-3" onClick={clearCart}>Vaciar Carrito</Button>
-                                <Button size='md' variant="primary" onClick={sendOrder}>Comprar</Button>
+                                <Button size='md' variant="primary" onClick={handleBuy}>Comprar</Button>
+                                {preferenceId &&
+                                    <Wallet initialization={{ preferenceId }} />
+                                }
                             </Col>
                         </Container>
                     </section>
