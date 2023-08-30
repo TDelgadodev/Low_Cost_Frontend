@@ -1,14 +1,15 @@
-import { BrowserRouter } from 'react-router-dom'
-import MainLayout from './layout'
-import { AppRoutes } from './routes'
-import { CartProvider } from './context/cartProvider'
-import { ProductsProvider } from './context/productProvider'
-import { ModalProvider } from './context/modalProvider'
-import { ToastContainer } from 'react-toastify';
-import { CategoriesProvider } from './context/CategoriesProvider'
-import { BrandsProvider } from './context/BrandsProvider'
+import { BrowserRouter } from "react-router-dom";
+import MainLayout from "./layout";
+import { AppRoutes } from "./routes";
+import { CartProvider } from "./context/cartProvider";
+import { ProductsProvider } from "./context/productProvider";
+import { ModalProvider } from "./context/modalProvider";
+import { ToastContainer } from "react-toastify";
+import { CategoriesProvider } from "./context/CategoriesProvider";
+import { BrandsProvider } from "./context/BrandsProvider";
 import { AuthProvider } from "./context/authProvider";
-import 'react-toastify/dist/ReactToastify.css';
+import "react-toastify/dist/ReactToastify.css";
+import { RecoveryProvider } from "./context/recoveryProvider"; // Importa el RecoveryProvider
 
 function App() {
   return (
@@ -17,13 +18,15 @@ function App() {
         <ModalProvider>
           <CartProvider>
             <BrandsProvider>
-              <CategoriesProvider>
-                <ProductsProvider>
-                  <MainLayout>
-                    <AppRoutes />
-                  </MainLayout>
-                </ProductsProvider>
-              </CategoriesProvider>
+              <RecoveryProvider>
+                <CategoriesProvider>
+                  <ProductsProvider>
+                    <MainLayout>
+                      <AppRoutes />
+                    </MainLayout>
+                  </ProductsProvider>
+                </CategoriesProvider>
+              </RecoveryProvider>
             </BrandsProvider>
           </CartProvider>
           <ToastContainer position="bottom-left" reverseOrder={false} />
@@ -32,6 +35,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
 
 export default App;
