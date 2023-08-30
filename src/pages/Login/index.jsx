@@ -5,13 +5,11 @@ import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import useAuth from "../../hooks/useAuth";
-/* import { useNavigate } from "react-router-dom"; */
 
 
 
 export const Login = () => {
   const { login, alert } = useAuth();
-  /* const navigate = useNavigate(); */
 
   const initialValues = {
     email: "",

@@ -1,5 +1,5 @@
 import { ErrorMessage, Field, Formik } from "formik";
-import { Button, Col,Form } from "react-bootstrap";
+import { Button, Col, Form } from "react-bootstrap";
 import * as Yup from "yup";
 import PropTypes from "prop-types";
 import styles from "./index.module.css";
@@ -26,7 +26,10 @@ const ResetPasswordStep = ({ onSubmit }) => {
       validationSchema={validationSchema}
     >
       {(formik) => (
-        <Form onSubmit={formik.handleSubmit} className={`m-3 ${styles.formResetPass}`}>
+        <Form
+          onSubmit={formik.handleSubmit}
+          className={`m-3 ${styles.formResetPass}`}
+        >
           <Col xs={10} sm={6} md={6} lg={4} xl={4}>
             <h2>Restablecer Contraseña</h2>
             <Form.Group className="mb-2">
@@ -39,15 +42,15 @@ const ResetPasswordStep = ({ onSubmit }) => {
             </Form.Group>
             <Form.Group className="mb-2">
               <Field
-                id="newPassowrd"
+                id="newPassword"
                 type="password"
                 placeholder="Ingrese su nueva contraseña"
-                name="newPassowrd"
+                name="newPassword"
                 as={Form.Control}
                 className="shadow border-secondary mt-3 mb-2"
               ></Field>
               <ErrorMessage
-                name="newPassowrd"
+                name="newPassword"
                 component={Form.Text}
                 className="text-danger ms-2"
               ></ErrorMessage>
