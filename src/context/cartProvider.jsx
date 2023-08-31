@@ -12,6 +12,17 @@ function CartProvider({ children }) {
     const [orderTotal, setOrderTotal] = useState(0)
 
     useEffect(() => {
+        const cartItemsFromStorage = localStorage.getItem('cartItems');
+        if (cartItemsFromStorage) {
+            dispatch({ type: 'SET_CART_FROM_STORAGE', payload: JSON.parse(cartItemsFromStorage) });
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    }, [state.cartItems]);
+
+    useEffect(() => {
         if (state.cartItems.length > 0) {
             let total = getTotalPricesItems(state.cartItems).reduce((a, b) => a + b)
             setOrderTotal(total)

@@ -23,6 +23,7 @@ export default function SearchForm() {
                 <Col xs={10} sm={10} md={10} lg={10} xl={10}>
                     <Form onSubmit={handleSubmit} className="d-flex align-items-center">
                         <Form.Control
+                            style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
                             id='keyword'
                             type="text"
                             placeholder="Buscar Productos"
