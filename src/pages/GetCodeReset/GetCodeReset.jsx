@@ -31,7 +31,6 @@ export const GetCodeResetMain = () => {
       const response = await resetPasswordService(email,codeReset.toString(), newPassword);
       console.log(response);
       toast.success('Contraseña restablecida con éxito!');
-      // Puedes redirigir a la página de inicio de sesión u otra página relevante aquí
     } catch (error) {
       console.error("Error restableciendo la contraseña:", error);
     }

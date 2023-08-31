@@ -9,6 +9,7 @@ import { Profile } from "../pages/Profile";
 import ProtectedRoutes from "./protectedRoutes";
 import useAuth from "../hooks/useAuth";
 import { GetCodeResetMain } from "../pages/GetCodeReset/GetCodeReset";
+import { Dashboard } from "../pages/Dashboard";
 
 
 export const AppRoutes = () => {
@@ -28,6 +29,7 @@ export const AppRoutes = () => {
       </Route>
       <Route path="/get-code" element={<GetCodeResetMain />} />
       <Route path="/finish-buying" element={<CompletedPurchase />} />
+      <Route path="/dashboard" element={<Dashboard/>} />
     </Routes>
   );
 };
