@@ -2,13 +2,15 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { ErrorMessage, Field, Formik } from "formik";
 import styles from "./index.module.css";
-import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import InfoCards from "../../components/infoCards";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+import ShoppingCart from "../../components/CartModal";
+import WhatsApp from "../../components/WhatsApp";
 
 export const CompletedPurchase = () => {
   const initialValues = {
-    nameSurname: "",
+    name: "",
+    surname: "",
     email: "",
     phone: "",
     password: "",
@@ -25,62 +27,66 @@ export const CompletedPurchase = () => {
           onSubmit={formik.handleSubmit}
           className={`${styles.formFinishBuying} m-2`}
         >
-          <Col xs={10} sm={6} md={10} lg={4} xl={4}>
+          <Col xs={10} sm={6} md={10} lg={10} xl={10}>
+            <WhatsApp></WhatsApp>
+            <ShoppingCart></ShoppingCart>
             <Container className="md:d-flex flex-wrap-wrap justify-content-space-evenly">
               <div>
-                <h2 className="mb-3">¡Ya casi terminamos!</h2>
-                <p>
-                  Complete el formulario y confirme el pedido, nuestro equipo de
-                  ventas lo contactará a la brevedad. Si quiere agregar
-                  artículos utilice 'Seguir Comprando' que se encuentra debajo.
+                <h2 className={`${styles.title} my-4`}>Complete su Compra</h2>
+                <p className={`${styles.text} my-5`}>
+                  Por favor, complete el formulario y confirme su pedido. Nuestro equipo de ventas se pondrá en contacto con usted en el menor tiempo posible.
+                  Si desea agregar más artículos, puede utilizar la opción 'Seguir Comprando' que se encuentra a continuación.
                 </p>
               </div>
-              <Row>
+              <Row className={`${styles.inputs}`}>
+
                 <Col xs={12} md={12} lg={6} xl={6}>
                   <Form.Group className="mb-3">
                     <Field
-                      id="nameSurname"
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
+                      id="name"
                       type="text"
-                      placeholder="Nombre y apellido"
-                      name="nameSurname"
+                      placeholder="Ingresá tu nombre"
+                      name="name"
                       as={Form.Control}
-                      className="shadow border-secondary"
-                      onFocus={() => formik.setFieldError("nameSurname", "")}
+                      onFocus={() => formik.setFieldError("name", "")}
                     ></Field>
                     <ErrorMessage
-                      name="nameSurname"
+                      name="name"
                       component={Form.Text}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
                 </Col>
-                <Col xs={12} md={6} lg={3} xl={3}>
+
+                <Col xs={12} md={12} lg={6} xl={6}>
                   <Form.Group className="mb-3">
                     <Field
-                      id="phone"
-                      type="number"
-                      placeholder="Ingrese su número"
-                      name="phone"
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
+                      id="surname"
+                      type="text"
+                      placeholder="Ingresá tu apellido"
+                      name="surname"
                       as={Form.Control}
-                      className="shadow border-secondary"
-                      onFocus={() => formik.setFieldError("phone", "")}
+                      onFocus={() => formik.setFieldError("surname", "")}
                     ></Field>
                     <ErrorMessage
-                      name="phone"
+                      name="surname"
                       component={Form.Text}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
                 </Col>
-                <Col xs={12} md={6} lg={3} xl={3}>
+
+                <Col xs={12} md={6} lg={6} xl={6}>
                   <Form.Group className="mb-3">
                     <Field
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
                       id="email"
                       type="email"
-                      placeholder="Ingresa tu email"
+                      placeholder="Ingresá tu email"
                       name="email"
                       as={Form.Control}
-                      className="shadow border-secondary"
                       onFocus={() => formik.setFieldError("email", "")}
                     ></Field>
                     <ErrorMessage
@@ -90,17 +96,90 @@ export const CompletedPurchase = () => {
                     ></ErrorMessage>
                   </Form.Group>
                 </Col>
-              </Row>
-              <Row className="mb-3">
-                <Col xs={12} md={6} lg={3} xl={3}>
+
+                <Col xs={12} md={6} lg={6} xl={6}>
+                  <Form.Group className="mb-3">
+                    <Field
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
+                      id="phone"
+                      type="tel"
+                      placeholder="Ingresá tu teléfono"
+                      name="phone"
+                      as={Form.Control}
+                      onFocus={() => formik.setFieldError("phone", "")}
+                    ></Field>
+                    <ErrorMessage
+                      name="phone"
+                      component={Form.Text}
+                      className="text-danger ms-2"
+                    ></ErrorMessage>
+                  </Form.Group>
+                </Col>
+
+                <Col xs={12} md={6} lg={6} xl={6}>
+                  <Form.Group className="mb-3">
+                    <Field
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
+                      id="dni"
+                      type="number"
+                      placeholder="Ingresá tu DNI"
+                      name="dni"
+                      as={Form.Control}
+                      onFocus={() => formik.setFieldError("dni", "")}
+                    ></Field>
+                    <ErrorMessage
+                      name="dni"
+                      component={Form.Text}
+                      className="text-danger ms-2"
+                    ></ErrorMessage>
+                  </Form.Group>
+                </Col>
+
+                <Col xs={12} md={6} lg={6} xl={6}>
+                  <Form.Group className="mb-3">
+                    <Field
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
+                      id="street"
+                      type="text"
+                      placeholder="Ingresá tu calle"
+                      name="street"
+                      as={Form.Control}
+                    ></Field>
+                    <ErrorMessage
+                      name="street"
+                      component={Form.Text}
+                      className="text-danger ms-2"
+                    ></ErrorMessage>
+                  </Form.Group>
+                </Col>
+
+                <Col xs={12} md={6} lg={6} xl={6}>
+                  <Form.Group className="mb-3">
+                    <Field
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
+                      id="streetNumber"
+                      type="number"
+                      placeholder="Ingresá tu nº de calle"
+                      name="streetNumber"
+                      as={Form.Control}
+                    ></Field>
+                    <ErrorMessage
+                      name="streetNumber"
+                      component={Form.Text}
+                      className="text-danger ms-2"
+                    ></ErrorMessage>
+                  </Form.Group>
+                </Col>
+
+                <Col xs={12} md={6} lg={6} xl={6}>
                   <Form.Group>
                     <Field
+                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
                       id="postCode"
                       type="number"
-                      placeholder="Código Postal"
+                      placeholder="Ingresá tu código postal"
                       name="postCode"
                       as={Form.Control}
-                      className="shadow border-secondary"
                     ></Field>
                     <ErrorMessage
                       name="postCode"
@@ -109,124 +188,13 @@ export const CompletedPurchase = () => {
                     ></ErrorMessage>
                   </Form.Group>
                 </Col>
-                <Col xs={12} md={6} lg={9} xl={9}>
-                  <Form.Group>
-                    <Field
-                      id="address"
-                      type="text"
-                      placeholder="Dirección"
-                      name="address"
-                      as={Form.Control}
-                      className="shadow border-secondary"
-                    ></Field>
-                    <ErrorMessage
-                      name="address"
-                      component={Form.Text}
-                      className="text-danger ms-2"
-                    ></ErrorMessage>
-                  </Form.Group>
-                </Col>
-              </Row>
-              <Row>
-                <Col xs={12} md={6} lg={6} xl={6}>
-                  <Form.Group>
-                    <Field
-                      id="location"
-                      type="text"
-                      placeholder="Localidad"
-                      name="location"
-                      as={Form.Control}
-                      className="shadow border-secondary"
-                    ></Field>
-                    <ErrorMessage
-                      name="location"
-                      component={Form.Text}
-                      className="text-danger ms-2"
-                    ></ErrorMessage>
-                  </Form.Group>
-                </Col>
-                <Col xs={12} md={6} lg={6} xl={6}>
-                  <Form.Group>
-                    <Field
-                      id="zone"
-                      type="text"
-                      placeholder="Zona"
-                      name="zone"
-                      as={Form.Control}
-                      className="shadow border-secondary"
-                    ></Field>
-                    <ErrorMessage
-                      name="zone"
-                      component={Form.Text}
-                      className="text-danger ms-2"
-                    ></ErrorMessage>
-                  </Form.Group>
-                </Col>
+
               </Row>
             </Container>
-            <Container className="mt-4">
-              <Row className={`mb-5`}>
-                <Col
-                  xs={12}
-                  sm={12}
-                  md={12}
-                  lg={12}
-                  xl={12}
-                  className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}
-                >
-                  <DeliveryDining
-                    className={`${styles.itemsIcon}`}
-                  ></DeliveryDining>
-                  <div>
-                    <p>ENTREGA INMEDIATA</p>
-                    <small>Recibí el producto dentro de las 48hs</small>
-                  </div>
-                </Col>
-                <Col
-                  xs={12}
-                  sm={12}
-                  md={12}
-                  lg={12}
-                  xl={12}
-                  className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}
-                >
-                  <Autorenew className={`${styles.itemsIcon}`}></Autorenew>
-                  <div>
-                    <p>TIEMPO DE PRUEBA</p>
-                    <small>Tenés 72hs para probar el producto</small>
-                  </div>
-                </Col>
-                <Col
-                  xs={12}
-                  sm={12}
-                  md={12}
-                  lg={12}
-                  xl={12}
-                  className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}
-                >
-                  <AttachMoney className={`${styles.itemsIcon}`}></AttachMoney>
-                  <div>
-                    <p>ENVÍO GRATUITO</p>
-                    <small>Sin costo dentro de las zonas</small>
-                  </div>
-                </Col>
-              </Row>
-            </Container>
+
             <Container>
               <div className="mt-3 mb-5">
-                <p className="fw-bold fs-5">¡Selecciona cómo quieres pagar tu compra!</p>
-                <div className={`d-grid gap-2`}>
-                  <Button
-                    variant="primary"
-                    className="p-2 position-relative"
-                    type="submit"
-                    size="md"
-                    xs={12} md={6} 
-                  >
-                    <ShoppingCartIcon className={styles.iconOverlay} />
-                    ¡Ver compra!
-                  </Button>
-                </div>
+                <h5 className={`${styles.subtitle} my-5`}>A continuación, seleccioná cómo querés pagar tu compra</h5>
               </div>
             </Container>
             <Container>
@@ -288,18 +256,18 @@ export const CompletedPurchase = () => {
                   </Button>
                 </div>
                 <div className="w-50 ms-2">
-                  <Button
+                  <a href="/">                  <Button
                     variant="primary"
                     className="p-2 w-100"
-                    type="submit"
                     size="md"
                   >
-                    Seguir comprando
-                  </Button>
+                    Seguir Comprando
+                  </Button></a>
                 </div>
               </div>
             </Container>
           </Col>
+          <InfoCards />
         </Form>
       )}
     </Formik>

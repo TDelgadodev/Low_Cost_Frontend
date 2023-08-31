@@ -9,17 +9,34 @@ import { useState } from "react"
 import axios from 'axios'
 import styles from './CartModal.module.css';
 
-initMercadoPago(import.meta.env.MP_KEY);
+initMercadoPago('TEST-ee4126e1-98a8-4b22-82d6-1380484d85ea');
 
 const ShoppingCart = () => {
     const [preferenceId, setPreferenceId] = useState(null)
 
     const createPreference = async () => {
         try {
+            const description = cart.cartItems.map(item => item.name).join(', ');
+            const price = orderTotal;
+            const quantity = getTotalProductsInCart(cart.cartItems);
+            /* const payer = {
+                name: "Juan",
+                surname: "Lopez",
+                email: "user@email.com",
+                phone: 4444-4444
+                identification: "12345678"
+                address: {
+                    street_name: "Street",
+                    street_number: 123,
+                    zip_code: "5700"
+                }
+            }; */
+
             const response = await axios.post('http://localhost:3000/mp/create_preference', {
-                description: "producto1",
-                price: 100,
-                quantity: 1,
+                description,
+                price,
+                quantity,
+                /* payer, */
             }, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -27,11 +44,11 @@ const ShoppingCart = () => {
             });
 
             const { id } = response.data;
-            return id
+            return id;
         } catch (error) {
-            throw new Error('Hubo un error al realizar la compra')
+            throw new Error('Hubo un error al realizar la compra');
         }
-    }
+    };
 
     const handleBuy = async () => {
         const id = await createPreference()
@@ -101,7 +118,15 @@ const ShoppingCart = () => {
                                 <Button size='md' variant="outline-danger" className="me-3" onClick={clearCart}>Vaciar Carrito</Button>
                                 <Button size='md' variant="primary" onClick={handleBuy}>Comprar</Button>
                                 {preferenceId &&
-                                    <Wallet initialization={{ preferenceId }} />
+                                    <Wallet
+                                        customization={{
+                                            texts: {
+                                                action: 'pay',
+                                                valueProp: 'security_safety',
+                                            },
+                                        }}
+                                        initialization={{ preferenceId, redirectMode: 'modal' }}
+                                    />
                                 }
                             </Col>
                         </Container>

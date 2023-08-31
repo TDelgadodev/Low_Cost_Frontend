@@ -1,4 +1,4 @@
-import '../../../public/dashboard/assets/css/app.css';
+/* import '../../../public/dashboard/assets/css/app.css'; */
 import { SideBar } from '../../components/SideBarDashboard';
 
 export const Dashboard = () => {
