@@ -8,8 +8,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useCart } from "../../hooks/useCart";
-import { getTotalProductsInCart } from "../../utils/cart.utils";
-import styles from "./index.module.css";
+import styles from "./index.module.css";/*  */
 
 export const CompletedPurchase = () => {
   const [preferenceId, setPreferenceId] = useState(null);
@@ -28,7 +27,8 @@ export const CompletedPurchase = () => {
     try {
       const description = cart.cartItems.map(item => item.name).join(', ');
       const price = orderTotal;
-      const quantity = getTotalProductsInCart(cart.cartItems);
+      const quantity = 1;
+      /* const quantity = getTotalProductsInCart(cart.cartItems); */
 
       const response = await axios.post('http://localhost:3000/mp/create_preference', {
         description,
