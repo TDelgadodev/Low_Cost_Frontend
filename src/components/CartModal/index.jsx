@@ -4,58 +4,10 @@ import { useCart } from '../../hooks/useCart';
 import CancelIcon from '@mui/icons-material/Cancel';
 import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils';
-import { initMercadoPago, Wallet } from '@mercadopago/sdk-react'
-import { useState } from "react"
-import axios from 'axios'
 import styles from './CartModal.module.css';
-
-initMercadoPago('TEST-ee4126e1-98a8-4b22-82d6-1380484d85ea');
+import { Link } from "react-router-dom";
 
 const ShoppingCart = () => {
-    const [preferenceId, setPreferenceId] = useState(null)
-
-    const createPreference = async () => {
-        try {
-            const description = cart.cartItems.map(item => item.name).join(', ');
-            const price = orderTotal;
-            const quantity = getTotalProductsInCart(cart.cartItems);
-            /* const payer = {
-                name: "Juan",
-                surname: "Lopez",
-                email: "user@email.com",
-                phone: 4444-4444
-                identification: "12345678"
-                address: {
-                    street_name: "Street",
-                    street_number: 123,
-                    zip_code: "5700"
-                }
-            }; */
-
-            const response = await axios.post('http://localhost:3000/mp/create_preference', {
-                description,
-                price,
-                quantity,
-                /* payer, */
-            }, {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            const { id } = response.data;
-            return id;
-        } catch (error) {
-            throw new Error('Hubo un error al realizar la compra');
-        }
-    };
-
-    const handleBuy = async () => {
-        const id = await createPreference()
-        if (id) {
-            setPreferenceId(id)
-        }
-    }
 
     const { isOpen, toggleModal } = useModal()
     const { cart, clearCart, /* sendOrder, */ orderTotal } = useCart()
@@ -116,18 +68,9 @@ const ShoppingCart = () => {
                             </Row>
                             <Col className="d-flex justify-content-center mb-4">
                                 <Button size='md' variant="outline-danger" className="me-3" onClick={clearCart}>Vaciar Carrito</Button>
-                                <Button size='md' variant="primary" onClick={handleBuy}>Comprar</Button>
-                                {preferenceId &&
-                                    <Wallet
-                                        customization={{
-                                            texts: {
-                                                action: 'pay',
-                                                valueProp: 'security_safety',
-                                            },
-                                        }}
-                                        initialization={{ preferenceId, redirectMode: 'modal' }}
-                                    />
-                                }
+                                <Link to="/finish-buying">
+                                    <Button size='md' variant="primary">Comprar</Button>
+                                </Link>
                             </Col>
                         </Container>
                     </section>

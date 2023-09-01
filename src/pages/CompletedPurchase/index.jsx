@@ -1,13 +1,18 @@
-/* eslint-disable react/no-unescaped-entities */
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { ErrorMessage, Field, Formik } from "formik";
-import styles from "./index.module.css";
 import InfoCards from "../../components/infoCards";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
+import { useState } from "react";
+import axios from "axios";
+import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
+import { useCart } from "../../hooks/useCart";
+import { getTotalProductsInCart } from "../../utils/cart.utils";
+import styles from "./index.module.css";
 
 export const CompletedPurchase = () => {
+  const [preferenceId, setPreferenceId] = useState(null);
   const initialValues = {
     name: "",
     surname: "",
@@ -15,6 +20,39 @@ export const CompletedPurchase = () => {
     phone: "",
     password: "",
   };
+
+  initMercadoPago('TEST-ee4126e1-98a8-4b22-82d6-1380484d85ea');
+
+  const { cart, orderTotal } = useCart()
+  const createPreference = async () => {
+    try {
+      const description = cart.cartItems.map(item => item.name).join(', ');
+      const price = orderTotal;
+      const quantity = getTotalProductsInCart(cart.cartItems);
+
+      const response = await axios.post('http://localhost:3000/mp/create_preference', {
+        description,
+        price,
+        quantity,
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const { id } = response.data;
+      return id;
+    } catch (error) {
+      throw new Error('Hubo un error al realizar la compra');
+    }
+  };
+
+  const handleBuy = async () => {
+    const id = await createPreference()
+    if (id) {
+      setPreferenceId(id)
+    }
+  }
 
   const handleSubmit = (values) => {
     console.log(values);
@@ -35,7 +73,7 @@ export const CompletedPurchase = () => {
                 <h2 className={`${styles.title} my-4`}>Complete su Compra</h2>
                 <p className={`${styles.text} my-5`}>
                   Por favor, complete el formulario y confirme su pedido. Nuestro equipo de ventas se pondrá en contacto con usted en el menor tiempo posible.
-                  Si desea agregar más artículos, puede utilizar la opción 'Seguir Comprando' que se encuentra a continuación.
+                  Si desea agregar más artículos, puede utilizar la opción Seguir Comprando que se encuentra a continuación.
                 </p>
               </div>
               <Row className={`${styles.inputs}`}>
@@ -246,25 +284,31 @@ export const CompletedPurchase = () => {
             <Container className="mb-5">
               <div className="d-flex justify-content-between mt-5">
                 <div className="w-50 me-2">
-                  <Button
-                    variant="primary"
-                    className="p-2 w-100"
-                    type="submit"
-                    size="md"
-                  >
-                    ¡Confirmar Pedido!
-                  </Button>
+                  <Button size='md' variant="primary" onClick={handleBuy}>Comprar</Button>
                 </div>
                 <div className="w-50 ms-2">
-                  <a href="/">                  <Button
-                    variant="primary"
-                    className="p-2 w-100"
-                    size="md"
-                  >
-                    Seguir Comprando
-                  </Button></a>
+                  <a href="/">
+                    <Button
+                      variant="primary"
+                      className="p-2 w-100"
+                      size="md"
+                    >
+                      Seguir Comprando
+                    </Button>
+                  </a>
                 </div>
               </div>
+              {preferenceId && (
+                <Wallet
+                  customization={{
+                    texts: {
+                      action: 'pay',
+                      valueProp: 'security_safety',
+                    },
+                  }}
+                  initialization={{ preferenceId, redirectMode: 'modal' }}
+                />
+              )}
             </Container>
           </Col>
           <InfoCards />

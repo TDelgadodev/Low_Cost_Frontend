@@ -128,7 +128,7 @@ function Header() {
                           <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
                         </Button>
                       </Link>
-                      <Link className={`${styles.typo}`}>
+                      <Link className={`${styles.typo} px-3`}>
                         <Button onClick={handleLogout}>
                           <LogoutOutlined></LogoutOutlined>
                         </Button>
