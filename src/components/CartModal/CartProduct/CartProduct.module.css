@@ -1,7 +1,11 @@
 @media (max-width: 425px) {
     .productContainer h6 {
         padding-top: 25px;
-        padding-bottom: 25px
+        padding-bottom: 25px;
+    }
+
+    .productContainer {
+        padding: 5px;
     }
 }
 
@@ -9,6 +13,18 @@
     .productContainer h6 {
         padding-top: 25px;
         padding-bottom: 25px
+    }
+
+    .productContainer {
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .productContainer {
+        padding-left: 45px;
+        padding-right: 45px;
     }
 }
 

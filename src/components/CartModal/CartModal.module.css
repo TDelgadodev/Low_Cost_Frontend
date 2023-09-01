@@ -1,16 +1,15 @@
-/* @media (max-width: 425px) {
-    .sectionCustom {
-        width: 100%;
+@media (max-width: 425px) {
+    .productsContainer {
+        max-height: 150px;
     }
 }
 
 @media (min-width: 768px) {
-    .sectionCustom {
-        width: 85%;
-        margin: auto;
-        margin-bottom: 20px;
+    .productsContainer {
+        max-height: 250px;
     }
-} */
+}
+
 .overlay {
     position: fixed;
     top: 0;
@@ -22,8 +21,7 @@
 }
 
 .sectionCustom {
-    width: 75%;
-    /* border: 3px solid #007BFF; */
+    width: 90%;
     border-radius: 5px;
     font-family: Poppins;
     position: fixed;
@@ -38,10 +36,6 @@
 
 .cartContainer {
     background-color: white;
-}
-
-.productsContainer {
-    max-height: 250px;
 }
 
 .cancelButton {
