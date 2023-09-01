@@ -1,7 +1,6 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { ErrorMessage, Field, Formik } from "formik";
 import InfoCards from "../../components/infoCards";
-import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
 import { useState } from "react";
@@ -9,6 +8,7 @@ import axios from "axios";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useCart } from "../../hooks/useCart";
 import styles from "./index.module.css";/*  */
+import CartProduct from "../../components/CartModal/CartProduct";
 
 export const CompletedPurchase = () => {
   const [preferenceId, setPreferenceId] = useState(null);
@@ -54,6 +54,12 @@ export const CompletedPurchase = () => {
     }
   }
 
+  const handleContactSeller = () => {
+    // Aquí puedes agregar la lógica para enviar un correo al vendedor
+    // para coordinar el método de pago.
+    // Puedes usar una librería como 'emailjs' o realizar una solicitud HTTP al servidor.
+  };
+
   const handleSubmit = (values) => {
     console.log(values);
   };
@@ -78,7 +84,7 @@ export const CompletedPurchase = () => {
               </div>
               <Row className={`${styles.inputs}`}>
 
-                <Col xs={12} md={12} lg={6} xl={6}>
+                <Col xs={12} md={6} lg={6} xl={6}>
                   <Form.Group className="mb-3">
                     <Field
                       style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
@@ -97,7 +103,7 @@ export const CompletedPurchase = () => {
                   </Form.Group>
                 </Col>
 
-                <Col xs={12} md={12} lg={6} xl={6}>
+                <Col xs={12} md={6} lg={6} xl={6}>
                   <Form.Group className="mb-3">
                     <Field
                       style={{ borderColor: 'rgba(206, 206, 206, 0.795)' }}
@@ -229,73 +235,38 @@ export const CompletedPurchase = () => {
 
               </Row>
             </Container>
-
+            <Container>
+              <hr className="my-4" />
+              <div className={`${styles.productsContainer}`}>
+                {cart.cartItems.length === 0 && (
+                  <h5 className={`${styles.subtext}`}>¡Añadí productos para comprar!</h5>
+                )}
+                {cart.cartItems.map((product) => (
+                  <CartProduct key={product.idProduct} product={product} />
+                ))}
+              </div>
+              <hr className="my-4" />
+            </Container>
             <Container>
               <div className="mt-3 mb-5">
                 <h5 className={`${styles.subtitle} my-5`}>A continuación, seleccioná cómo querés pagar tu compra</h5>
               </div>
             </Container>
-            <Container>
-              <Col
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                xl={12}
-                className={`my-3 p-2 ${styles.textItems}`}
-              >
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="controlled-radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="Mercado Pago"
-                    control={<Radio />}
-                    label="Mercado Pago"
-                  />
-                </RadioGroup>
-              </Col>
-            </Container>
-            <Container>
-              <Col
-                xs={12}
-                sm={12}
-                md={12}
-                lg={12}
-                xl={12}
-                className={`d-flex my-3 p-2 ${styles.textItems}`}
-              >
-                <RadioGroup
-                  aria-labelledby="demo-controlled-radio-buttons-group"
-                  name="controlled-radio-buttons-group"
-                >
-                  <FormControlLabel
-                    value="Acordar Metodo de Pago"
-                    control={<Radio />}
-                    label="Acordar Metodo de Pago"
-                  />
-                </RadioGroup>
-                <small className="mx-4 fs-6">
-                  Al finalizar, te enviaremos los datos para que coordines el
-                  pago con nosotros
-                </small>
-              </Col>
-            </Container>
+
             <Container className="mb-5">
               <div className="d-flex justify-content-between mt-5">
                 <div className="w-50 me-2">
-                  <Button size='md' variant="primary" onClick={handleBuy}>Comprar</Button>
+                  <Button size='md' className="p-2 w-100" variant="primary" onClick={handleBuy}>Comprar con Mercado Pago</Button>
                 </div>
                 <div className="w-50 ms-2">
-                  <a href="/">
-                    <Button
-                      variant="primary"
-                      className="p-2 w-100"
-                      size="md"
-                    >
-                      Seguir Comprando
-                    </Button>
-                  </a>
+                  <Button
+                    variant="primary"
+                    className="p-2 w-100"
+                    size="md"
+                    onClick={handleContactSeller}
+                  >
+                    Acordar con Vendedor
+                  </Button>
                 </div>
               </div>
               {preferenceId && (
