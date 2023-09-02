@@ -1,11 +1,16 @@
-@media (min-width: 768px) { 
-    .formRegister{
+@media (min-width: 768px) {
+    .formRegister {
         display: flex;
         flex-direction: column;
         align-items: center;
     }
-    .linksRegister{
-        font-weight: 700;
+
+    .linksRegister {
         justify-content: space-between;
     }
-  }
+}
+
+.title {
+    font-family: Poppins;
+    color: grey;
+}

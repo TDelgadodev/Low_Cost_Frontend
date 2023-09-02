@@ -110,6 +110,7 @@ export const Login = () => {
                 <Button
                   variant="primary"
                   className="p-2"
+                  style={{ fontFamily: 'Poppins' }}
                   type="submit"
                   size="md"
                 >
@@ -120,7 +121,7 @@ export const Login = () => {
             <div className={`d-flex gap-2 mt-4 ${styles.formBoxLinks}`}>
               <p className={styles.title}>¿No tenés una cuenta?</p>
               <Link className={`${styles.register} text-decoration-none`} to={"/register"}>
-                Registráte
+                Regístrate
               </Link>
             </div>
           </Col>

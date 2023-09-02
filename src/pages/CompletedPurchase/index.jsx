@@ -255,11 +255,17 @@ export const CompletedPurchase = () => {
             <Container className="mb-5">
               <div className="d-flex justify-content-between mt-5">
                 <div className="w-50 me-2">
-                  <Button size='md' className="p-2 w-100" variant="primary" onClick={handleBuy}>Comprar con Mercado Pago</Button>
+                  <Button
+                    size='md'
+                    style={{ fontFamily: 'Poppins' }}
+                    className="p-2 w-100"
+                    variant="primary"
+                    onClick={handleBuy}>Comprar con Mercado Pago</Button>
                 </div>
                 <div className="w-50 ms-2">
                   <Button
                     variant="primary"
+                    style={{ fontFamily: 'Poppins' }}
                     className="p-2 w-100"
                     size="md"
                     onClick={handleContactSeller}

@@ -13,10 +13,6 @@
     color: #007BFF;
 }
 
-.form-control {
-    font-weight: 500;
-}
-
 .formBox {
     background-color: transparent;
     border: none;
@@ -26,10 +22,6 @@
     top: -19px;
     right: -217px;
     transform: translateY(-50%);
-}
-
-.title {
-    font-weight: 600;
 }
 
 .loginForm {
@@ -50,7 +42,6 @@
     }
 
     .formBoxLinks {
-        font-weight: 700;
         justify-content: space-between;
     }
 

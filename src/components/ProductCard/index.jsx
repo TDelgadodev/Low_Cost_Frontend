@@ -31,11 +31,12 @@ export default function ProductCard({ product }) {
                 <Card.Text className={`${styles.cardPrice}`}>
                     <b>${product.price.toLocaleString('es-AR')}</b>
                 </Card.Text>
-                <Button variant="primary"
+                <Button
+                    variant="primary"
                     onClick={() => {
                         handleAddToCart(product)
                     }}
-                    style={{ width: '100%' }}>Agregar al Carrito</Button>
+                    style={{ width: '100%', fontFamily: 'Poppins' }}>Agregar al Carrito</Button>
             </Card.Body>
         </Card>
     );
