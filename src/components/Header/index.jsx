@@ -104,10 +104,10 @@ function Header() {
                   <Nav.Link href="/search" className={`${styles.typo}`}>
                     <Button>Tienda</Button>
                   </Nav.Link>
-                  <Nav.Link href="#action3" className={`${styles.typo}`}>
+                  <Nav.Link href="/catalogo-agosto.pdf" target="_blank" className={`${styles.typo}`}>
                     <Button>Revista</Button>
                   </Nav.Link>
-                  <Nav.Link href="#action4" className={`${styles.typo}`}>
+                  <Nav.Link href="#contacto" className={`${styles.typo}`}>
                     <Button>Contacto</Button>
                   </Nav.Link>
                   <Nav.Link className={`${styles.typo}`}>

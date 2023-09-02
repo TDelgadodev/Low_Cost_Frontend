@@ -78,8 +78,7 @@ export const CompletedPurchase = () => {
               <div>
                 <h2 className={`${styles.title} my-4`}>Complete su Compra</h2>
                 <p className={`${styles.text} my-5`}>
-                  Por favor, complete el formulario y confirme su pedido. Nuestro equipo de ventas se pondrá en contacto con usted en el menor tiempo posible.
-                  Si desea agregar más artículos, puede utilizar la opción Seguir Comprando que se encuentra a continuación.
+                  Por favor, complete el formulario y confirme su pedido. <br /> Nuestro equipo de ventas se pondrá en contacto con usted en el menor tiempo posible.
                 </p>
               </div>
               <Row className={`${styles.inputs}`}>
@@ -281,6 +280,9 @@ export const CompletedPurchase = () => {
                 />
               )}
             </Container>
+            <p className={`${styles.text} my-5`}>
+              Una vez que completes tu compra, recibirás por correo electrónico las indicaciones detalladas junto con los datos necesarios para coordinar la entrega de tu producto en el menor tiempo posible.
+            </p>
           </Col>
           <InfoCards />
         </Form>

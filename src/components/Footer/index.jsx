@@ -11,7 +11,7 @@ import FmdGoodIcon from '@mui/icons-material/FmdGood';
 
 function Footer() {
   return (
-    <div className={`${styles.footer}`}>
+    <div className={`${styles.footer}`} id="contacto">
       <Container className={`${styles.footerContainer}`} fluid>
         <Row>
           <Col sm={12} md={6} className="p-4">

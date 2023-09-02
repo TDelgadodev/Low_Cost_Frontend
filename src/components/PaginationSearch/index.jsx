@@ -4,6 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import ProductCard from '../ProductCard';
 import { useProducts } from '../../hooks/useProduct';
 import OrderSelector from '../OrderSelector';
+import styles from './PaginationSearch.module.css'
 
 export default function PaginationSearch() {
     const { filteredKeyword, filteredProductsCategory, filteredProductsBrand } = useProducts();
@@ -60,7 +61,7 @@ export default function PaginationSearch() {
             <OrderSelector orderBy={orderBy} handleOrderByChange={handleOrderByChange} />
             {!currentProducts || currentProducts.length === 0 ? (
                 <Row className='p-5 m-5'>
-                    <h2 className='text-center'>¡Buscá algún producto!</h2>
+                    <h4 className={`${styles.subtext}`}>¡Buscá algún producto!</h4>
                 </Row>
             ) : (
                 <Container>
