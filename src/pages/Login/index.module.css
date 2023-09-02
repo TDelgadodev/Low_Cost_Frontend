@@ -1,7 +1,23 @@
-.form-control{
+.title {
+    font-family: Poppins;
+    color: grey;
+}
+
+.register {
+    font-family: Poppins;
+    color: #007BFF;
+}
+
+.cuestion {
+    font-family: Poppins;
+    color: #007BFF;
+}
+
+.form-control {
     font-weight: 500;
 }
-.formBox{
+
+.formBox {
     background-color: transparent;
     border: none;
     display: block;
@@ -11,51 +27,57 @@
     right: -217px;
     transform: translateY(-50%);
 }
-.title{
+
+.title {
     font-weight: 600;
 }
 
-.loginForm{
+.loginForm {
     margin: auto;
     white-space: nowrap
 }
 
-@media (min-width: 768px) { 
+@media (min-width: 768px) {
     .formBoxTablet {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
-    .formBoxLInksTablet{
+
+    .formBoxLInksTablet {
         justify-content: space-between;
         font-size: 19px;
     }
-    .formBoxLinks{
+
+    .formBoxLinks {
         font-weight: 700;
         justify-content: space-between;
     }
-    .btnTablet{
-        padding: 12px 24px; 
-        font-size: 36px; 
+
+    .btnTablet {
+        padding: 12px 24px;
+        font-size: 36px;
     }
-    .formBox{
+
+    .formBox {
         top: -18px;
         right: -310px;
     }
-  }
+}
 
-  @media (min-width: 1024px){
-    .formBoxLInksTablet{
+@media (min-width: 1024px) {
+    .formBoxLInksTablet {
         gap: 2;
         font-size: 18px;
     }
-    .formBox{
+
+    .formBox {
         right: -320px;
     }
-  }
+}
 
-  @media (min-width : 1440px){
-    .formBox{
+@media (min-width : 1440px) {
+    .formBox {
         right: -389px;
     }
-  }
+}

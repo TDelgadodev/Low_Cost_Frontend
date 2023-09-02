@@ -52,39 +52,41 @@ export const Login = () => {
             className={`${styles.loginForm} mb-5`}
           >
             {alert && <Alert variant="danger">{alert}</Alert>}
-            <div className="pb-3">
-              <h2>Hola, Bienvenido!</h2>
+            <div className="pb-4">
+              <h3 className={`${styles.title}`}>¡Hola, bienvenido!</h3>
             </div>
-            <Form.Group className="mb-2">
-              <Form.Label htmlFor="email">Email</Form.Label>
+            <Form.Group className="mb-3">
+              <Form.Label htmlFor="email" style={{ fontFamily: 'Poppins' }}>Email</Form.Label>
               <Field
                 id="email"
                 type="text"
-                placeholder="Ingresa tu email"
+                placeholder="Ingresá tu email"
                 name="email"
                 as={Form.Control}
-                className="shadow border-secondary"
+                style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
                 onFocus={() => formik.setFieldError("email", "")}
               ></Field>
               <ErrorMessage
                 name="email"
                 component={Form.Text}
+                style={{ fontFamily: 'Poppins' }}
                 className="text-danger"
               ></ErrorMessage>
             </Form.Group>
-            <Form.Group className={`mb-2 form-box ${styles.forxTablet}`}>
-              <Form.Label htmlFor="password">Contraseña</Form.Label>
+            <Form.Group className={`mb-3 form-box ${styles.forxTablet}`}>
+              <Form.Label htmlFor="password" style={{ fontFamily: 'Poppins' }}>Contraseña</Form.Label>
               <Field
                 id="password"
                 type={showPassword ? "text" : "password"}
-                placeholder="Ingresa su contraseña"
+                placeholder="Ingresá tu contraseña"
                 name="password"
                 as={Form.Control}
-                className="shadow border-secondary"
+                style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
               ></Field>
               <ErrorMessage
                 name="email"
                 component={Form.Text}
+                style={{ fontFamily: 'Poppins' }}
                 className="text-danger"
               ></ErrorMessage>
               <button
@@ -97,27 +99,14 @@ export const Login = () => {
                 ></i>
               </button>
             </Form.Group>
-            {["checkbox"].map((type) => (
-              <div
-                key={`default-${type}`}
-                className={`d-flex w-100 gap-2 ${styles.formBoxLInksTablet}`}
-              >
-                <Form.Check
-                  type={type}
-                  className="m-0 "
-                  id={`default-${type}`}
-                  label={"Recuerdame"}
-                />
-                <Link
-                  className="text-danger text-decoration-none white-space-nowrap"
-                  to={"/get-code"}
-                >
-                  ¿Olvidó su contraseña?
-                </Link>
-              </div>
-            ))}
+            <Link
+              className={`${styles.cuestion} "text-danger text-decoration-none white-space-nowrap"`}
+              to={"/get-code"}
+            >
+              ¿Olvidó su contraseña?
+            </Link>
             <div className="mt-3">
-              <div className={`d-grid gap-2`}>
+              <div className={`d-grid gap-2 mt-4`}>
                 <Button
                   variant="primary"
                   className="p-2"
@@ -128,10 +117,10 @@ export const Login = () => {
                 </Button>
               </div>
             </div>
-            <div className={`d-flex gap-2 mt-3 ${styles.formBoxLinks}`}>
+            <div className={`d-flex gap-2 mt-4 ${styles.formBoxLinks}`}>
               <p className={styles.title}>¿No tenés una cuenta?</p>
-              <Link className="text-decoration-none" to={"/register"}>
-                Registrate
+              <Link className={`${styles.register} text-decoration-none`} to={"/register"}>
+                Registráte
               </Link>
             </div>
           </Col>
