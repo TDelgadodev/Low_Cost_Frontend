@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import useAuth from "../../hooks/useAuth";
 import { updateProfileService } from "../../services/auth.service";
-import { toast } from 'react-toastify';
+import { toast } from "react-toastify";
 import WhatsApp from "../../components/WhatsApp";
 import ShoppingCart from "../../components/CartModal";
 
@@ -16,21 +16,23 @@ export const Profile = () => {
   const initialValues = {
     name: userProfile?.user?.name || "",
     surname: userProfile?.user?.surname || "",
-    phone: userProfile?.user?.phone.toString() || "",
     email: userProfile?.user?.email || "",
-    postCode: userProfile?.user?.address?.postalCode || "",
+    phone: userProfile?.user?.phone.toString() || "",
+    dni: userProfile?.user?.dni || "",
     address: userProfile?.user?.address?.street || "",
     location: userProfile?.user?.address?.location || "",
     zone: userProfile?.user?.address?.province || "",
+    postCode: userProfile?.user?.address?.postalCode || "",
   };
 
   const validationSchema = Yup.object({
     name: Yup.string().required("Debe ingresar su nombre"),
     surname: Yup.string().required("Debe ingresar su apellido"),
+    email: Yup.string().required("Debe ingresar un email válido").email(),
     phone: Yup.string()
       .required("Debe ingresar su número telefónico")
       .matches(/^\d+$/, "El teléfono debe ser numérico"),
-    email: Yup.string().required("Debe ingresar un email válido").email(),
+    dni: Yup.number().integer(),
     postCode: Yup.number().integer(),
     address: Yup.string(),
     location: Yup.string(),
@@ -60,7 +62,7 @@ export const Profile = () => {
       const formattedValues = {
         ...values,
         phone: parseInt(values.phone),
-        id: userProfile.user.id
+        id: userProfile.user.id,
       };
 
       await updateProfileService(
@@ -70,14 +72,13 @@ export const Profile = () => {
       await getProfile();
 
       setIsLoading(false);
-      toast.success('¡Información actualizada con éxito!');
+      toast.success("¡Información actualizada con éxito!");
     } catch (error) {
       console.error("Error updating user:", error);
       setIsLoading(false);
-      toast.error('Ocurrió un error al actualizar la información.');
+      toast.error("Ocurrió un error al actualizar la información.");
     }
   };
-
 
   useEffect(() => {
     if (!userProfile) {
@@ -117,12 +118,14 @@ export const Profile = () => {
                 <div className="text-center">
                   {userProfile && (
                     <div>
-                      <h3 className={`${styles.title} pt-5`}> Bienvenido {userProfile.user.name}</h3>
+                      <h3 className={`${styles.title} pt-5`}>
+                        {" "}
+                        Bienvenido {userProfile.user.name}
+                      </h3>
                     </div>
                   )}
                 </div>
                 <div className="p-2 m-2 mb-5">
-
                   <Form.Group className="mb-2 mt-3">
                     <Field
                       id="name"
@@ -130,12 +133,15 @@ export const Profile = () => {
                       placeholder="Nombre"
                       name="name"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
                       name="name"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
@@ -147,12 +153,15 @@ export const Profile = () => {
                       placeholder="Apellido"
                       name="surname"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
                       name="surname"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
@@ -164,12 +173,15 @@ export const Profile = () => {
                       placeholder="Email"
                       name="email"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
                       name="email"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
@@ -181,29 +193,35 @@ export const Profile = () => {
                       placeholder="Teléfono con cód. de área"
                       name="phone"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
                       name="phone"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
 
                   <Form.Group className="mb-2 mt-3">
                     <Field
-                      id="postCode"
+                      id="dni"
                       type="number"
-                      placeholder="Codigo Postal"
-                      name="postCode"
+                      placeholder="Ingrese su DNI"
+                      name="dni"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
-                      name="postCode"
+                      name="dni"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
@@ -215,12 +233,15 @@ export const Profile = () => {
                       placeholder="Direccion"
                       name="address"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
                       name="address"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
@@ -232,12 +253,15 @@ export const Profile = () => {
                       placeholder="Localidad"
                       name="location"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
                       name="location"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
@@ -249,12 +273,34 @@ export const Profile = () => {
                       placeholder="Zona"
                       name="zone"
                       as={Form.Control}
-                      style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
                     ></Field>
                     <ErrorMessage
                       name="zone"
                       component={Form.Text}
-                      style={{ fontFamily: 'Poppins' }}
+                      style={{ fontFamily: "Poppins" }}
+                      className="text-danger ms-2"
+                    ></ErrorMessage>
+                  </Form.Group>
+                  <Form.Group className="mb-2 mt-3">
+                    <Field
+                      id="postCode"
+                      type="number"
+                      placeholder="Codigo Postal"
+                      name="postCode"
+                      as={Form.Control}
+                      style={{
+                        borderColor: "rgba(206, 206, 206, 0.795)",
+                        fontFamily: "Poppins",
+                      }}
+                    ></Field>
+                    <ErrorMessage
+                      name="postCode"
+                      component={Form.Text}
+                      style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
@@ -263,7 +309,7 @@ export const Profile = () => {
                     <div className={`d-grid gap-2 mt-4`}>
                       <Button
                         variant="primary"
-                        style={{ fontFamily: 'Poppins' }}
+                        style={{ fontFamily: "Poppins" }}
                         className="w-80 p-2"
                         size="lg"
                         type="submit"

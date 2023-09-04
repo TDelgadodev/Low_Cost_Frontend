@@ -9,7 +9,7 @@ import { CategoriesProvider } from "./context/CategoriesProvider";
 import { BrandsProvider } from "./context/BrandsProvider";
 import { AuthProvider } from "./context/authProvider";
 import "react-toastify/dist/ReactToastify.css";
-import { RecoveryProvider } from "./context/recoveryProvider"; // Importa el RecoveryProvider
+import { RecoveryProvider } from "./context/recoveryProvider"; 
 
 function App() {
   return (
