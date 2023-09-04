@@ -20,8 +20,7 @@ export const Profile = () => {
     phone: userProfile?.user?.phone.toString() || "",
     dni: userProfile?.user?.dni || "",
     address: userProfile?.user?.address?.street || "",
-    location: userProfile?.user?.address?.location || "",
-    zone: userProfile?.user?.address?.province || "",
+    numberAddress: userProfile?.user?.address?.numberAdress,
     postCode: userProfile?.user?.address?.postalCode || "",
   };
 
@@ -33,10 +32,9 @@ export const Profile = () => {
       .required("Debe ingresar su número telefónico")
       .matches(/^\d+$/, "El teléfono debe ser numérico"),
     dni: Yup.number().integer(),
-    postCode: Yup.number().integer(),
     address: Yup.string(),
-    location: Yup.string(),
-    zone: Yup.string(),
+    numberAddress: Yup.number().integer(),
+    postCode: Yup.number().integer(),
   });
 
   const handleSubmit = async (values) => {
@@ -225,12 +223,11 @@ export const Profile = () => {
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
-
                   <Form.Group className="mb-2 mt-3">
                     <Field
                       id="address"
                       type="text"
-                      placeholder="Direccion"
+                      placeholder="Ingresa tu calle"
                       name="address"
                       as={Form.Control}
                       style={{
@@ -245,13 +242,12 @@ export const Profile = () => {
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
-
                   <Form.Group className="mb-2 mt-3">
                     <Field
-                      id="location"
-                      type="text"
-                      placeholder="Localidad"
-                      name="location"
+                      id="numberAddress"
+                      type="number"
+                      placeholder="Nº de calle"
+                      name="numberAddress"
                       as={Form.Control}
                       style={{
                         borderColor: "rgba(206, 206, 206, 0.795)",
@@ -259,32 +255,13 @@ export const Profile = () => {
                       }}
                     ></Field>
                     <ErrorMessage
-                      name="location"
+                      name="numberAddress"
                       component={Form.Text}
                       style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
                     ></ErrorMessage>
                   </Form.Group>
 
-                  <Form.Group className="mb-2 mt-3">
-                    <Field
-                      id="zone"
-                      type="text"
-                      placeholder="Zona"
-                      name="zone"
-                      as={Form.Control}
-                      style={{
-                        borderColor: "rgba(206, 206, 206, 0.795)",
-                        fontFamily: "Poppins",
-                      }}
-                    ></Field>
-                    <ErrorMessage
-                      name="zone"
-                      component={Form.Text}
-                      style={{ fontFamily: "Poppins" }}
-                      className="text-danger ms-2"
-                    ></ErrorMessage>
-                  </Form.Group>
                   <Form.Group className="mb-2 mt-3">
                     <Field
                       id="postCode"
@@ -313,7 +290,7 @@ export const Profile = () => {
                         className="w-80 p-2"
                         size="lg"
                         type="submit"
-                        disabled={isLoading} // Deshabilitar el botón cuando isLoading es true
+                        disabled={isLoading} 
                         onClick={() => handleUpdateProfile(formik.values)}
                       >
                         {isLoading ? "Guardando..." : "Guardar"}{" "}
