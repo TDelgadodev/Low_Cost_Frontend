@@ -1,21 +1,11 @@
-/* import { SideBar, SidebarItem } from '../../components/SideBarDashboard'; */
-/* import styles from './Dashboard.module.css'
-import { LifeBuoy, Receipt, Boxes, Package, UserCircle, BarChart3, LayoutDasboard, Settings, LayoutDashboard } from 'lucide-react'; */
+import SideBar from "../../components/SideBarDashboard";
 
 export const Dashboard = () => {
   return (
     <div id="wrapper">
 
-      {/* <div className={`${styles}`}>
-        <SideBar>
-          <SidebarItem
-            icon={<LayoutDashboard size={20} />}
-            text='Dashboard'
-            alert
-            />
-          </SidebarItem>
-        </SideBar>
-      </div> */}
+
+      <SideBar />
 
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
