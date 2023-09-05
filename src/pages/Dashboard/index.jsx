@@ -1,10 +1,22 @@
-/* import '../../../public/dashboard/assets/css/app.css'; */
-import { SideBar } from '../../components/SideBarDashboard';
+/* import { SideBar, SidebarItem } from '../../components/SideBarDashboard'; */
+/* import styles from './Dashboard.module.css'
+import { LifeBuoy, Receipt, Boxes, Package, UserCircle, BarChart3, LayoutDasboard, Settings, LayoutDashboard } from 'lucide-react'; */
 
 export const Dashboard = () => {
   return (
     <div id="wrapper">
-      <SideBar/>
+
+      {/* <div className={`${styles}`}>
+        <SideBar>
+          <SidebarItem
+            icon={<LayoutDashboard size={20} />}
+            text='Dashboard'
+            alert
+            />
+          </SidebarItem>
+        </SideBar>
+      </div> */}
+
       <div id="content-wrapper" className="d-flex flex-column">
         <div id="content">
           <nav className="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -233,6 +245,6 @@ export const Dashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 };

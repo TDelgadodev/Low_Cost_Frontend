@@ -1,22 +1,20 @@
 import { MoreVertical, ChevronLast, ChevronFirst } from "lucide-react"
-import { useContext, createContext, useState } from "react";
-import PropTypes from 'prop-types';
-
+import { useContext, createContext, useState } from "react"
+import PropTypes from 'prop-types'
 
 const SidebarContext = createContext()
 
-export function SideBar({ children }) {
+export default function Sidebar({ children }) {
   const [expanded, setExpanded] = useState(true)
-  
+
   return (
     <aside className="h-screen">
       <nav className="h-full flex flex-col bg-white border-r shadow-sm">
         <div className="p-4 pb-2 flex justify-between items-center">
           <img
             src="https://img.logoipsum.com/243.svg"
-            className={`overflow-hidden transition-all ${
-              expanded ? "w-32" : "w-0"
-            }`}
+            className={`overflow-hidden transition-all ${expanded ? "w-32" : "w-0"
+              }`}
             alt=""
           />
           <button
@@ -57,33 +55,30 @@ export function SideBar({ children }) {
 
 export function SidebarItem({ icon, text, active, alert }) {
   const { expanded } = useContext(SidebarContext)
-  
+
   return (
     <li
       className={`
         relative flex items-center py-2 px-3 my-1
         font-medium rounded-md cursor-pointer
         transition-colors group
-        ${
-          active
-            ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
-            : "hover:bg-indigo-50 text-gray-600"
+        ${active
+          ? "bg-gradient-to-tr from-indigo-200 to-indigo-100 text-indigo-800"
+          : "hover:bg-indigo-50 text-gray-600"
         }
     `}
     >
       {icon}
       <span
-        className={`overflow-hidden transition-all ${
-          expanded ? "w-52 ml-3" : "w-0"
-        }`}
+        className={`overflow-hidden transition-all ${expanded ? "w-52 ml-3" : "w-0"
+          }`}
       >
         {text}
       </span>
       {alert && (
         <div
-          className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${
-            expanded ? "" : "top-2"
-          }`}
+          className={`absolute right-2 w-2 h-2 rounded bg-indigo-400 ${expanded ? "" : "top-2"
+            }`}
         />
       )}
 
@@ -104,7 +99,7 @@ export function SidebarItem({ icon, text, active, alert }) {
 }
 
 
-SideBar.propTypes = {
+Sidebar.propTypes = {
   children: PropTypes.node.isRequired, // Assuming children is a node (e.g., JSX elements)
 };
 SidebarItem.propTypes = {
