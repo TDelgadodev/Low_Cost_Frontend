@@ -78,7 +78,6 @@ export const CompletedPurchase = () => {
         return;
       }
 
-      console.log(values.cartItems);
       const cartItems = JSON.parse(values.cartItems);
 
       const response = await axios.post(
@@ -88,6 +87,7 @@ export const CompletedPurchase = () => {
           cartItems,
         }
       );
+      console.log(values);
 
       if (response.status === 200) {
         alert("Correo electrónico enviado al vendedor y al usuario");
@@ -100,7 +100,7 @@ export const CompletedPurchase = () => {
       alert("Error al enviar el correo electrónico");
     }
   };
-
+  
   const handleSubmit = (values) => {
     console.log(values);
   };
