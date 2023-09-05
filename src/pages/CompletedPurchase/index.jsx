@@ -143,11 +143,13 @@ export const CompletedPurchase = () => {
                     ></ErrorMessage>
                   </Form.Group>
                 </Col>
-                <Field
-                  type="hidden"
-                  name="cartItems"
-                  value={JSON.stringify(cart.cartItems)}
-                />
+                {cart.cartItems && cart.cartItems.length > 0 && (
+                  <Field
+                    type="hidden"
+                    name="cartItems"
+                    value={JSON.stringify(cart.cartItems)}
+                  />
+                )}
 
                 <Col xs={12} md={6} lg={6} xl={6}>
                   <Form.Group className="mb-3">
