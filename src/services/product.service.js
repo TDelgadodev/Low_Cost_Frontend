@@ -18,6 +18,17 @@ const getProductService = async (productId) => {
     }
 }
 
+const getLastProductService = async () => {
+    try {
+        const url = `${apiProductIdUrl}getLastProduct`;
+        const response = await axios.get(url);
+        console.log(response);
+    } catch (error) {
+        console.log(error);
+        throw new Error(error.message)
+    }
+}
+
 const filterProductsByOffer = async () => {
     try {
         const url = `${apiProductOfferUrl}`
@@ -33,11 +44,8 @@ const filterProductsByOffer = async () => {
 const filterProductsByKeyword = async (keyword) => {
     try {
         const url = `${apiProductKeywordUrl}=${keyword}`
-        /* console.log('URL for keyword:', url); */
         const response = await axios.get(url)
-        /* console.log('Response for keyword:', response.data); */
         const products = response.data.data
-        /* console.log('Products Keyword Data:', products); */
         return products
     } catch (error) {
         console.error(error)
@@ -48,11 +56,8 @@ const filterProductsByKeyword = async (keyword) => {
 const filterProductsByCategory = async (category) => {
     try {
         const url = `${apiProductByCategoryUrl}${category}`
-        /* console.log('URL for keyword:', url); */
         const response = await axios.get(url)
-        /* console.log('Response for keyword:', response.data); */
         const products = response.data.data
-        /* console.log('Products Keyword Data:', products); */
         return products
     } catch (error) {
         throw new Error('Hubo un error al obtener los productos por categoria')
@@ -70,4 +75,4 @@ const filterProductsByBrand = async (brand) => {
     }
 }
 
-export { getProductService, filterProductsByOffer, filterProductsByKeyword, filterProductsByCategory, filterProductsByBrand }
+export { getProductService, getLastProductService ,filterProductsByOffer, filterProductsByKeyword, filterProductsByCategory, filterProductsByBrand }

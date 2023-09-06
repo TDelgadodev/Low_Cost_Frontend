@@ -1,12 +1,13 @@
 import { useState, useEffect, createContext } from 'react'
 import PropTypes from 'prop-types'
-import { filterProductsByOffer, getProductService, filterProductsByKeyword, filterProductsByCategory, filterProductsByBrand } from '../services/product.service'
+import { filterProductsByOffer, getProductService, filterProductsByKeyword, filterProductsByCategory, filterProductsByBrand, getLastProductService } from '../services/product.service'
 
 const ProductContext = createContext()
 
 const ProductsProvider = ({ children }) => {
     const [idProduct, setProductId] = useState(null)
     const [filteredProducts, setFilteredProducts] = useState(null)
+    const [lastProduct, setLastProduct] = useState(null);
     const [filteredKeyword, setFilteredKeyword] = useState(null)
     const [filteredProductsCategory, setFilteredProductsCategory] = useState(null)
     const [filteredProductsBrand, setFilteredProductsBrand] = useState(null)
@@ -21,6 +22,17 @@ const ProductsProvider = ({ children }) => {
             console.error(error.message)
         } finally {
             setLoading(false)
+        }
+    }
+
+    async function getLastProduct (){
+        try {
+            const lastProduct = await getLastProductService();
+            console.log(lastProduct);
+            setLastProduct(lastProduct);
+        } catch (error) {
+            console.error('Hubo un error al obtener el último producto:', error.message);
+            console.log(error)
         }
     }
 
@@ -97,6 +109,10 @@ const ProductsProvider = ({ children }) => {
     }, [idProduct]);
 
     useEffect(() => {
+        getLastProduct();
+      }, []);
+
+    useEffect(() => {
         if (filteredProductsCategory !== null) {
             setFilteredKeyword(null);
             setFilteredProductsBrand(null);
@@ -124,6 +140,8 @@ const ProductsProvider = ({ children }) => {
 
     const contextValues = {
         idProduct,
+        lastProduct, 
+        getLastProduct,
         filteredProducts,
         filteredKeyword,
         filteredProductsCategory,

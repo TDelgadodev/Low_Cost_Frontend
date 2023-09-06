@@ -1,8 +1,6 @@
-/* import '../../../public/dashboard/assets/css/app.css'; */
 import { Container } from 'react-bootstrap';
 import { Contentwrapper } from '../../components/ContentWrapper';
 import SideBar from '../../components/SideBarDashboard';
-/* import styles from './Dashboard.module.css' */
 
 export const Dashboard = () => {
   return (
