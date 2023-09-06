@@ -29,7 +29,7 @@ export const AppRoutes = () => {
       </Route>
       <Route path="/get-code" element={<GetCodeResetMain />} />
       <Route path="/finish-buying" element={<CompletedPurchase />} />
-      <Route path="/dashboard" element={<Dashboard/>} />
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 };
