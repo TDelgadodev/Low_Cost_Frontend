@@ -7,8 +7,8 @@ import { useState } from "react";
 import axios from "axios";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useCart } from "../../hooks/useCart";
-import styles from "./index.module.css"; /*  */
 import CartProduct from "../../components/CartModal/CartProduct";
+import styles from "./index.module.css"; /*  */
 
 export const CompletedPurchase = () => {
   const [preferenceId, setPreferenceId] = useState(null);
@@ -62,7 +62,6 @@ export const CompletedPurchase = () => {
   };
 
   const handleContactSeller = async (values) => {
-    console.log("Valores recibidos:", values);
 
     try {
       const phoneAsNumber = parseInt(values.phone, 10);
@@ -73,12 +72,12 @@ export const CompletedPurchase = () => {
         alert("El número de teléfono ingresado no es válido");
         return;
       }
-      if (cart.cartItems.length === 0) {
+      if (cart.length === 0) {
         alert("No hay productos en el carrito para comprar.");
         return;
       }
 
-      const cartItems = JSON.parse(values.cartItems);
+      const cartItems = cart.cartItems;
 
       const response = await axios.post(
         "http://localhost:3000/api/users/finish-purchase",
@@ -87,7 +86,8 @@ export const CompletedPurchase = () => {
           cartItems,
         }
       );
-      console.log(values);
+
+      console.log('carrito:', values, cartItems);
 
       if (response.status === 200) {
         alert("Correo electrónico enviado al vendedor y al usuario");
@@ -100,7 +100,7 @@ export const CompletedPurchase = () => {
       alert("Error al enviar el correo electrónico");
     }
   };
-  
+
   const handleSubmit = (values) => {
     console.log(values);
   };
@@ -143,13 +143,13 @@ export const CompletedPurchase = () => {
                     ></ErrorMessage>
                   </Form.Group>
                 </Col>
-                {cart.cartItems && cart.cartItems.length > 0 && (
+                {/* {cart.cartItems && cart.cartItems.length > 0 && (
                   <Field
                     type="hidden"
                     name="cartItems"
                     value={JSON.stringify(cart.cartItems)}
                   />
-                )}
+                )} */}
 
                 <Col xs={12} md={6} lg={6} xl={6}>
                   <Form.Group className="mb-3">
