@@ -1,20 +1,20 @@
-export const metrics = [
-    {
-      title: "Productos en la base de datos",
-      color: "primary",
-      value: 21,
-      icon: "fa-boxes"
-    },
-    {
-      title: "Total de usuarios registrados",
-      color: "sucess",
-      value: 22,
-      icon: "fa-users"
-    },
-    {
-      title: "Total de compras realizadas",
-      color: "warning",
-      value: 23,
-      icon: "fa-cart-shopping"
-    }
-  ]
+export const initialMetricsData = {
+  products: {
+    title: "Productos en la base de datos",
+    color: "primary",
+    value: 0,
+    icon: "fa-boxes",
+  },
+  users: {
+    title: "Usuarios en la base de datos",
+    color: "primary",
+    value: 0,
+    icon: "fa-user",
+  },
+  cart: {
+    title: "Total de compras realizadas",
+    color: "warning",
+    value: 0,
+    icon: "fa-cart-shopping",
+  },
+};

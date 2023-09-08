@@ -9,29 +9,32 @@ import { CategoriesProvider } from "./context/CategoriesProvider";
 import { BrandsProvider } from "./context/BrandsProvider";
 import { AuthProvider } from "./context/authProvider";
 import "react-toastify/dist/ReactToastify.css";
-import { RecoveryProvider } from "./context/recoveryProvider"; 
+import { RecoveryProvider } from "./context/recoveryProvider";
+import { AdminProvider } from "./context/adminProvider";
 
 function App() {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <ModalProvider>
-          <CartProvider>
-            <BrandsProvider>
-              <RecoveryProvider>
-                <CategoriesProvider>
-                  <ProductsProvider>
-                    <MainLayout>
-                      <AppRoutes />
-                    </MainLayout>
-                  </ProductsProvider>
-                </CategoriesProvider>
-              </RecoveryProvider>
-            </BrandsProvider>
-          </CartProvider>
-          <ToastContainer position="bottom-left" reverseOrder={false} />
-        </ModalProvider>
-      </AuthProvider>
+      <AdminProvider>
+        <AuthProvider>
+          <ModalProvider>
+            <CartProvider>
+              <BrandsProvider>
+                <RecoveryProvider>
+                  <CategoriesProvider>
+                    <ProductsProvider>
+                      <MainLayout>
+                        <AppRoutes />
+                      </MainLayout>
+                    </ProductsProvider>
+                  </CategoriesProvider>
+                </RecoveryProvider>
+              </BrandsProvider>
+            </CartProvider>
+            <ToastContainer position="bottom-left" reverseOrder={false} />
+          </ModalProvider>
+        </AuthProvider>
+      </AdminProvider>
     </BrowserRouter>
   );
 }

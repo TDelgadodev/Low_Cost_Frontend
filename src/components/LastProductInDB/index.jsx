@@ -2,7 +2,7 @@ import { useProducts } from '../../hooks/useProduct';
 
 export const LastProductDB = () => {
   const { lastProduct, loading } = useProducts(); 
-  console.log(lastProduct);
+  //console.log(lastProduct);
 
   if (loading) {
     return (
