@@ -1,31 +1,34 @@
-import Box from '@mui/material/Box';
-import Drawer from '@mui/material/Drawer';
-import Toolbar from '@mui/material/Toolbar';
-import List from '@mui/material/List';
-import Divider from '@mui/material/Divider';
-import ListItem from '@mui/material/ListItem';
-import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
-import MailIcon from '@mui/icons-material/Mail';
-import styles from './SideBarDashboard.module.css'
+import Box from "@mui/material/Box";
+import Drawer from "@mui/material/Drawer";
+import Toolbar from "@mui/material/Toolbar";
+import List from "@mui/material/List";
+import Divider from "@mui/material/Divider";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import GroupIcon from '@mui/icons-material/Group';
+import Inventory2Icon from '@mui/icons-material/Inventory2';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import EditNoteIcon from '@mui/icons-material/EditNote';
+import DeleteIcon from '@mui/icons-material/Delete';
+import styles from "./SideBarDashboard.module.css";
+import { Link } from "react-router-dom";
 
 const drawerWidth = 240;
 
 export default function SideBar() {
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <Drawer
         className={`${styles.drawer}`}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          '& .MuiDrawer-paper': {
+          "& .MuiDrawer-paper": {
             width: drawerWidth,
-            boxSizing: 'border-box',
-            backgroundColor: '#007BFF',
-            color: 'white',
+            boxSizing: "border-box",
+            backgroundColor: "#007BFF",
+            color: "white",
           },
         }}
         variant="permanent"
@@ -34,29 +37,39 @@ export default function SideBar() {
         <Toolbar />
         <Divider />
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: 'white' }}>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+          <ListItemButton component={Link} to="/dashboard/users">
+            <ListItemIcon sx={{ color: "white" }}>
+              <GroupIcon />
+            </ListItemIcon>
+            <ListItemText primary="Lista de Usuarios" />
+          </ListItemButton>
+          <ListItemButton component={Link} to="/dashboard/products">
+            <ListItemIcon sx={{ color: "white" }}>
+              <Inventory2Icon />
+            </ListItemIcon>
+            <ListItemText primary="Lista de Productos" />
+          </ListItemButton>
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem key={text} disablePadding>
-              <ListItemButton>
-                <ListItemIcon sx={{ color: 'white' }}>
-                  {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                </ListItemIcon>
-                <ListItemText primary={text} />
-              </ListItemButton>
-            </ListItem>
-          ))}
+        <ListItemButton component={Link} to="/dashboard/products/create">
+            <ListItemIcon sx={{ color: "white" }}>
+              <AddCircleOutlineIcon />
+            </ListItemIcon>
+            <ListItemText primary="Crear Producto" />
+          </ListItemButton>
+          <ListItemButton component={Link} to="/dashboard/products/edit">
+            <ListItemIcon sx={{ color: "white" }}>
+              <EditNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Editar Producto" />
+          </ListItemButton>
+          <ListItemButton component={Link} to="/dashboard/products/delete">
+            <ListItemIcon sx={{ color: "white" }}>
+              <DeleteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Eliminar Producto" />
+          </ListItemButton>
         </List>
       </Drawer>
     </Box>
