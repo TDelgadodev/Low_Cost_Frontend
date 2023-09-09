@@ -75,4 +75,4 @@ const filterProductsByBrand = async (brand) => {
     }
 }
 
-export { getProductService, getLastProductService ,filterProductsByOffer, filterProductsByKeyword, filterProductsByCategory, filterProductsByBrand }
+export { getProductService, getLastProductService, filterProductsByOffer, filterProductsByKeyword, filterProductsByCategory, filterProductsByBrand }

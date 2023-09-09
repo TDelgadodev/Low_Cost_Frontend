@@ -87,7 +87,8 @@ export const CompletedPurchase = () => {
         }
       );
 
-      console.log('carrito:', values, cartItems);
+      console.log('Datos del carrito:', cartItems);
+      console.log('Datos del formulario:', values);
 
       if (response.status === 200) {
         alert("Correo electrónico enviado al vendedor y al usuario");
@@ -143,13 +144,13 @@ export const CompletedPurchase = () => {
                     ></ErrorMessage>
                   </Form.Group>
                 </Col>
-                {/* {cart.cartItems && cart.cartItems.length > 0 && (
+                {cart.cartItems && cart.cartItems.length > 0 && (
                   <Field
                     type="hidden"
                     name="cartItems"
                     value={JSON.stringify(cart.cartItems)}
                   />
-                )} */}
+                )}
 
                 <Col xs={12} md={6} lg={6} xl={6}>
                   <Form.Group className="mb-3">
