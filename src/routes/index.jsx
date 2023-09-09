@@ -10,6 +10,8 @@ import ProtectedRoutes from "./protectedRoutes";
 import useAuth from "../hooks/useAuth";
 import { GetCodeResetMain } from "../pages/GetCodeReset/GetCodeReset";
 import { Dashboard } from "../pages/Dashboard";
+import { TableUserDash } from "../components/TableUsersDash";
+import { TableProductsDash } from "../components/TableProductsDash";
 
 
 export const AppRoutes = () => {
@@ -30,6 +32,8 @@ export const AppRoutes = () => {
       <Route path="/get-code" element={<GetCodeResetMain />} />
       <Route path="/finish-buying" element={<CompletedPurchase />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/users" element={<TableUserDash />} />
+      <Route path="/dashboard/products" element={<TableProductsDash />} />
     </Routes>
   );
 };
