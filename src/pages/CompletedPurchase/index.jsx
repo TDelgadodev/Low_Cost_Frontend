@@ -3,15 +3,18 @@ import { ErrorMessage, Field, Formik } from "formik";
 import InfoCards from "../../components/infoCards";
 import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useCart } from "../../hooks/useCart";
 import CartProduct from "../../components/CartModal/CartProduct";
+import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css"; /*  */
 
 export const CompletedPurchase = () => {
   const [preferenceId, setPreferenceId] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
+
   const initialValues = {
     name: "",
     surname: "",
@@ -26,6 +29,7 @@ export const CompletedPurchase = () => {
   initMercadoPago("TEST-ee4126e1-98a8-4b22-82d6-1380484d85ea");
 
   const { cart, orderTotal } = useCart();
+  const navigate = useNavigate();
   const createPreference = async () => {
     try {
       const description = cart.cartItems.map((item) => item.name).join(", ");
@@ -62,6 +66,7 @@ export const CompletedPurchase = () => {
   };
 
   const handleContactSeller = async (values) => {
+    setIsLoading(true);
 
     try {
       const phoneAsNumber = parseInt(values.phone, 10);
@@ -92,19 +97,30 @@ export const CompletedPurchase = () => {
 
       if (response.status === 200) {
         alert("Correo electrónico enviado al vendedor y al usuario");
+        localStorage.removeItem("cartItems");
         // Puedes realizar acciones adicionales aquí si es necesario
+        navigate("/");
+        window.location.reload();
       } else {
         alert("Error al enviar el correo electrónico");
       }
     } catch (error) {
       console.log(error);
       alert("Error al enviar el correo electrónico");
+    } finally {
+      setIsLoading(false);
     }
   };
 
   const handleSubmit = (values) => {
     console.log(values);
   };
+
+  useEffect(() => {
+    if (preferenceId) {
+      localStorage.removeItem("cartItems");
+    }
+  }, [preferenceId]);
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -309,10 +325,10 @@ export const CompletedPurchase = () => {
               <div className="d-flex justify-content-between mt-5">
                 <div className="w-50 me-2">
                   <Button
+                    variant="primary"
                     size="md"
                     style={{ fontFamily: "Poppins" }}
                     className="p-2 w-100"
-                    variant="primary"
                     onClick={handleBuy}
                   >
                     Comprar con Mercado Pago
@@ -321,12 +337,13 @@ export const CompletedPurchase = () => {
                 <div className="w-50 ms-2">
                   <Button
                     variant="primary"
+                    size="md"
                     style={{ fontFamily: "Poppins" }}
                     className="p-2 w-100"
-                    size="md"
                     onClick={() => handleContactSeller(formik.values)}
+                    disabled={isLoading} // Deshabilitar el botón mientras se carga
                   >
-                    Acordar con Vendedor
+                    {isLoading ? "Comprando..." : "Acordar con Vendedor"} {/* Cambiar el texto del botón según el estado de carga */}
                   </Button>
                 </div>
               </div>
