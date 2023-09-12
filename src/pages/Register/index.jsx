@@ -11,7 +11,7 @@ import { useState } from "react";
 export const Register = () => {
   const { register } = useAuth();
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const navigate = useNavigate(); // Agrega esto
+  const navigate = useNavigate(); 
 
   const initialValues = {
     name: "",

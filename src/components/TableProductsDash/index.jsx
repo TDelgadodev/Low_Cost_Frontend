@@ -1,9 +1,8 @@
+import { Button } from "react-bootstrap";
 import useAdmin from "../../hooks/useAdmin";
 
-
 export const TableProductsDash = () => {
-
-  const { metricsProducts } = useAdmin(); 
+  const { metricsProducts } = useAdmin();
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -25,10 +24,12 @@ export const TableProductsDash = () => {
               <th scope="col">Categoria</th>
               <th scope="col">Marca</th>
               <th scope="col">Descuento</th>
+              <th scope="col">Acciones</th>
+              <th></th>
             </tr>
           </thead>
-          <tbody>
-          {metricsProducts.data.map((product) => (
+          <tbody className="m-2">
+            {metricsProducts.data.map((product) => (
               <tr key={product.id}>
                 <td>{product.id}</td>
                 <td>{product.name}</td>
@@ -36,6 +37,12 @@ export const TableProductsDash = () => {
                 <td>{product.category.name}</td>
                 <td>{product.brand.name}</td>
                 <td>{product.offer ? "Sí" : "No"}</td>
+                <td >
+                  <Button>Editar</Button>
+                </td>
+                <td>
+                  <Button variant="danger">Eliminar</Button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -44,4 +51,3 @@ export const TableProductsDash = () => {
     </>
   );
 };
-

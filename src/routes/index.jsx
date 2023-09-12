@@ -12,6 +12,7 @@ import { GetCodeResetMain } from "../pages/GetCodeReset/GetCodeReset";
 import { Dashboard } from "../pages/Dashboard";
 import { TableUserDash } from "../components/TableUsersDash";
 import { TableProductsDash } from "../components/TableProductsDash";
+import { AddProductDash } from "../components/AddProductDash";
 
 
 export const AppRoutes = () => {
@@ -34,6 +35,7 @@ export const AppRoutes = () => {
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/users" element={<TableUserDash />} />
       <Route path="/dashboard/products" element={<TableProductsDash />} />
+      <Route path="/dashboard/products/create" element={<AddProductDash />} />
     </Routes>
   );
 };
