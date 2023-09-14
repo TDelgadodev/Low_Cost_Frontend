@@ -22,7 +22,7 @@ export default function MainLayout({ children }) {
   return (
     <div className={styles.main}>
       <Header />
-      <Container className="mt-5 pb-4">
+      <Container className="my-5 py-5">
         {children}
       </Container >
       <Footer />

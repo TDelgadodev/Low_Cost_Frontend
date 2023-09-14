@@ -13,6 +13,8 @@ import { Dashboard } from "../pages/Dashboard";
 import { TableUserDash } from "../components/TableUsersDash";
 import { TableProductsDash } from "../components/TableProductsDash";
 import { AddProductDash } from "../components/AddProductDash";
+import PurchaseAccepted from "../components/PurchaseAccepted";
+import PurchaseDenied from "../components/PurchaseDenied";
 
 
 export const AppRoutes = () => {
@@ -32,6 +34,8 @@ export const AppRoutes = () => {
       </Route>
       <Route path="/get-code" element={<GetCodeResetMain />} />
       <Route path="/finish-buying" element={<CompletedPurchase />} />
+      <Route path="/purchase-accepted" element={<PurchaseAccepted />} />
+      <Route path="/purchase-denied" element={<PurchaseDenied />} />
       <Route path="/dashboard" element={<Dashboard />} />
       <Route path="/dashboard/users" element={<TableUserDash />} />
       <Route path="/dashboard/products" element={<TableProductsDash />} />

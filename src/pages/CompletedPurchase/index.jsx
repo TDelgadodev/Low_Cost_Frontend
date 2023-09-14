@@ -26,7 +26,7 @@ export const CompletedPurchase = () => {
     postCode: "",
   };
 
-  initMercadoPago("TEST-ee4126e1-98a8-4b22-82d6-1380484d85ea");
+  initMercadoPago("TEST-70a33ced-250d-4afe-92bd-5f8a057bb918");
 
   const { cart, orderTotal } = useCart();
   const navigate = useNavigate();

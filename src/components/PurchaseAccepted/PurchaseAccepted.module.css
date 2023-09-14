@@ -1,0 +1,28 @@
+.Container {
+    border-radius: 8px;
+    background-color: #007BFF;
+    width: 60%;
+}
+
+.Container p {
+    color: white;
+    text-align: center;
+}
+
+.Container a {
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: center;
+    transition: color 0.3s ease-in-out;
+}
+
+.Container a:hover {
+    color: greenyellow;
+}
+
+.Container img {
+    display: flex;
+    width: 35px;
+    margin: 0 auto;
+}
