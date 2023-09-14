@@ -31,6 +31,8 @@ export const CompletedPurchase = () => {
   const { cart, orderTotal } = useCart();
   const navigate = useNavigate();
   const createPreference = async () => {
+    setIsLoading(true);
+
     try {
       const description = cart.cartItems.map((item) => item.name).join(", ");
       const price = orderTotal;
@@ -55,6 +57,8 @@ export const CompletedPurchase = () => {
       return id;
     } catch (error) {
       throw new Error("Hubo un error al realizar la compra");
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -330,8 +334,9 @@ export const CompletedPurchase = () => {
                     style={{ fontFamily: "Poppins" }}
                     className="p-2 w-100"
                     onClick={handleBuy}
+                    disabled={isLoading} // Deshabilitar el botón mientras se carga
                   >
-                    Comprar con Mercado Pago
+                    {isLoading ? "Comprando..." : "Comprar con Mercado Pago"} {/* Cambiar el texto del botón según el estado de carga */}
                   </Button>
                 </div>
                 <div className="w-50 ms-2">
@@ -355,7 +360,7 @@ export const CompletedPurchase = () => {
                       valueProp: "security_safety",
                     },
                   }}
-                  initialization={{ preferenceId, redirectMode: "modal" }}
+                  initialization={{ preferenceId, redirectMode: "blank" }}
                 />
               )}
             </Container>
