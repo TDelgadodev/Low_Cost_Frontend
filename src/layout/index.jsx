@@ -4,13 +4,19 @@ import styles from "./MainLayout.module.css"
 import PropTypes from "prop-types"
 import Footer from "../components/Footer"
 import { useLocation } from "react-router-dom";
+import SideBar from '../components/SideBarDashboard';
 
 export default function MainLayout({ children }) {
   const location = useLocation();
   const isDashboardRoute = location.pathname.startsWith("/dashboard");
 
   if (isDashboardRoute) {
-    return <>{children}</>;
+    return (
+      <Container className='py-5'>
+        <SideBar />
+        {children}
+      </Container>
+    )
   }
 
   return (
