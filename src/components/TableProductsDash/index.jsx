@@ -25,7 +25,6 @@ export const TableProductsDash = () => {
               <th scope="col">Marca</th>
               <th scope="col">Descuento</th>
               <th scope="col">Acciones</th>
-              <th></th>
             </tr>
           </thead>
           <tbody className="m-2">
@@ -37,11 +36,15 @@ export const TableProductsDash = () => {
                 <td>{product.category.name}</td>
                 <td>{product.brand.name}</td>
                 <td>{product.offer ? "Sí" : "No"}</td>
-                <td >
-                  <Button>Editar</Button>
+                <td>
+                  <Button>
+                    <i className="fa-solid fa-pen-to-square"></i>
+                  </Button>
                 </td>
                 <td>
-                  <Button variant="danger">Eliminar</Button>
+                  <Button variant="danger">
+                    <i className="fa-solid fa-trash"></i>
+                  </Button>
                 </td>
               </tr>
             ))}

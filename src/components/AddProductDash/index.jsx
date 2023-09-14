@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import useAdmin from "../../hooks/useAdmin";
 
 export const AddProductDash = () => {
-  const { metricsProducts } = useAdmin();
+  const { metricsProducts, createProductProvider } = useAdmin();
   const initialValues = {
     title: "",
     price: "",
@@ -12,8 +12,9 @@ export const AddProductDash = () => {
     brandId: "",
     categoryId: "",
     stock: "",
-    offer: "",
+    offer: false,
     visible: false,
+    imageFiles: [],
   };
 
   const validationSchema = Yup.object({
@@ -35,6 +36,8 @@ export const AddProductDash = () => {
         categoryId: parseInt(values.categoryId),
       };
       console.log(values);
+      console.log(createProductProvider);
+      await createProductProvider(values);
     } catch (error) {
       console.error(error);
     } finally {
@@ -49,9 +52,9 @@ export const AddProductDash = () => {
       validationSchema={validationSchema}
     >
       {(formik) => (
-        <Form onSubmit={formik.handleSubmit}>
+        <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
           <div className="d-flex justify-content-between">
-            <h4>Agregar Curso </h4>
+            <h4>Agregar Producto </h4>
           </div>
           <hr />
           <Row>
@@ -171,36 +174,33 @@ export const AddProductDash = () => {
               className="text-danger ms-2"
             ></ErrorMessage>
             <Form.Group className="col-12 col-md-6 mb-3">
-              <Form.Label htmlFor="offer" className="form-label">
-                Oferta *
-              </Form.Label>
-              <Field
-                type="number"
-                className="form-control"
-                name="offer"
-                placeholder="Coloque un porcentaje de oferta"
-                onFocus={() => formik.setFieldError("offer", "")}
-              />
-              <ErrorMessage
-                name="offer"
-                component={Form.Text}
-                style={{ fontFamily: "Poppins" }}
-                className="text-danger ms-2"
-              ></ErrorMessage>
+              <div className="form-check form-switch">
+                <Field
+                  className="form-check-input"
+                  type="checkbox"
+                  name="offer"
+                  id="flexSwitchCheckOffer"
+                />
+                <Form.Label
+                  className="form-check-label"
+                  htmlFor="flexSwitchCheckOffer"
+                >
+                  Oferta
+                </Form.Label>
+              </div>
             </Form.Group>
             <Form.Group className="col-12 mb-3">
               <div className="d-flex justify-content-around">
                 <div className="form-check form-switch">
                   <Field
                     className="form-check-input"
-                    name="visible"
                     type="checkbox"
-                    role="switch"
-                    id="flexSwitchCheckChecked"
+                    name="visible"
+                    id="flexSwitchCheckVisible"
                   />
                   <Form.Label
                     className="form-check-label"
-                    htmlFor="flexSwitchCheckChecked"
+                    htmlFor="flexSwitchCheckVisible"
                   >
                     Visible
                   </Form.Label>
@@ -214,13 +214,37 @@ export const AddProductDash = () => {
               ></ErrorMessage>
             </Form.Group>
             <Form.Group className="col-12 mb-3">
-              <Form.Label htmlFor="">Imagenes</Form.Label>
-              <div className="d-flex align-items-center justify-content-around"></div>
+              <Form.Label htmlFor="">Imagenes *</Form.Label>
+              <div className="input-group">
+                <input
+                  type="file"
+                  name="imageFiles"
+                  id="imageFiles"
+                  className="form-control"
+                  multiple
+                  onChange={(event) => {
+                    const selectedFiles = Array.from(event.target.files);
+                    formik.setFieldValue("imageFiles", selectedFiles);
+                  }}
+                />
+              </div>
             </Form.Group>
+
             <div className="col-12 mb-3">
               <hr />
               <div className="d-flex align-items-center justify-content-end">
-                <Button variant="dark" className="mx-2 ">
+                <button
+                  type="button"
+                  className="btn btn-success"
+                  onClick={() => document.getElementById("imageFiles").click()}
+                >
+                  Seleccionar
+                </button>
+                <Button
+                  variant="dark"
+                  className="mx-2"
+                  onClick={formik.resetForm}
+                >
                   Limpiar
                 </Button>
                 <Button className="mx-2" type="submit">

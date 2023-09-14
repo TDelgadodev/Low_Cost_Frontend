@@ -1,5 +1,5 @@
 import { useState, createContext, useEffect } from "react";
-import { fetchMetricsDataProducts, fetchMetricsDataUsers } from "../services/admin.service";
+import { createProductService, fetchMetricsDataProducts, fetchMetricsDataUsers } from "../services/admin.service";
 import PropTypes from "prop-types";
 
 const AdminContext = createContext(null);
@@ -8,6 +8,7 @@ const AdminProvider = ({ children }) => {
   const [alert, setAlert] = useState(null);
   const [metricsUsers, setMetricsUsers] = useState([]);
   const [metricsProducts, setMetricsProducts] = useState([]);
+  const [createProduct, setCreateProduct] = useState(null);
 
   const handleAlert = (error) => {
     setAlert(error.message);
@@ -19,7 +20,6 @@ const AdminProvider = ({ children }) => {
   const getMetricsUsers = async () => {
     try {
       const data = await fetchMetricsDataUsers();
-      console.log(data);
       setMetricsUsers(data);
     } catch (error) {
       handleAlert(error);
@@ -29,12 +29,24 @@ const AdminProvider = ({ children }) => {
   const getMetricsProducts = async () => {
     try {
       const data = await fetchMetricsDataProducts();
-      console.log(data);
       setMetricsProducts(data);
     } catch (error) {
       handleAlert(error);
     }
   };
+
+  const createProductProvider = async (info) => {
+    try {
+      const data = await createProductService(info);
+      console.log("createProductProvider called with data:", data);
+      setCreateProduct(data);
+      return data;
+    } catch (error) {
+      console.log("createProductProvider error:", error);
+      handleAlert(error);
+    }
+  }
+  
   useEffect(() => {
     getMetricsUsers();
   }, []);
@@ -47,6 +59,8 @@ const AdminProvider = ({ children }) => {
     metricsUsers, 
     getMetricsProducts,
     metricsProducts,
+    createProductProvider,
+    createProduct,
     alert,
   };
   return (
