@@ -14,7 +14,7 @@ export const AddProductDash = () => {
     stock: "",
     offer: false,
     visible: false,
-    imageFiles: null,
+    imageFile: [],
   };
 
   const validationSchema = Yup.object({
@@ -37,7 +37,6 @@ export const AddProductDash = () => {
       };
 
       console.log(values);
-      console.log("Formulario enviado con éxito");
 
       await createProductProvider(values);
     } catch (error) {
@@ -221,15 +220,12 @@ export const AddProductDash = () => {
                 <div className="input-group">
                   <input
                     type="file"
-                    name="imageFiles"
-                    id="imageFiles"
+                    name="imageFile"
+                    id="imageFile"
                     className="form-control"
                     multiple
                     onChange={(event) => {
-                      const selectedFiles = Array.from(event.target.files).filter(
-                        (file) => file instanceof File
-                      );
-                      formik.setFieldValue("imageFiles", selectedFiles);
+                      formik.setFieldValue("imageFile", event.target.files);
                     }}
                   />
                 </div>
@@ -241,7 +237,7 @@ export const AddProductDash = () => {
                   <button
                     type="button"
                     className="btn btn-success"
-                    onClick={() => document.getElementById("imageFiles").click()}
+                    onClick={() => document.getElementById("imageFile").click()}
                   >
                     Seleccionar
                   </button>
@@ -255,7 +251,6 @@ export const AddProductDash = () => {
                   <Button
                     className="mx-2"
                     type="submit"
-                  /* onClick={formik.handleSubmit} */
                   >
                     Guardar
                   </Button>

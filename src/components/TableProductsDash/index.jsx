@@ -1,8 +1,20 @@
 import { Button } from "react-bootstrap";
 import useAdmin from "../../hooks/useAdmin";
+import { useState } from "react";
+import { Pagination } from "@mui/material";
+import styles from "./index.module.css";
 
 export const TableProductsDash = () => {
   const { metricsProducts } = useAdmin();
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const ProductsPerPage = 6;
+  const handlePageChange = (event, pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+  const startIndex = (currentPage - 1) * ProductsPerPage;
+  const endIndex = startIndex + ProductsPerPage;
+
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -18,7 +30,9 @@ export const TableProductsDash = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th scope="col">#</th>
+              <th className={`${styles.firstColumn}`} scope="col">
+                #
+              </th>
               <th scope="col">Producto</th>
               <th scope="col">Precio</th>
               <th scope="col">Categoria</th>
@@ -27,28 +41,38 @@ export const TableProductsDash = () => {
               <th scope="col">Acciones</th>
             </tr>
           </thead>
+
           <tbody className="m-2">
-            {metricsProducts.data.map((product) => (
-              <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                <td>${product.price}</td>
-                <td>{product.category.name}</td>
-                <td>{product.brand.name}</td>
-                <td>{product.offer ? "Sí" : "No"}</td>
-                <td>
-                  <Button>
-                    <i className="fa-solid fa-pen-to-square"></i>
-                  </Button>
-                </td>
-                <td>
-                  <Button variant="danger">
-                    <i className="fa-solid fa-trash"></i>
-                  </Button>
-                </td>
-              </tr>
-            ))}
+            {metricsProducts.data
+              .slice(startIndex, endIndex)
+              .map((product, index) => (
+                <tr className={`${styles.rowsTable}`} key={product.id}>
+                  <td>{startIndex + index + 1}</td>
+                  <td>{product.name}</td>
+                  <td>${product.price}</td>
+                  <td>{product.category.name}</td>
+                  <td>{product.brand.name}</td>
+                  <td>{product.offer ? "Sí" : "No"}</td>
+                  <td>
+                    <Button>
+                      <i className="fa-solid fa-pen-to-square"></i>
+                    </Button>
+                    <Button variant="danger">
+                      <i className="fa-solid fa-trash"></i>
+                    </Button>
+                  </td>
+                </tr>
+              ))}
           </tbody>
+
+          <div className="d-flex justify-content-center">
+            <Pagination
+              count={Math.ceil(metricsProducts.data.length / ProductsPerPage)}
+              page={currentPage}
+              onChange={handlePageChange}
+              color="primary"
+            />
+          </div>
         </table>
       </div>
     </>
