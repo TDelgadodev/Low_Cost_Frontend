@@ -42,7 +42,7 @@ export const Login = () => {
       validationSchema={validationSchema}
     >
       {(formik) => (
-        <Form onSubmit={formik.handleSubmit} className="py-5">
+        <Form onSubmit={formik.handleSubmit}>
           <Col
             xs={10}
             sm={6}

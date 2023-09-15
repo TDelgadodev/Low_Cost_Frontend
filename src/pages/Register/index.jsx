@@ -57,7 +57,7 @@ export const Register = () => {
       {(formik) => (
         <Form
           onSubmit={formik.handleSubmit}
-          className={`m-3 py-5 ${styles.formRegister}`}
+          className={`m-3 ${styles.formRegister}`}
         >
           <Col xs={10} sm={6} md={6} lg={4} xl={4}>
             <div className="pb-4">
