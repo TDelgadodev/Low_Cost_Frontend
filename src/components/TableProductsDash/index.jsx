@@ -3,6 +3,7 @@ import useAdmin from "../../hooks/useAdmin";
 import { useState } from "react";
 import { Pagination } from "@mui/material";
 import styles from "./index.module.css";
+import { Link } from "react-router-dom";
 
 export const TableProductsDash = () => {
   const { metricsProducts } = useAdmin();
@@ -53,12 +54,14 @@ export const TableProductsDash = () => {
                   <td>{product.category.name}</td>
                   <td>{product.brand.name}</td>
                   <td>{product.offer ? "Sí" : "No"}</td>
-                  <td>
+                  <td className={`${styles.linksDashboardActions}`}>
                     <Button>
                       <i className="fa-solid fa-pen-to-square"></i>
                     </Button>
                     <Button variant="danger">
+                    <Link to={`/dashboard/delete-product/${product.id}`}>
                       <i className="fa-solid fa-trash"></i>
+                    </Link>
                     </Button>
                   </td>
                 </tr>

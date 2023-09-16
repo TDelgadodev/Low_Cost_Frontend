@@ -7,3 +7,11 @@
 .rowsTable td{
   width: 60px;
 }
+
+.linksDashboardActions i{
+  color: white;
+}
+
+.linksDashboardActions button{
+  margin-left: 5px;
+}

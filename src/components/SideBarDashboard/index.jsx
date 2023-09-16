@@ -64,7 +64,7 @@ export default function SideBar() {
             </ListItemIcon>
             <ListItemText primary="Editar Producto" />
           </ListItemButton>
-          <ListItemButton component={Link} to="/dashboard/products/delete">
+          <ListItemButton component={Link} to={`/dashboard/products/delete/:id`}>
             <ListItemIcon sx={{ color: "white" }}>
               <DeleteIcon />
             </ListItemIcon>

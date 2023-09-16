@@ -22,7 +22,6 @@ const getLastProductService = async () => {
     try {
         const url = `${apiProductIdUrl}getLastProduct`;
         const response = await axios.get(url);
-        console.log(response);
         return response
     } catch (error) {
         console.log(error);
