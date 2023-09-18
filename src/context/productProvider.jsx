@@ -42,11 +42,14 @@ const ProductsProvider = ({ children }) => {
         try {
             setLoading(true)
             const productOfferData = await filterProductsByOffer()
-            productOfferData.forEach((product) => {
-                product.imageUrls = JSON.parse(product.imageUrls);
-            });
-            setFilteredProducts(productOfferData)
-            /* console.log("Product Offer Data:", productOfferData); */
+            if (productOfferData && productOfferData.length > 0) {
+                productOfferData.forEach((product) => {
+                    product.imageUrls = JSON.parse(product.imageUrls);
+                });
+                setFilteredProducts(productOfferData);
+            } else {
+                console.error("La respuesta del servidor está vacía o no es válida.");
+            }    
         } catch (error) {
             console.error("Error fetching product offer data:", error.message);
         } finally {

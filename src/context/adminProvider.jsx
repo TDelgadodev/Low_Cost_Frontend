@@ -4,6 +4,7 @@ import {
   deleteProductService,
   fetchMetricsDataProducts,
   fetchMetricsDataUsers,
+  getProductDetails ,
 } from "../services/admin.service";
 import PropTypes from "prop-types";
 
@@ -63,6 +64,16 @@ const AdminProvider = ({ children }) => {
     }
   };
 
+  const getProductDetailsProvider = async (id) => {
+    try {
+      const data = await getProductDetails(id);
+      return data;
+    } catch (error) {
+      console.log("getProductDetailsProvider error:", error);
+      handleAlert(error);
+    }
+  };
+
   useEffect(() => {
     getMetricsUsers();
   }, []);
@@ -76,6 +87,7 @@ const AdminProvider = ({ children }) => {
     getMetricsProducts,
     metricsProducts,
     createProductProvider,
+    getProductDetailsProvider,
     createProduct,
     deleteProductProvider,
     alert,

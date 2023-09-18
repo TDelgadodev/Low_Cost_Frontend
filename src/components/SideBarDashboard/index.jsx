@@ -10,7 +10,7 @@ import GroupIcon from '@mui/icons-material/Group';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditNoteIcon from '@mui/icons-material/EditNote';
-import DeleteIcon from '@mui/icons-material/Delete';
+import SearchIcon from '@mui/icons-material/Search';
 import styles from "./SideBarDashboard.module.css";
 import { Link } from "react-router-dom";
 
@@ -64,11 +64,11 @@ export default function SideBar() {
             </ListItemIcon>
             <ListItemText primary="Editar Producto" />
           </ListItemButton>
-          <ListItemButton component={Link} to={`/dashboard/products/delete/:id`}>
+          <ListItemButton component={Link} to="/dashboard/search">
             <ListItemIcon sx={{ color: "white" }}>
-              <DeleteIcon />
+              <SearchIcon />
             </ListItemIcon>
-            <ListItemText primary="Eliminar Producto" />
+            <ListItemText primary="Buscar un producto" />
           </ListItemButton>
         </List>
       </Drawer>

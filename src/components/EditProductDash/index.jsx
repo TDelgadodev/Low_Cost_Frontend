@@ -1,11 +1,15 @@
 import { Button, Container, Form, Row } from "react-bootstrap";
 import { ErrorMessage, Field, Formik } from "formik";
 import * as Yup from "yup";
+import { useParams } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import { useEffect, useState } from "react";
 
 export const EditProductDash = () => {
-  const { metricsProducts, createProductProvider } = useAdmin();
-  const initialValues = {
+  const { metricsProducts, createProductProvider, getProductDetailsProvider } =
+    useAdmin();
+  const { id } = useParams();
+  const [initialValues, setInitialValues] = useState({
     title: "",
     price: "",
     description: "",
@@ -15,7 +19,7 @@ export const EditProductDash = () => {
     offer: false,
     visible: false,
     imageFile: [],
-  };
+  });
 
   const validationSchema = Yup.object({
     title: Yup.string().required("El título es obligatorio"),
@@ -36,8 +40,6 @@ export const EditProductDash = () => {
         categoryId: parseInt(values.categoryId),
       };
 
-      console.log(values);
-
       await createProductProvider(values);
     } catch (error) {
       console.error(error);
@@ -45,6 +47,22 @@ export const EditProductDash = () => {
       setSubmitting(false);
     }
   };
+  useEffect(() => {
+    const fetchProductDetails = async () => {
+      try {
+        const data = await getProductDetailsProvider(id);
+        if (data) {
+          setInitialValues(data);
+        }
+        console.log(data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProductDetails();
+  }, [getProductDetailsProvider, id]);
+
 
   return (
     <Container className="pt-5">
@@ -52,6 +70,7 @@ export const EditProductDash = () => {
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
+        enableReinitialize={true} 
       >
         {(formik) => (
           <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -70,6 +89,7 @@ export const EditProductDash = () => {
                   name="title"
                   placeholder="Ingrese el titulo"
                   onFocus={() => formik.setFieldError("title", "")}
+                  value={initialValues.title}
                 />
                 <ErrorMessage
                   name="title"
@@ -88,6 +108,7 @@ export const EditProductDash = () => {
                   name="price"
                   placeholder="Ingrese el precio"
                   onFocus={() => formik.setFieldError("price", "")}
+                  value={initialValues.price}
                 />
                 <ErrorMessage
                   name="price"
@@ -107,6 +128,7 @@ export const EditProductDash = () => {
                   style={{ resize: "none" }}
                   placeholder="Coloque una descripcion"
                   onFocus={() => formik.setFieldError("description", "")}
+                  value={initialValues.description}
                 ></Field>
                 <ErrorMessage
                   name="description"
@@ -120,7 +142,7 @@ export const EditProductDash = () => {
                   Marca *
                 </Form.Label>
                 <Field as="select" className={`form-control`} name="brandId">
-                  <option hidden defaultValue value="">
+                  <option hidden defaultValue>
                     Seleccione...
                   </option>
                   {metricsProducts.data.map((product, index) => (
@@ -141,7 +163,7 @@ export const EditProductDash = () => {
                   Categoría *
                 </Form.Label>
                 <Field as="select" className={`form-control`} name="categoryId">
-                  <option hidden defaultValue value="">
+                  <option hidden defaultValue>
                     Seleccione...
                   </option>
                   {metricsProducts.data.map((product, index) => (
@@ -167,6 +189,7 @@ export const EditProductDash = () => {
                   name="stock"
                   placeholder="Coloque un stock"
                   onFocus={() => formik.setFieldError("stock", "")}
+                  value={initialValues.stock}
                 />
               </Form.Group>
               <ErrorMessage
@@ -182,6 +205,7 @@ export const EditProductDash = () => {
                     type="checkbox"
                     name="offer"
                     id="flexSwitchCheckOffer"
+                    value={initialValues.offer}
                   />
                   <Form.Label
                     className="form-check-label"
@@ -199,6 +223,7 @@ export const EditProductDash = () => {
                       type="checkbox"
                       name="visible"
                       id="flexSwitchCheckVisible"
+                      value={initialValues.visible}
                     />
                     <Form.Label
                       className="form-check-label"
@@ -248,10 +273,7 @@ export const EditProductDash = () => {
                   >
                     Limpiar
                   </Button>
-                  <Button
-                    className="mx-2"
-                    type="submit"
-                  >
+                  <Button className="mx-2" type="submit">
                     Guardar
                   </Button>
                 </div>

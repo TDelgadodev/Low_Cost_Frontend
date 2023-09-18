@@ -17,7 +17,7 @@ import PurchaseAccepted from "../components/PurchaseAccepted";
 import PurchaseDenied from "../components/PurchaseDenied";
 import { EditProductDash } from "../components/EditProductDash";
 import DeleteProduct from "../components/DeleteProduct";
-
+import SearchDash from "../components/SearchDash";
 
 export const AppRoutes = () => {
   const { user } = useAuth();
@@ -39,10 +39,11 @@ export const AppRoutes = () => {
       <Route path="/purchase-accepted" element={<PurchaseAccepted />} />
       <Route path="/purchase-denied" element={<PurchaseDenied />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/dashboard/search/*" element={<SearchDash />} />
       <Route path="/dashboard/users" element={<TableUserDash />} />
       <Route path="/dashboard/products" element={<TableProductsDash />} />
       <Route path="/dashboard/products/create" element={<AddProductDash />} />
-      <Route path="/dashboard/products/edit" element={<EditProductDash />} />
+      <Route path="/dashboard/products/edit/:id" element={<EditProductDash />} />
       <Route path="/dashboard/delete-product/:id" element={<DeleteProduct />} />
     </Routes>
   );

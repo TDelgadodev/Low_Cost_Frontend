@@ -69,3 +69,13 @@ export const fetchMetricsDataUsers = async () => {
     }
   };
   
+  export const getProductDetails = async (id) => {
+    try {
+      const url = `${apiUrl}edit/${id}`;
+      const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data);
+    }
+  };
+  

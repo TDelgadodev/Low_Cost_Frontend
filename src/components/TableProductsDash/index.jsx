@@ -56,26 +56,28 @@ export const TableProductsDash = () => {
                   <td>{product.offer ? "Sí" : "No"}</td>
                   <td className={`${styles.linksDashboardActions}`}>
                     <Button>
-                      <i className="fa-solid fa-pen-to-square"></i>
+                      <Link to={`/dashboard/products/edit/${product.id}`}>
+                        <i className="fa-solid fa-pen-to-square"></i>
+                      </Link>
                     </Button>
                     <Button variant="danger">
-                    <Link to={`/dashboard/delete-product/${product.id}`}>
-                      <i className="fa-solid fa-trash"></i>
-                    </Link>
+                      <Link to={`/dashboard/delete-product/${product.id}`}>
+                        <i className="fa-solid fa-trash"></i>
+                      </Link>
                     </Button>
                   </td>
                 </tr>
               ))}
           </tbody>
 
-          <div className="d-flex justify-content-center">
+          <> 
             <Pagination
               count={Math.ceil(metricsProducts.data.length / ProductsPerPage)}
               page={currentPage}
               onChange={handlePageChange}
               color="primary"
             />
-          </div>
+          </>
         </table>
       </div>
     </>
