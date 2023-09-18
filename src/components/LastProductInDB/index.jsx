@@ -1,7 +1,20 @@
 import { useProducts } from "../../hooks/useProduct";
+import { useEffect, useState } from "react"; // Añade esta línea si aún no está importado
 
 export const LastProductDB = () => {
   const { lastProduct, loading } = useProducts();
+  const [imageUrls, setImageUrls] = useState([]);
+
+  useEffect(() => {
+    if (lastProduct && lastProduct.imageUrls) {
+      try {
+        const imageUrlsArray = JSON.parse(lastProduct.imageUrls);
+        setImageUrls(imageUrlsArray);
+      } catch (error) {
+        console.error("Error parsing imageUrls:", error);
+      }
+    }
+  }, [lastProduct]);
 
   if (lastProduct) {
     return (
@@ -13,18 +26,23 @@ export const LastProductDB = () => {
             </h5>
           </div>
           <div className="card-body">
+          <h2>{lastProduct.name}</h2>
             <div className="text-center">
-              <img
-                className="img-fluid px-3 px-sm-4 mt-3 mb-4"
-                style={{ width: "40rem" }}
-                /*src={lastProduct.data?.imageUrls[0]} */
-              />
+              {imageUrls.length > 0 ? (
+                <img
+                  className="img-fluid px-3 px-sm-4 mt-3 mb-4"
+                  style={{ width: "20rem" }}
+                  src={imageUrls[0]} 
+                  alt="Last Product"
+                />
+              ) : (
+                <p>No image available</p>
+              )}
             </div>
-            <h2>{lastProduct.name}</h2>
-          <p>{lastProduct.description}</p>
-          <p>{lastProduct.price}</p>
-          <p>Stock: {lastProduct.stock}</p>
-          <p>OFerta: {lastProduct.offer ? "Sí" : "No"}</p>
+            <p>{lastProduct.description}</p>
+            <p>{lastProduct.price}</p>
+            <p>Stock: {lastProduct.stock}</p>
+            <p>OFerta: {lastProduct.offer ? "Sí" : "No"}</p>
           </div>
         </div>
       </div>

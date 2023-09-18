@@ -29,7 +29,6 @@ const ProductsProvider = ({ children }) => {
         try {
             setLoading(true)
             const lastProduct = await getLastProductService();
-            console.log(lastProduct.data.data);
             setLastProduct(lastProduct.data.data);
         } catch (error) {
             console.error('Hubo un error al obtener el último producto:', error.message);

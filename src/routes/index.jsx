@@ -15,6 +15,8 @@ import { TableProductsDash } from "../components/TableProductsDash";
 import { AddProductDash } from "../components/AddProductDash";
 import PurchaseAccepted from "../components/PurchaseAccepted";
 import PurchaseDenied from "../components/PurchaseDenied";
+import { EditProductDash } from "../components/EditProductDash";
+import DeleteProduct from "../components/DeleteProduct";
 
 
 export const AppRoutes = () => {
@@ -40,6 +42,8 @@ export const AppRoutes = () => {
       <Route path="/dashboard/users" element={<TableUserDash />} />
       <Route path="/dashboard/products" element={<TableProductsDash />} />
       <Route path="/dashboard/products/create" element={<AddProductDash />} />
+      <Route path="/dashboard/products/edit" element={<EditProductDash />} />
+      <Route path="/dashboard/delete-product/:id" element={<DeleteProduct />} />
     </Routes>
   );
 };

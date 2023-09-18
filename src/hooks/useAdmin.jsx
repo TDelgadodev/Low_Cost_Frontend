@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { AdminContext } from '../context/adminProvider'
+import { AdminContext } from '../context/AdminProvider'
 
 
 const useAdmin = () => {

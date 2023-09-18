@@ -1,5 +1,10 @@
 import { useState, createContext, useEffect } from "react";
-import { createProductService, fetchMetricsDataProducts, fetchMetricsDataUsers } from "../services/admin.service";
+import {
+  createProductService,
+  deleteProductService,
+  fetchMetricsDataProducts,
+  fetchMetricsDataUsers,
+} from "../services/admin.service";
 import PropTypes from "prop-types";
 
 const AdminContext = createContext(null);
@@ -45,8 +50,19 @@ const AdminProvider = ({ children }) => {
       console.log("createProductProvider error:", error);
       handleAlert(error);
     }
-  }
-  
+  };
+
+  const deleteProductProvider = async (id) => {
+    try {
+      const data = await deleteProductService(id);
+      console.log("deleteProductProvider called with data:", data);
+      return data;
+    } catch (error) {
+      console.log("deleteProductProvider error:", error);
+      handleAlert(error);
+    }
+  };
+
   useEffect(() => {
     getMetricsUsers();
   }, []);
@@ -56,11 +72,12 @@ const AdminProvider = ({ children }) => {
 
   const contextValue = {
     getMetricsUsers,
-    metricsUsers, 
+    metricsUsers,
     getMetricsProducts,
     metricsProducts,
     createProductProvider,
     createProduct,
+    deleteProductProvider,
     alert,
   };
   return (
