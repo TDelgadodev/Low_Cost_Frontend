@@ -30,14 +30,15 @@ export const CompletedPurchase = () => {
 
   const { cart, orderTotal } = useCart();
   const navigate = useNavigate();
-  const createPreference = async () => {
+
+  const createPreference = async (values) => {
     setIsLoading(true);
 
     try {
       const description = cart.cartItems.map((item) => item.name).join(", ");
       const price = orderTotal;
       const quantity = 1;
-      /* const quantity = getTotalProductsInCart(cart.cartItems); */
+      const cartItems = cart.cartItems;
 
       const response = await axios.post(
         "http://localhost:3000/mp/create_preference",
@@ -45,6 +46,8 @@ export const CompletedPurchase = () => {
           description,
           price,
           quantity,
+          values,
+          cartItems,
         },
         {
           headers: {
@@ -62,10 +65,23 @@ export const CompletedPurchase = () => {
     }
   };
 
-  const handleBuy = async () => {
+  const handleBuy = async (values) => {
     const id = await createPreference();
+    const cartItems = cart.cartItems;
     if (id) {
       setPreferenceId(id);
+    }
+    const response = await axios.post(
+      "http://localhost:3000/mp/buyer_info",
+      {
+        values,
+        cartItems
+      }
+    );
+    if (response.status === 200) {
+      alert("datos enviados al servidor");
+    } else {
+      alert("datos NO enviados al servidor");
     }
   };
 
@@ -333,7 +349,7 @@ export const CompletedPurchase = () => {
                     size="md"
                     style={{ fontFamily: "Poppins" }}
                     className="p-2 w-100"
-                    onClick={handleBuy}
+                    onClick={() => handleBuy(formik.values)}
                     disabled={isLoading} // Deshabilitar el botón mientras se carga
                   >
                     {isLoading ? "Comprando..." : "Comprar con Mercado Pago"} {/* Cambiar el texto del botón según el estado de carga */}
