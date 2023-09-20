@@ -1,12 +1,12 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-/* import Toolbar from "@mui/material/Toolbar"; */
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import GroupIcon from '@mui/icons-material/Group';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditNoteIcon from '@mui/icons-material/EditNote';
@@ -36,7 +36,16 @@ export default function SideBar() {
         anchor="left"
       >
         <a href="/"><img src="/logowhite.png" alt="logo" className={`${styles.logo}`} /></a>
-        {/* <Toolbar /> */}
+
+        <List>
+          <ListItemButton component={Link} to="/dashboard">
+            <ListItemIcon sx={{ color: "white" }}>
+              <EqualizerIcon />
+            </ListItemIcon>
+            <ListItemText primary="Dashboard" />
+          </ListItemButton>
+        </List>
+        <Divider />
         <List>
           <ListItemButton component={Link} to="/dashboard/users">
             <ListItemIcon sx={{ color: "white" }}>
