@@ -125,12 +125,12 @@ function Header() {
                     <Nav.Link>
                       <Link to={`/profile/${user.id}`} className={`${styles.typo}`}>
                         <Button>
-                          <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
+                          <AccountCircleOutlinedIcon />
                         </Button>
                       </Link>
                       <Link className={`${styles.typo} px-3`}>
                         <Button onClick={handleLogout}>
-                          <LogoutOutlined></LogoutOutlined>
+                          <LogoutOutlined />
                         </Button>
                       </Link>
                     </Nav.Link>
@@ -138,7 +138,7 @@ function Header() {
                     <Nav.Link>
                       <Link to="/login" className={`${styles.typo}`}>
                         <Button>
-                          <AccountCircleOutlinedIcon></AccountCircleOutlinedIcon>
+                          <AccountCircleOutlinedIcon />
                         </Button>
                       </Link>
                     </Nav.Link>

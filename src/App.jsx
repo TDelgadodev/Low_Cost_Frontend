@@ -7,10 +7,10 @@ import { ModalProvider } from "./context/modalProvider";
 import { ToastContainer } from "react-toastify";
 import { CategoriesProvider } from "./context/CategoriesProvider";
 import { BrandsProvider } from "./context/BrandsProvider";
-import { AuthProvider } from "./context/authProvider";
+import { AuthProvider } from "./context/AuthProvider";
 import "react-toastify/dist/ReactToastify.css";
 import { RecoveryProvider } from "./context/recoveryProvider";
-import { AdminProvider } from "./context/adminProvider";
+import { AdminProvider } from "./context/AdminProvider";
 
 function App() {
   return (
