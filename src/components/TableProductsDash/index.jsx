@@ -1,7 +1,7 @@
 import { Button } from "react-bootstrap";
 import useAdmin from "../../hooks/useAdmin";
 import { useState } from "react";
-import { Pagination } from "@mui/material";
+import { Pagination, Stack } from "@mui/material";
 import styles from "./index.module.css";
 import { Link } from "react-router-dom";
 
@@ -9,7 +9,7 @@ export const TableProductsDash = () => {
   const { metricsProducts } = useAdmin();
   const [currentPage, setCurrentPage] = useState(1);
 
-  const ProductsPerPage = 6;
+  const ProductsPerPage = 12;
   const handlePageChange = (event, pageNumber) => {
     setCurrentPage(pageNumber);
   };
@@ -69,16 +69,15 @@ export const TableProductsDash = () => {
                 </tr>
               ))}
           </tbody>
-
-          <> 
-            <Pagination
-              count={Math.ceil(metricsProducts.data.length / ProductsPerPage)}
-              page={currentPage}
-              onChange={handlePageChange}
-              color="primary"
-            />
-          </>
         </table>
+        <Stack spacing={2} className='mt-5 justify-content-center align-items-center'>
+          <Pagination
+            count={Math.ceil(metricsProducts.data.length / ProductsPerPage)}
+            page={currentPage}
+            onChange={handlePageChange}
+            color="primary"
+          />
+        </Stack>
       </div>
     </>
   );

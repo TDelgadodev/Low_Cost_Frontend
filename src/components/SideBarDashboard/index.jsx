@@ -1,6 +1,6 @@
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import Toolbar from "@mui/material/Toolbar";
+/* import Toolbar from "@mui/material/Toolbar"; */
 import List from "@mui/material/List";
 import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -11,8 +11,9 @@ import Inventory2Icon from '@mui/icons-material/Inventory2';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import EditNoteIcon from '@mui/icons-material/EditNote';
 import SearchIcon from '@mui/icons-material/Search';
-import styles from "./SideBarDashboard.module.css";
 import { Link } from "react-router-dom";
+import styles from "./SideBarDashboard.module.css";
+import { Home } from "@mui/icons-material";
 
 const drawerWidth = 240;
 
@@ -34,8 +35,8 @@ export default function SideBar() {
         variant="permanent"
         anchor="left"
       >
-        <Toolbar />
-        <Divider />
+        <a href="/"><img src="/logowhite.png" alt="logo" className={`${styles.logo}`} /></a>
+        {/* <Toolbar /> */}
         <List>
           <ListItemButton component={Link} to="/dashboard/users">
             <ListItemIcon sx={{ color: "white" }}>
@@ -52,7 +53,7 @@ export default function SideBar() {
         </List>
         <Divider />
         <List>
-        <ListItemButton component={Link} to="/dashboard/products/create">
+          <ListItemButton component={Link} to="/dashboard/products/create">
             <ListItemIcon sx={{ color: "white" }}>
               <AddCircleOutlineIcon />
             </ListItemIcon>
@@ -69,6 +70,15 @@ export default function SideBar() {
               <SearchIcon />
             </ListItemIcon>
             <ListItemText primary="Buscar un producto" />
+          </ListItemButton>
+        </List>
+        <Divider />
+        <List>
+          <ListItemButton component={Link} to="/">
+            <ListItemIcon sx={{ color: "white" }}>
+              <Home />
+            </ListItemIcon>
+            <ListItemText primary="Página Principal" />
           </ListItemButton>
         </List>
       </Drawer>
