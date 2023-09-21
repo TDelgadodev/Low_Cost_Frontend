@@ -2,9 +2,12 @@ import { Button, Container, Form, Row } from "react-bootstrap";
 import { ErrorMessage, Field, Formik } from "formik";
 import * as Yup from "yup";
 import useAdmin from "../../hooks/useAdmin";
+import { useNavigate } from "react-router-dom"; 
+import { toast } from "react-toastify";
 
 export const AddProductDash = () => {
-  const { metricsProducts, createProductProvider } = useAdmin();
+  const navigate = useNavigate(); 
+  const { metricsProducts, createProductProvider,getMetricsProducts } = useAdmin();
   const initialValues = {
     title: "",
     price: "",
@@ -36,7 +39,23 @@ export const AddProductDash = () => {
         categoryId: parseInt(values.categoryId),
       };
 
-      console.log(values);
+      const formData = new FormData();
+      for (const key in values) {
+        if (key === "imageFile") {
+          for (let i = 0; i < values[key].length; i++) {
+            formData.append("imageFiles", values[key][i]);
+          }
+        } else {
+          formData.append(key, values[key]);
+        }
+      }
+      await createProductProvider(formData);
+
+      setTimeout(() => {
+        toast.success("Producto creado con éxito");
+        navigate("/dashboard/products"); 
+        getMetricsProducts()
+      }, 2000); 
 
       await createProductProvider(values);
     } catch (error) {
@@ -248,10 +267,7 @@ export const AddProductDash = () => {
                   >
                     Limpiar
                   </Button>
-                  <Button
-                    className="mx-2"
-                    type="submit"
-                  >
+                  <Button className="mx-2" type="submit">
                     Guardar
                   </Button>
                 </div>

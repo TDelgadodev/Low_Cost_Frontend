@@ -27,27 +27,26 @@ export const fetchMetricsDataUsers = async () => {
   export const createProductService = async (info) => {
     try {
       const url = `${apiUrl}create`;
-      
-      // Crear un objeto FormData para enviar archivos
+  
       const formData = new FormData();
-      formData.append("title", info.title);
-      formData.append("price", info.price);
-      formData.append("description", info.description);
-      formData.append("brandId", info.brandId);
-      formData.append("categoryId", info.categoryId);
-      formData.append("stock", info.stock);
-      formData.append("offer", info.offer);
-      formData.append("visible", info.visible);
-      
-      // Agregar archivos al objeto FormData
-      for (let i = 0; i < info.imageFile.length; i++) {
-        formData.append("imageFile", info.imageFile[i]);
+      const { title, price, description, brandId, categoryId, stock, offer, visible, imageFile } = info;
+  
+      formData.append("title", title);
+      formData.append("price", price);
+      formData.append("description", description);
+      formData.append("brandId", brandId);
+      formData.append("categoryId", categoryId);
+      formData.append("stock", stock);
+      formData.append("offer", offer);
+      formData.append("visible", visible);
+  
+      for (let i = 0; i < imageFile.length; i++) {
+        formData.append("imageFiles", imageFile[i]);
       }
   
-      // Realizar la solicitud POST con el objeto FormData
       const response = await axios.post(url, formData, {
         headers: {
-          "Content-Type": "multipart/form-data", // Importante: Usar 'multipart/form-data' para archivos
+          "Content-Type": "multipart/form-data", 
         },
       });
   
@@ -58,6 +57,7 @@ export const fetchMetricsDataUsers = async () => {
       throw new Error(error.response.data);
     }
   };
+  
   
   export const deleteProductService = async (id) => {
     try {

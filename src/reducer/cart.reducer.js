@@ -8,7 +8,6 @@ export function cartReducer(state, { type, payload = {} }) {
     const { idProduct } = payload
     const { cartItems } = state
 
-    /* let productInCart = cartItems.find((item) => item.idProduct === idProduct) */
 
     switch (type) {
         case actionTypes.ADD_TO_CART:

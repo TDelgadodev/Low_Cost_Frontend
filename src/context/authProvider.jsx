@@ -59,7 +59,6 @@ const AuthProvider = ({ children }) => {
       }
       const userId = user.id;
       const response = await profileUserService(userId, token);
-      //console.log(response);
       setUserProfile(response);
     } catch (error) {
       handleAlert(error);

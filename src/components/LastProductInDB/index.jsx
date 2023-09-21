@@ -1,5 +1,5 @@
 import { useProducts } from "../../hooks/useProduct";
-import { useEffect, useState } from "react"; // Añade esta línea si aún no está importado
+import { useEffect, useState } from "react"; 
 
 export const LastProductDB = () => {
   const { lastProduct, loading } = useProducts();

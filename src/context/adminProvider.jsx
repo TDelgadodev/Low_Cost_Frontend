@@ -4,7 +4,7 @@ import {
   deleteProductService,
   fetchMetricsDataProducts,
   fetchMetricsDataUsers,
-  getProductDetails ,
+  getProductDetails,
 } from "../services/admin.service";
 import PropTypes from "prop-types";
 
@@ -41,9 +41,9 @@ const AdminProvider = ({ children }) => {
     }
   };
 
-  const createProductProvider = async (info) => {
+  const createProductProvider = async (formData) => {
     try {
-      const data = await createProductService(info);
+      const data = await createProductService(formData);
       console.log("createProductProvider called with data:", data);
       setCreateProduct(data);
       return data;
