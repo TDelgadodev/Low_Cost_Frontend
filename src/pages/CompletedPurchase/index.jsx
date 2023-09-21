@@ -142,6 +142,13 @@ export const CompletedPurchase = () => {
     }
   }, [preferenceId]);
 
+  const areAllFieldsFilled = (values) => {
+    const { name, surname, email, phone, dni, street, streetNumber, postCode } = values;
+    return (
+      name && surname && email && phone && dni && street && streetNumber && postCode
+    );
+  };
+
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       {(formik) => (
@@ -336,7 +343,7 @@ export const CompletedPurchase = () => {
             <Container>
               <div className="mt-3 mb-5">
                 <h5 className={`${styles.subtitle} my-5`}>
-                  A continuación, seleccioná cómo querés pagar tu compra
+                  A continuación, selecciona cómo quieres pagar tu compra
                 </h5>
               </div>
             </Container>
@@ -350,7 +357,7 @@ export const CompletedPurchase = () => {
                     style={{ fontFamily: "Poppins" }}
                     className="p-2 w-100"
                     onClick={() => handleBuy(formik.values)}
-                    disabled={isLoading} // Deshabilitar el botón mientras se carga
+                    disabled={!areAllFieldsFilled(formik.values) || isLoading}
                   >
                     {isLoading ? "Comprando..." : "Comprar con Mercado Pago"} {/* Cambiar el texto del botón según el estado de carga */}
                   </Button>
@@ -362,7 +369,7 @@ export const CompletedPurchase = () => {
                     style={{ fontFamily: "Poppins" }}
                     className="p-2 w-100"
                     onClick={() => handleContactSeller(formik.values)}
-                    disabled={isLoading} // Deshabilitar el botón mientras se carga
+                    disabled={!areAllFieldsFilled(formik.values) || isLoading}
                   >
                     {isLoading ? "Comprando..." : "Acordar con Vendedor"} {/* Cambiar el texto del botón según el estado de carga */}
                   </Button>

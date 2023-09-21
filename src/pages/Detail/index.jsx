@@ -1,6 +1,5 @@
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { CreditScoreOutlined, DeliveryDining } from "@mui/icons-material";
-import styles from "./index.module.css";
 import WhatsApp from "../../components/WhatsApp";
 import ShoppingCart from "../../components/CartModal";
 import { useParams } from "react-router-dom";
@@ -11,6 +10,7 @@ import { toast } from 'react-toastify'
 import Carrousel from "../../components/CarrouselIMG";
 import PaginationCard from "../../components/PaginationCards";
 import InfoCards from "../../components/infoCards";
+import styles from "./index.module.css";
 
 export const Detail = () => {
   const { id } = useParams();

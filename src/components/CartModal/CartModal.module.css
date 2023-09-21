@@ -2,11 +2,25 @@
     .productsContainer {
         max-height: 150px;
     }
+
+    .sectionCustom {
+        width: 90%;
+    }
 }
 
 @media (min-width: 768px) {
     .productsContainer {
         max-height: 250px;
+    }
+
+    .sectionCustom {
+        width: 90%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sectionCustom {
+        width: 75%;
     }
 }
 
@@ -21,7 +35,6 @@
 }
 
 .sectionCustom {
-    width: 90%;
     border-radius: 5px;
     font-family: Poppins;
     position: fixed;
