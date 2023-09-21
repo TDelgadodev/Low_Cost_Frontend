@@ -115,6 +115,7 @@
 
   .containerCustomDetails {
     display: flex;
+    justify-content: center;
   }
 
   .product-details h2 {
