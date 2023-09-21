@@ -62,13 +62,14 @@ export const AddProductDash = () => {
             <Row>
               <Form.Group className="col-12 col-md-6 mb-3">
                 <Form.Label htmlFor="name" className="form-label">
-                  Titulo *
+                  Título *
                 </Form.Label>
                 <Field
                   type="text"
                   className={`form-control`}
+                  style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
                   name="title"
-                  placeholder="Ingrese el titulo"
+                  placeholder="Ingresá el título"
                   onFocus={() => formik.setFieldError("title", "")}
                 />
                 <ErrorMessage
@@ -85,8 +86,9 @@ export const AddProductDash = () => {
                 <Field
                   type="number"
                   className={`form-control`}
+                  style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
                   name="price"
-                  placeholder="Ingrese el precio"
+                  placeholder="Ingresá el precio"
                   onFocus={() => formik.setFieldError("price", "")}
                 />
                 <ErrorMessage
@@ -104,8 +106,8 @@ export const AddProductDash = () => {
                   as="textarea"
                   className={`form-control`}
                   name="description"
-                  style={{ resize: "none" }}
-                  placeholder="Coloque una descripcion"
+                  style={{ resize: "none", borderColor: "rgba(206, 206, 206, 0.795)" }}
+                  placeholder="Colocá una descripción"
                   onFocus={() => formik.setFieldError("description", "")}
                 ></Field>
                 <ErrorMessage
@@ -119,7 +121,7 @@ export const AddProductDash = () => {
                 <Form.Label htmlFor="brandId" className="form-label">
                   Marca *
                 </Form.Label>
-                <Field as="select" className={`form-control`} name="brandId">
+                <Field as="select" className={`form-control`} name="brandId" style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}>
                   <option hidden defaultValue value="">
                     Seleccione...
                   </option>
@@ -140,7 +142,7 @@ export const AddProductDash = () => {
                 <Form.Label htmlFor="category" className="form-label">
                   Categoría *
                 </Form.Label>
-                <Field as="select" className={`form-control`} name="categoryId">
+                <Field as="select" className={`form-control`} name="categoryId" style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}>
                   <option hidden defaultValue value="">
                     Seleccione...
                   </option>
@@ -157,15 +159,16 @@ export const AddProductDash = () => {
                   className="text-danger ms-2"
                 ></ErrorMessage>
               </Form.Group>
-              <Form.Group className="col-12 col-md-6 mb-3">
+              <Form.Group className="col-12 mb-3">
                 <Form.Label htmlFor="stock" className="form-label">
                   Stock *
                 </Form.Label>
                 <Field
                   type="number"
                   className={`form-control`}
+                  style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
                   name="stock"
-                  placeholder="Coloque un stock"
+                  placeholder="Colocá un stock"
                   onFocus={() => formik.setFieldError("stock", "")}
                 />
               </Form.Group>
@@ -175,23 +178,25 @@ export const AddProductDash = () => {
                 style={{ fontFamily: "Poppins" }}
                 className="text-danger ms-2"
               ></ErrorMessage>
-              <Form.Group className="col-12 col-md-6 mb-3">
-                <div className="form-check form-switch">
-                  <Field
-                    className="form-check-input"
-                    type="checkbox"
-                    name="offer"
-                    id="flexSwitchCheckOffer"
-                  />
-                  <Form.Label
-                    className="form-check-label"
-                    htmlFor="flexSwitchCheckOffer"
-                  >
-                    Oferta
-                  </Form.Label>
+              <Form.Group className="col-4 mb-3">
+                <div className="d-flex justify-content-around">
+                  <div className="form-check form-switch">
+                    <Field
+                      className="form-check-input"
+                      type="checkbox"
+                      name="offer"
+                      id="flexSwitchCheckOffer"
+                    />
+                    <Form.Label
+                      className="form-check-label"
+                      htmlFor="flexSwitchCheckOffer"
+                    >
+                      Oferta
+                    </Form.Label>
+                  </div>
                 </div>
               </Form.Group>
-              <Form.Group className="col-12 mb-3">
+              <Form.Group className="col-4 mb-3">
                 <div className="d-flex justify-content-around">
                   <div className="form-check form-switch">
                     <Field
@@ -216,13 +221,14 @@ export const AddProductDash = () => {
                 ></ErrorMessage>
               </Form.Group>
               <Form.Group className="col-12 mb-3">
-                <Form.Label htmlFor="">Imagenes *</Form.Label>
+                <Form.Label htmlFor="">Imágenes * <small>(máx 3 archivos)</small></Form.Label>
                 <div className="input-group">
                   <input
                     type="file"
                     name="imageFile"
                     id="imageFile"
                     className="form-control"
+                    style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
                     multiple
                     onChange={(event) => {
                       formik.setFieldValue("imageFile", event.target.files);
@@ -236,7 +242,7 @@ export const AddProductDash = () => {
                 <div className="d-flex align-items-center justify-content-end">
                   <button
                     type="button"
-                    className="btn btn-success"
+                    className="mx-2 btn btn-success"
                     onClick={() => document.getElementById("imageFile").click()}
                   >
                     Seleccionar
