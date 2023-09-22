@@ -50,15 +50,25 @@ export const EditProductDash = () => {
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
-        const data = await getProductDetailsProvider(id);
-        if (data) {
-          setInitialValues(data);
+        const response = await getProductDetailsProvider(id);
+        if (response.ok && response.data) {
+          const productData = response.data;
+    
+          setInitialValues({
+            title: productData.name,
+            price: productData.price,
+            description: productData.description,
+            brandId: productData.brandId,
+            categoryId: productData.categoryId,
+            stock: productData.stock,
+            offer: productData.offer,
+            visible: productData.visible,
+          });
         }
-        console.log(data);
       } catch (error) {
         console.error(error);
       }
-    };
+    };  
 
     fetchProductDetails();
   }, [getProductDetailsProvider, id]);
@@ -75,7 +85,7 @@ export const EditProductDash = () => {
         {(formik) => (
           <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
             <div className="d-flex justify-content-between">
-              <h4>Editar Producto </h4>
+              <h4>Editando el Producto: {initialValues.title}</h4>
             </div>
             <hr />
             <Row>

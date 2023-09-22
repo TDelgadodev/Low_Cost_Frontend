@@ -43,7 +43,10 @@ const filterProductsByOffer = async () => {
 
 const filterProductsByKeyword = async (keyword) => {
     try {
-        const url = `${apiProductKeywordUrl}=${keyword}`
+    if (typeof keyword !== 'string') {
+        throw new Error('El keyword debe ser una cadena de texto');
+    }
+        const url = `${apiProductKeywordUrl}=${encodeURIComponent(keyword)}`;
         const response = await axios.get(url)
         const products = response.data.data
         return products

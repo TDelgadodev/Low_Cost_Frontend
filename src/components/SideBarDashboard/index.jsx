@@ -9,7 +9,6 @@ import GroupIcon from '@mui/icons-material/Group';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import Inventory2Icon from '@mui/icons-material/Inventory2';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import EditNoteIcon from '@mui/icons-material/EditNote';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from "react-router-dom";
 import styles from "./SideBarDashboard.module.css";
@@ -67,12 +66,6 @@ export default function SideBar() {
               <AddCircleOutlineIcon />
             </ListItemIcon>
             <ListItemText primary="Crear Producto" />
-          </ListItemButton>
-          <ListItemButton component={Link} to="/dashboard/products/edit">
-            <ListItemIcon sx={{ color: "white" }}>
-              <EditNoteIcon />
-            </ListItemIcon>
-            <ListItemText primary="Editar Producto" />
           </ListItemButton>
           <ListItemButton component={Link} to="/dashboard/search">
             <ListItemIcon sx={{ color: "white" }}>
