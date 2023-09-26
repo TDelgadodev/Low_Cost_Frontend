@@ -2,12 +2,19 @@ import { Button, Container, Form, Row } from "react-bootstrap";
 import { ErrorMessage, Field, Formik } from "formik";
 import * as Yup from "yup";
 import useAdmin from "../../hooks/useAdmin";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { BrandsContext } from "../../context/BrandsProvider";
+import { CategoriesContext } from "../../context/CategoriesProvider";
 
 export const AddProductDash = () => {
-  const navigate = useNavigate(); 
-  const { metricsProducts, createProductProvider,getMetricsProducts } = useAdmin();
+  const navigate = useNavigate();
+  const { metricsProducts, createProductProvider, getMetricsProducts } = useAdmin();
+
+  const { brands } = useContext(BrandsContext)
+  const { categories } = useContext(CategoriesContext)
+
   const initialValues = {
     title: "",
     price: "",
@@ -51,11 +58,13 @@ export const AddProductDash = () => {
       }
       await createProductProvider(formData);
 
+      console.log(values)
+
       setTimeout(() => {
         toast.success("Producto creado con éxito");
-        navigate("/dashboard/products"); 
+        navigate("/dashboard/products");
         getMetricsProducts()
-      }, 2000); 
+      }, 2000);
 
       await createProductProvider(values);
     } catch (error) {
@@ -64,6 +73,8 @@ export const AddProductDash = () => {
       setSubmitting(false);
     }
   };
+
+  console.log('metricas:', metricsProducts)
 
   return (
     <Container className="pt-5">
@@ -144,9 +155,9 @@ export const AddProductDash = () => {
                   <option hidden defaultValue value="">
                     Seleccione...
                   </option>
-                  {metricsProducts.data.map((product, index) => (
-                    <option key={index} value={product.brand.id}>
-                      {product.brand.name}
+                  {brands.map((brands, index) => (
+                    <option key={index} value={brands.id}>
+                      {brands.name}
                     </option>
                   ))}
                 </Field>
@@ -165,9 +176,9 @@ export const AddProductDash = () => {
                   <option hidden defaultValue value="">
                     Seleccione...
                   </option>
-                  {metricsProducts.data.map((product, index) => (
-                    <option key={index} value={product.category.id}>
-                      {product.category.name}
+                  {categories.map((categories, index) => (
+                    <option key={index} value={categories.id}>
+                      {categories.name}
                     </option>
                   ))}
                 </Field>
