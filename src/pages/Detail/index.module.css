@@ -1,3 +1,49 @@
+.modalContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 75%;
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+}
+
+.cancelButton {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.iconClose {
+  font-size: 24px;
+  color: #007BFF;
+}
+
+.cardImage {
+  max-width: 100%;
+  max-height: 35px;
+  margin-bottom: 10px;
+  padding-right: 25px;
+}
+
 .textItems {
   border: solid 3px;
   border-radius: 5px;
@@ -71,6 +117,7 @@
   text-decoration: none;
   color: #007BFF;
   transition: 0.5s;
+  cursor: pointer;
 }
 
 .productPay:hover {
@@ -83,6 +130,10 @@
 }
 
 @media screen and (max-width: 425px) {
+  .modalContainer {
+    width: 85%;
+  }
+
   .infoContainer {
     text-align: center;
   }
@@ -112,6 +163,9 @@
 
 /* Estilos para vista de tablet (768px) */
 @media screen and (min-width: 768px) {
+  .modalContainer {
+    width: 75%;
+  }
 
   .containerCustomDetails {
     display: flex;

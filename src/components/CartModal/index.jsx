@@ -4,8 +4,8 @@ import { useCart } from '../../hooks/useCart';
 import CancelIcon from '@mui/icons-material/Cancel';
 import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils';
-import styles from './CartModal.module.css';
 import { Link } from "react-router-dom";
+import styles from './CartModal.module.css';
 
 const ShoppingCart = () => {
 

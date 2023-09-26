@@ -1,4 +1,4 @@
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Button, Container } from "react-bootstrap";
 import { CreditScoreOutlined, DeliveryDining } from "@mui/icons-material";
 import WhatsApp from "../../components/WhatsApp";
 import ShoppingCart from "../../components/CartModal";
@@ -10,12 +10,22 @@ import { toast } from 'react-toastify'
 import Carrousel from "../../components/CarrouselIMG";
 import PaginationCard from "../../components/PaginationCards";
 import InfoCards from "../../components/infoCards";
+import Modal from 'react-modal';
+import CancelIcon from '@mui/icons-material/Cancel';
+import Divider from "@mui/material/Divider";
 import styles from "./index.module.css";
 
+
 export const Detail = () => {
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { id } = useParams();
   const { getProduct } = useProducts();
   const [product, setProduct] = useState(null);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
 
   useEffect(() => {
     const loadProductDetails = async () => {
@@ -47,6 +57,7 @@ export const Detail = () => {
     return <p>El producto no esta disponible.</p>;
   }
   console.log("producto:", product)
+
   return (
     <>
       <Container className={`${styles.containerCustomDetails} pb-5`}>
@@ -66,7 +77,7 @@ export const Detail = () => {
           <p className={`${styles.productPrice}`}>${product.price.toLocaleString('es-AR')}</p>
           <p className={`${styles.productStock}`}>{product.stock} Unidades Disponibles</p>
           <hr className="my-4" />
-          <a href="#" className={`${styles.productPay}`}><CreditScoreOutlined /> Ver todos los medios de pago</a>
+          <a className={`${styles.productPay}`} onClick={openModal}><CreditScoreOutlined /> Ver todos los medios de pago </a>
           <hr className="my-4" />
           <a href="#" className={`${styles.productPay}`}><DeliveryDining /> Calcular costo de envío</a>
           <hr className="my-4" />
@@ -77,38 +88,6 @@ export const Detail = () => {
       <InfoCards />
       <Container>
         <div className={`m-3 ${styles.containerCustomcharacteristics}`}>
-          <h4 className="my-5">
-            CARACTERÍSTICAS
-          </h4>
-          <Container>
-            <Row className={`${styles.specification}`}>
-              {/* Datos 1 */}
-              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
-                <h3>PESO</h3>
-                <p>{product.weight} gr</p>
-              </Col>
-
-              {/* Datos 2 */}
-              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
-                <h3>ALTO</h3>
-                <p>{product.height} cm</p>
-              </Col>
-
-              {/* Datos 3 */}
-              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
-                <h3>ANCHO</h3>
-                <p>{product.width} cm</p>
-              </Col>
-
-              {/* Datos 4 */}
-              <Col lg={3} md={6} sm={6} xs={12} className="mb-4 text-center">
-                <h3>LARGO</h3>
-                <p>{product.length} cm</p>
-              </Col>
-            </Row>
-          </Container>
-          <hr /* className="my-5" */ />
-
           <h4 className="my-5">
             DESCRIPCIÓN
           </h4>
@@ -122,6 +101,44 @@ export const Detail = () => {
       </Container>
       <WhatsApp></WhatsApp>
       <ShoppingCart></ShoppingCart>
+      <Modal
+        isOpen={isModalOpen}
+        onRequestClose={() => setIsModalOpen(false)}
+        contentLabel="Medios de Pago"
+        ariaHideApp={false}
+        className={`${styles.overlay}`}
+      >
+        <Container className={`${styles.modalContainer} py-5 px-5`}>
+          {/* Contenido del modal */}
+          <Button variant="link" className={`${styles.cancelButton}`} onClick={() => setIsModalOpen(false)}>
+            <CancelIcon className={`${styles.iconClose}`} />
+          </Button>
+          <h2>Medios de pago para este producto</h2>
+          <p className="py-3">Podés pagar tus compras con cualquiera de estos medios.</p>
+          <Divider />
+          <h5>Tarjetas de crédito</h5>
+          <p>Acreditación instantánea.</p>
+          <img src="/visalogo.jpg" alt="visa" className={styles.cardImage} />
+          <img src="/americanexpresslogo.png" alt="americanexp" className={styles.cardImage} />
+          <img src="/cabalogo.png" alt="cabal" className={styles.cardImage} />
+          <img src="/mastercardlogo.png" alt="master" className={styles.cardImage} />
+          <Divider />
+          <h5 className="pt-5">Dinero en tu cuenta de Mercado Pago</h5>
+          <p>Acreditación instantánea.</p>
+          <img src="/mplogo.svg" alt="mercadopago" className={styles.cardImage} />
+          <Divider />
+          <h5 className="pt-5">Tarjetas de débito</h5>
+          <p>Acreditación instantánea.</p>
+          <img src="/maestro-debito.png" alt="maestro" className={styles.cardImage} />
+          <img src="/visa-debito.svg" alt="visa" className={styles.cardImage} />
+          <img src="/cabal-debito.webp" alt="cabal" className={styles.cardImage} />
+          <Divider />
+          <h5 className="pt-5 pb-3">Efectivo</h5>
+          <img src="/pago-facil.jpg" alt="pagofacil" className={styles.cardImage} />
+          <img src="/rapi-pago.png" alt="rapipago" className={styles.cardImage} />
+          <img src="/contra-entrega.svg" alt="contraentrega" className={styles.cardImage} />
+        </Container>
+      </Modal>
     </>
   );
 };
