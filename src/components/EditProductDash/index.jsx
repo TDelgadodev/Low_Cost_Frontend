@@ -4,10 +4,19 @@ import * as Yup from "yup";
 import { useParams } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
+/* import { useNavigate } from "react-router-dom";
+ */
 export const EditProductDash = () => {
-  const { metricsProducts, createProductProvider, getProductDetailsProvider } =
-    useAdmin();
+  const {
+    metricsProducts,
+    getProductDetailsProvider,
+    updateProductProvider,
+    /*     getMetricsProducts,
+     */
+  } = useAdmin();
+  /*   const navigate = useNavigate();
+   */
   const { id } = useParams();
   const [initialValues, setInitialValues] = useState({
     title: "",
@@ -32,28 +41,13 @@ export const EditProductDash = () => {
     visible: Yup.boolean().nullable(),
   });
 
-  const handleSubmit = async (values, { setSubmitting }) => {
-    try {
-      values = {
-        ...values,
-        brandId: parseInt(values.brandId),
-        categoryId: parseInt(values.categoryId),
-      };
-
-      await createProductProvider(values);
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setSubmitting(false);
-    }
-  };
   useEffect(() => {
     const fetchProductDetails = async () => {
       try {
         const response = await getProductDetailsProvider(id);
         if (response.ok && response.data) {
           const productData = response.data;
-    
+
           setInitialValues({
             title: productData.name,
             price: productData.price,
@@ -68,19 +62,47 @@ export const EditProductDash = () => {
       } catch (error) {
         console.error(error);
       }
-    };  
+    };
 
     fetchProductDetails();
   }, [getProductDetailsProvider, id]);
 
+  const handleUpdateProduct = async (values, { setSubmitting }) => {
+    try {
+      const updatedValues = {
+        ...values,
+        brandId: parseInt(values.brandId),
+        categoryId: parseInt(values.categoryId),
+      };
+      const updatedProductResponse = await updateProductProvider(
+        updatedValues,
+        id
+      );
+      const editedProduct = updatedProductResponse.data?.editedProduct[0];
+      if (editedProduct === 1) {
+        setTimeout(() => {
+          toast.success(
+            `El producto ${updatedValues.title} se ha actualizado exitosamente.`
+          );
+          /*  navigate("/dashboard/products");
+          getMetricsProducts(); */
+        }, 2000);
+      }
+      console.log(editedProduct);
+    } catch (error) {
+      console.error("Error al actualizar el producto:", error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
     <Container className="pt-5">
       <Formik
         initialValues={initialValues}
-        onSubmit={handleSubmit}
+        onSubmit={handleUpdateProduct}
         validationSchema={validationSchema}
-        enableReinitialize={true} 
+        enableReinitialize
       >
         {(formik) => (
           <Form onSubmit={formik.handleSubmit} encType="multipart/form-data">
@@ -90,7 +112,7 @@ export const EditProductDash = () => {
             <hr />
             <Row>
               <Form.Group className="col-12 col-md-6 mb-3">
-                <Form.Label htmlFor="name" className="form-label">
+                <Form.Label htmlFor="title" className="form-label">
                   Titulo *
                 </Form.Label>
                 <Field
@@ -99,7 +121,8 @@ export const EditProductDash = () => {
                   name="title"
                   placeholder="Ingrese el titulo"
                   onFocus={() => formik.setFieldError("title", "")}
-                  value={initialValues.title}
+                  value={formik.values.title}
+                  onChange={formik.handleChange}
                 />
                 <ErrorMessage
                   name="title"
@@ -118,7 +141,7 @@ export const EditProductDash = () => {
                   name="price"
                   placeholder="Ingrese el precio"
                   onFocus={() => formik.setFieldError("price", "")}
-                  value={initialValues.price}
+                  value={formik.values.price}
                 />
                 <ErrorMessage
                   name="price"
@@ -138,7 +161,7 @@ export const EditProductDash = () => {
                   style={{ resize: "none" }}
                   placeholder="Coloque una descripcion"
                   onFocus={() => formik.setFieldError("description", "")}
-                  value={initialValues.description}
+                  value={formik.values.description}
                 ></Field>
                 <ErrorMessage
                   name="description"
@@ -156,8 +179,8 @@ export const EditProductDash = () => {
                     Seleccione...
                   </option>
                   {metricsProducts.data.map((product, index) => (
-                    <option key={index} value={product.brand.id}>
-                      {product.brand.name}
+                    <option key={index} value={product.brand?.id}>
+                      {product.brand?.name}
                     </option>
                   ))}
                 </Field>
@@ -169,7 +192,7 @@ export const EditProductDash = () => {
                 ></ErrorMessage>
               </Form.Group>
               <Form.Group className="col-12 col-md-6 mb-3">
-                <Form.Label htmlFor="category" className="form-label">
+                <Form.Label htmlFor="categoryId" className="form-label">
                   Categoría *
                 </Form.Label>
                 <Field as="select" className={`form-control`} name="categoryId">
@@ -177,8 +200,8 @@ export const EditProductDash = () => {
                     Seleccione...
                   </option>
                   {metricsProducts.data.map((product, index) => (
-                    <option key={index} value={product.category.id}>
-                      {product.category.name}
+                    <option key={index} value={product.category?.id}>
+                      {product.category?.name}
                     </option>
                   ))}
                 </Field>
@@ -199,7 +222,7 @@ export const EditProductDash = () => {
                   name="stock"
                   placeholder="Coloque un stock"
                   onFocus={() => formik.setFieldError("stock", "")}
-                  value={initialValues.stock}
+                  value={formik.values.stock}
                 />
               </Form.Group>
               <ErrorMessage
@@ -215,7 +238,7 @@ export const EditProductDash = () => {
                     type="checkbox"
                     name="offer"
                     id="flexSwitchCheckOffer"
-                    value={initialValues.offer}
+                    value={formik.values.offer}
                   />
                   <Form.Label
                     className="form-check-label"
@@ -233,7 +256,7 @@ export const EditProductDash = () => {
                       type="checkbox"
                       name="visible"
                       id="flexSwitchCheckVisible"
-                      value={initialValues.visible}
+                      value={formik.values.visible}
                     />
                     <Form.Label
                       className="form-check-label"
@@ -276,11 +299,7 @@ export const EditProductDash = () => {
                   >
                     Seleccionar
                   </button>
-                  <Button
-                    variant="dark"
-                    className="mx-2"
-                    onClick={formik.resetForm}
-                  >
+                  <Button variant="dark" className="mx-2">
                     Limpiar
                   </Button>
                   <Button className="mx-2" type="submit">

@@ -50,7 +50,6 @@ export const fetchMetricsDataUsers = async () => {
         },
       });
   
-      console.log(response);
       return response.data;
     } catch (error) {
       console.log(error);
@@ -73,6 +72,21 @@ export const fetchMetricsDataUsers = async () => {
     try {
       const url = `${apiUrl}edit/${id}`;
       const response = await axios.get(url);
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data);
+    }
+  };
+
+  export const updateProductService = async (formData,id) => {
+    try {
+      const url = `${apiUrl}edit/${id}`;
+  
+      const response = await axios.put(url, formData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
       return response.data;
     } catch (error) {
       throw new Error(error.response.data);

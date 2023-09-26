@@ -5,6 +5,7 @@ import {
   fetchMetricsDataProducts,
   fetchMetricsDataUsers,
   getProductDetails,
+  updateProductService,
 } from "../services/admin.service";
 import PropTypes from "prop-types";
 
@@ -73,6 +74,16 @@ const AdminProvider = ({ children }) => {
       handleAlert(error);
     }
   };
+  const updateProductProvider = async (formData,id) => {
+    try {
+      const updatedProduct = await updateProductService(formData,id);
+      console.log("Producto actualizado:", updatedProduct);
+      return updatedProduct;
+    } catch (error) {
+      console.error("Error al actualizar el producto:", error);
+      handleAlert(error);
+    }
+  };
 
   useEffect(() => {
     getMetricsUsers();
@@ -89,6 +100,7 @@ const AdminProvider = ({ children }) => {
     createProductProvider,
     getProductDetailsProvider,
     createProduct,
+    updateProductProvider,
     deleteProductProvider,
     alert,
   };

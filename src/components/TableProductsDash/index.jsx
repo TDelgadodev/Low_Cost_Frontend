@@ -51,8 +51,8 @@ export const TableProductsDash = () => {
                   <td>{startIndex + index + 1}</td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
-                  <td>{product.category.name}</td>
-                  <td>{product.brand.name}</td>
+                  <td>{product.category ? product.category.name : 'N/A'}</td>
+                  <td>{product.brand ? product.brand.name : 'N/A'}</td>
                   <td>{product.offer ? "Sí" : "No"}</td>
                   <td className={`${styles.linksDashboardActions}`}>
                     <Button>

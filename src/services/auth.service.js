@@ -83,7 +83,6 @@ export const getCodeToResetPasswordService = async (email) => {
 const resetPasswordService = async (email, code, newPassword) => {
   try {
     const apiUrlAuth = "http://localhost:3000/api/users/"; 
-    console.log(email,code,newPassword);
     const response = await axios.post(
       `${apiUrlAuth}reset-password/${encodeURIComponent(email)}`,
       {
