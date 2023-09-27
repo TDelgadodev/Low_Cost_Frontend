@@ -20,6 +20,23 @@ export const ContentRowProduct = () => {
   }, [metricsUsers]);
 
   useEffect(() => {
+    if (metricsUsers && metricsUsers.data) {
+      const totalPurchases = metricsUsers.data.reduce(
+        (total, user) => total + user.shopping,
+        0
+      );
+
+      setMetricsData((prevMetricsData) => ({
+        ...prevMetricsData,
+        cart: {
+          ...prevMetricsData.cart,
+          value: totalPurchases,
+        },
+      }));
+    }
+  }, [metricsUsers]);
+
+  useEffect(() => {
     if (metricsProducts && metricsProducts.data) {
       setMetricsData((prevMetricsData) => ({
         ...prevMetricsData,
