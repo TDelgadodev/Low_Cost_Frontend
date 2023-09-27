@@ -84,7 +84,7 @@ export const fetchMetricsDataUsers = async () => {
   
       const response = await axios.put(url, formData, {
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "multipart/form-data",
         },
       });
       return response.data;

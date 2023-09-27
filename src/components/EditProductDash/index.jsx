@@ -5,18 +5,18 @@ import { useParams } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-/* import { useNavigate } from "react-router-dom";
- */
+import { useNavigate } from "react-router-dom";
+
 export const EditProductDash = () => {
   const {
     metricsProducts,
     getProductDetailsProvider,
     updateProductProvider,
-    /*     getMetricsProducts,
-     */
+        getMetricsProducts,
+    
   } = useAdmin();
-  /*   const navigate = useNavigate();
-   */
+    const navigate = useNavigate();
+  
   const { id } = useParams();
   const [initialValues, setInitialValues] = useState({
     title: "",
@@ -84,8 +84,8 @@ export const EditProductDash = () => {
           toast.success(
             `El producto ${updatedValues.title} se ha actualizado exitosamente.`
           );
-          /*  navigate("/dashboard/products");
-          getMetricsProducts(); */
+           navigate("/dashboard/products");
+          getMetricsProducts();
         }, 2000);
       }
       console.log(editedProduct);

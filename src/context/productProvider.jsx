@@ -78,11 +78,15 @@ const ProductsProvider = ({ children }) => {
             setLoading(true);
             const productByCategoryData = await filterProductsByCategory(category);
 
-            productByCategoryData.forEach((product) => {
-                product.imageUrls = JSON.parse(product.imageUrls);
-            });
-
-            setFilteredProductsCategory(productByCategoryData);
+            if (productByCategoryData !== null) {
+                productByCategoryData.forEach((product) => {
+                    product.imageUrls = JSON.parse(product.imageUrls);
+                });
+    
+                setFilteredProductsCategory(productByCategoryData);
+            } else {
+                console.error("productByCategoryData es nulo o no válido.");
+            }
         } catch (error) {
             console.error("Error fetching product by category data:", error.message);
         } finally {

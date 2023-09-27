@@ -48,9 +48,7 @@ function Header() {
       <div
         className={`justify-content-around py-2 d-none d-md-flex ${styles.HeaderUp}`}
       >
-        {/* <div></div> */}
         <div>Envíos a todo el país</div>
-        {/* <div>Venta Telefónica: 0810-345-0602</div> */}
       </div>
       {["lg"].map((expand) => (
         <Navbar

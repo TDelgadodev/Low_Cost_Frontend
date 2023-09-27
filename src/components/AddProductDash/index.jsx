@@ -53,9 +53,9 @@ export const AddProductDash = () => {
 
       setTimeout(() => {
         toast.success("Producto creado con éxito");
-        navigate("/dashboard/products"); 
         getMetricsProducts()
-      }, 2000); 
+        navigate("/dashboard/products"); 
+      }, 3000); 
 
       await createProductProvider(values);
     } catch (error) {
