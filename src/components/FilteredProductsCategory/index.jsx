@@ -15,13 +15,13 @@ export const ShowProductsListByCategory = () => {
     const fetchProductsByCategory = async (category) => {
       setIsLoading(true);
       try {
-        const categoryIdNumber = parseInt(category, 10); 
+        const categoryIdNumber = parseInt(category, 10);
         if (isNaN(categoryIdNumber)) {
           setIsLoading(false);
           setProductsInCategory([]);
           return;
         }
-  
+
         const products = await getProductByCategory(categoryIdNumber);
         setProductsInCategory(products);
       } catch (error) {
@@ -30,7 +30,7 @@ export const ShowProductsListByCategory = () => {
         setIsLoading(false);
       }
     };
-  
+
     if (categoryId !== prevCategoryIdRef.current) {
       prevCategoryIdRef.current = categoryId;
       if (categoryId !== null && categoryId !== undefined) {
@@ -44,28 +44,20 @@ export const ShowProductsListByCategory = () => {
       setIsLoading(false);
     }
   }, [categoryId, getProductByCategory]);
-  
+
 
   if (isLoading) {
     return <div>Cargando...</div>;
   }
 
-  const filteredProducts = filteredProductsCategory
-  console.log("productos por categoria:", filteredProducts)
-
-
   return (
     <div>
-<<<<<<< HEAD
-      <h2>Hello world</h2>
-=======
       <h2>Productos de la categoría seleccionada:</h2>
       <ul>
         {productsInCategory?.map((product) => (
           <li key={product.id}>{product.name}</li>
         ))}
       </ul>
->>>>>>> b5079ce854a39d1d1efcdf2b5e1c8eb56a67e91a
     </div>
   );
 };

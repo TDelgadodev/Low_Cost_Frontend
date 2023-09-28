@@ -6,23 +6,12 @@ import { Link } from "react-router-dom";
 export const CategoriesDB = () => {
   const { categories } = useCategories();
   const { getProductByCategory } = useProducts();
-<<<<<<< HEAD
-  const [selectedCategory, setSelectedCategory] = useState(null);
-
-
-  const handleCategoryClick = (category) => {
-    console.log(category);
-    setSelectedCategory(category);
-    getProductByCategory(category);
-  };
-=======
   
 
   const handleCategoryClick = (categoryId) => {
     getProductByCategory(categoryId)
     console.log('log de categoryId en CategoriesInDB',categoryId);
 }
->>>>>>> b5079ce854a39d1d1efcdf2b5e1c8eb56a67e91a
 
 
   return (
@@ -41,11 +30,7 @@ export const CategoriesDB = () => {
                 to={`/dashboard/filterProducts?category=${category.id}`}
                 key={category.id}
                   className="col-lg-6 mb-4"
-<<<<<<< HEAD
-                  onClick={() => handleCategoryClick(category.name)}
-=======
                   onClick={() => handleCategoryClick(category.id)} 
->>>>>>> b5079ce854a39d1d1efcdf2b5e1c8eb56a67e91a
                 >
                   <div className="card bg-dark text-white shadow">
                     <div className="card-body">{category.name}</div>
