@@ -36,6 +36,7 @@ export const TableProductsDash = () => {
               </th>
               <th scope="col">Producto</th>
               <th scope="col">Precio</th>
+              <th scope="col">Precio USD</th>
               <th scope="col">Categoria</th>
               <th scope="col">Marca</th>
               <th scope="col">Descuento</th>
@@ -51,6 +52,7 @@ export const TableProductsDash = () => {
                   <td>{startIndex + index + 1}</td>
                   <td>{product.name}</td>
                   <td>${product.price}</td>
+                  <td>${product.priceUSD ? product.priceUSD : 'N/A'}</td>
                   <td>{product.category ? product.category.name : 'N/A'}</td>
                   <td>{product.brand ? product.brand.name : 'N/A'}</td>
                   <td>{product.offer ? "Sí" : "No"}</td>

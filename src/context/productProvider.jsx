@@ -84,8 +84,7 @@ const ProductsProvider = ({ children }) => {
                 });
     
                 setFilteredProductsCategory(productByCategoryData);
-            } else {
-                console.error("productByCategoryData es nulo o no válido.");
+                console.log(filteredProductsCategory);
             }
         } catch (error) {
             console.error("Error fetching product by category data:", error.message);

@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { useCategories } from "../../hooks/useCategories";
 import { useProducts } from "../../hooks/useProduct";
 import { Link } from "react-router-dom";
@@ -7,14 +6,12 @@ import { Link } from "react-router-dom";
 export const CategoriesDB = () => {
   const { categories } = useCategories();
   const { getProductByCategory } = useProducts();
-  const [selectedCategory, setSelectedCategory] = useState(null);
   
 
-const handleCategoryClick = (category) => {
-  console.log(category);
-  setSelectedCategory(category);
-  getProductByCategory(category);
-};
+  const handleCategoryClick = (categoryId) => {
+    getProductByCategory(categoryId)
+    console.log('log de categoryId en CategoriesInDB',categoryId);
+}
 
 
   return (
@@ -30,9 +27,10 @@ const handleCategoryClick = (category) => {
             {categories && categories.length > 0 ? (
               categories.map((category) => (
                 <Link
-                  key={category.id}
+                to={`/dashboard/filterProducts?category=${category.id}`}
+                key={category.id}
                   className="col-lg-6 mb-4"
-                  onClick={() => handleCategoryClick(category.name)} 
+                  onClick={() => handleCategoryClick(category.id)} 
                 >
                   <div className="card bg-dark text-white shadow">
                     <div className="card-body">{category.name}</div>

@@ -12,15 +12,15 @@ export const EditProductDash = () => {
     metricsProducts,
     getProductDetailsProvider,
     updateProductProvider,
-        getMetricsProducts,
-    
+    getMetricsProducts,
   } = useAdmin();
-    const navigate = useNavigate();
-  
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [initialValues, setInitialValues] = useState({
     title: "",
     price: "",
+    priceUSD: "",
     description: "",
     brandId: "",
     categoryId: "",
@@ -33,6 +33,7 @@ export const EditProductDash = () => {
   const validationSchema = Yup.object({
     title: Yup.string().required("El título es obligatorio"),
     price: Yup.number().required("El precio es obligatorio"),
+    priceUSD: Yup.number().nullable(),
     description: Yup.string().required("La descripción es obligatoria"),
     brandId: Yup.string().required("La marca es obligatoria"),
     categoryId: Yup.string().required("La categoría es obligatoria"),
@@ -51,6 +52,7 @@ export const EditProductDash = () => {
           setInitialValues({
             title: productData.name,
             price: productData.price,
+            priceUSD: productData.priceUSD || "", 
             description: productData.description,
             brandId: productData.brandId,
             categoryId: productData.categoryId,
@@ -78,13 +80,14 @@ export const EditProductDash = () => {
         updatedValues,
         id
       );
+      console.log(values);
       const editedProduct = updatedProductResponse.data?.editedProduct[0];
       if (editedProduct === 1) {
         setTimeout(() => {
           toast.success(
             `El producto ${updatedValues.title} se ha actualizado exitosamente.`
           );
-           navigate("/dashboard/products");
+          navigate("/dashboard/products");
           getMetricsProducts();
         }, 2000);
       }
@@ -150,6 +153,26 @@ export const EditProductDash = () => {
                   className="text-danger ms-2"
                 ></ErrorMessage>
               </Form.Group>
+              <Form.Group className="col-12 col-md-6 mb-3">
+                <Form.Label htmlFor="priceUSD" className="form-label">
+                  Precio en USD (Opcional)
+                </Form.Label>
+                <Field
+                  type="number"
+                  className={`form-control`}
+                  name="priceUSD"
+                  placeholder="Ingrese el precio en USD"
+                  onFocus={() => formik.setFieldError("priceUSD", "")}
+                  value={formik.values.priceUSD}
+                />
+                <ErrorMessage
+                  name="priceUSD"
+                  component={Form.Text}
+                  style={{ fontFamily: "Poppins" }}
+                  className="text-danger ms-2"
+                ></ErrorMessage>
+              </Form.Group>
+
               <Form.Group className="col-12 mb-3">
                 <Form.Label htmlFor="description" className="form-label">
                   Descripción *

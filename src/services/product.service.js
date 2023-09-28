@@ -58,9 +58,14 @@ const filterProductsByKeyword = async (keyword) => {
 
 const filterProductsByCategory = async (category) => {
     try {
-        const url = `${apiProductByCategoryUrl}${category}`
-        const response = await axios.get(url)
+        const url = `${apiProductByCategoryUrl}${encodeURIComponent(category)}`
+        const response = await axios.get(url,{
+            headers: {
+                "Content-Type": "application/json",
+              },
+        })
         const products = response.data.data
+        console.log(products);
         return products
     } catch (error) {
         throw new Error('Hubo un error al obtener los productos por categoria')

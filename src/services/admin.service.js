@@ -29,10 +29,11 @@ export const fetchMetricsDataUsers = async () => {
       const url = `${apiUrl}create`;
   
       const formData = new FormData();
-      const { title, price, description, brandId, categoryId, stock, offer, visible, imageFile } = info;
+      const { title, price, priceUSD,description, brandId, categoryId, stock, offer, visible, imageFile } = info;
   
       formData.append("title", title);
       formData.append("price", price);
+      formData.append("priceUSD", priceUSD);
       formData.append("description", description);
       formData.append("brandId", brandId);
       formData.append("categoryId", categoryId);
@@ -84,9 +85,10 @@ export const fetchMetricsDataUsers = async () => {
   
       const response = await axios.put(url, formData, {
         headers: {
-          "Content-Type": "multipart/form-data",
+          "Content-Type": "application/json",
         },
       });
+      console.log(formData);
       return response.data;
     } catch (error) {
       throw new Error(error.response.data);

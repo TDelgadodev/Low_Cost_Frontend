@@ -1,10 +1,11 @@
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 export default function ProductListItem({ product }) {
   return (
     <tr>
       <td>{product.name}</td>
       <td>${product.price.toFixed(2)}</td>
+      <td>{product.priceUSD ? product.priceUSD : "N/A"}</td>
       <td>{product.stock}</td>
       <td>{product.category?.name}</td>
       <td>{product.brand?.name}</td>
@@ -18,6 +19,7 @@ ProductListItem.propTypes = {
   product: PropTypes.shape({
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
+    priceUSD: PropTypes.number,
     stock: PropTypes.number.isRequired,
     category: PropTypes.shape({
       name: PropTypes.string.isRequired,

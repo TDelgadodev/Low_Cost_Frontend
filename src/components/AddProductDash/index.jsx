@@ -10,14 +10,15 @@ import { CategoriesContext } from "../../context/CategoriesProvider";
 
 export const AddProductDash = () => {
   const navigate = useNavigate();
-  const { metricsProducts, createProductProvider, getMetricsProducts } = useAdmin();
+  const { createProductProvider, getMetricsProducts } = useAdmin();
 
-  const { brands } = useContext(BrandsContext)
-  const { categories } = useContext(CategoriesContext)
+  const { brands } = useContext(BrandsContext);
+  const { categories } = useContext(CategoriesContext);
 
   const initialValues = {
     title: "",
     price: "",
+    priceUSD: "", 
     description: "",
     brandId: "",
     categoryId: "",
@@ -30,6 +31,7 @@ export const AddProductDash = () => {
   const validationSchema = Yup.object({
     title: Yup.string().required("El título es obligatorio"),
     price: Yup.number().required("El precio es obligatorio"),
+    priceUSD: Yup.number().nullable(),
     description: Yup.string().required("La descripción es obligatoria"),
     brandId: Yup.string().required("La marca es obligatoria"),
     categoryId: Yup.string().required("La categoría es obligatoria"),
@@ -42,6 +44,7 @@ export const AddProductDash = () => {
     try {
       values = {
         ...values,
+        priceUSD: parseInt(values.priceUSD),
         brandId: parseInt(values.brandId),
         categoryId: parseInt(values.categoryId),
       };
@@ -57,14 +60,11 @@ export const AddProductDash = () => {
         }
       }
       await createProductProvider(formData);
-
-      console.log(values)
-
       setTimeout(() => {
         toast.success("Producto creado con éxito");
-        getMetricsProducts()
-        navigate("/dashboard/products"); 
-      }, 3000); 
+        getMetricsProducts();
+        navigate("/dashboard/products");
+      }, 3000);
 
       await createProductProvider(values);
     } catch (error) {
@@ -73,9 +73,6 @@ export const AddProductDash = () => {
       setSubmitting(false);
     }
   };
-
-  console.log('metricas:', metricsProducts)
-
   return (
     <Container className="pt-5">
       <Formik
@@ -128,6 +125,25 @@ export const AddProductDash = () => {
                   className="text-danger ms-2"
                 ></ErrorMessage>
               </Form.Group>
+              <Form.Group className="col-12 col-md-6 mb-3">
+                <Form.Label htmlFor="priceUSD" className="form-label">
+                  Precio en USD (Opcional)
+                </Form.Label>
+                <Field
+                  type="number"
+                  className={`form-control`}
+                  name="priceUSD"
+                  placeholder="Ingrese el precio en USD"
+                  onFocus={() => formik.setFieldError("priceUSD", "")}
+                  value={formik.values.priceUSD}
+                />
+                <ErrorMessage
+                  name="priceUSD"
+                  component={Form.Text}
+                  style={{ fontFamily: "Poppins" }}
+                  className="text-danger ms-2"
+                ></ErrorMessage>
+              </Form.Group>
               <Form.Group className="col-12 mb-3">
                 <Form.Label htmlFor="description" className="form-label">
                   Descripción *
@@ -136,7 +152,10 @@ export const AddProductDash = () => {
                   as="textarea"
                   className={`form-control`}
                   name="description"
-                  style={{ resize: "none", borderColor: "rgba(206, 206, 206, 0.795)" }}
+                  style={{
+                    resize: "none",
+                    borderColor: "rgba(206, 206, 206, 0.795)",
+                  }}
                   placeholder="Colocá una descripción"
                   onFocus={() => formik.setFieldError("description", "")}
                 ></Field>
@@ -151,7 +170,12 @@ export const AddProductDash = () => {
                 <Form.Label htmlFor="brandId" className="form-label">
                   Marca *
                 </Form.Label>
-                <Field as="select" className={`form-control`} name="brandId" style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}>
+                <Field
+                  as="select"
+                  className={`form-control`}
+                  name="brandId"
+                  style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
+                >
                   <option hidden defaultValue value="">
                     Seleccione...
                   </option>
@@ -172,7 +196,12 @@ export const AddProductDash = () => {
                 <Form.Label htmlFor="category" className="form-label">
                   Categoría *
                 </Form.Label>
-                <Field as="select" className={`form-control`} name="categoryId" style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}>
+                <Field
+                  as="select"
+                  className={`form-control`}
+                  name="categoryId"
+                  style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
+                >
                   <option hidden defaultValue value="">
                     Seleccione...
                   </option>
@@ -251,7 +280,9 @@ export const AddProductDash = () => {
                 ></ErrorMessage>
               </Form.Group>
               <Form.Group className="col-12 mb-3">
-                <Form.Label htmlFor="">Imágenes * <small>(máx 3 archivos)</small></Form.Label>
+                <Form.Label htmlFor="">
+                  Imágenes * <small>(máx 3 archivos)</small>
+                </Form.Label>
                 <div className="input-group">
                   <input
                     type="file"
