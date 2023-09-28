@@ -91,7 +91,6 @@ export const Profile = () => {
     }
   }, [userProfile]);
 
-  console.log("userProfile:", userProfile);
 
   return (
     <div>

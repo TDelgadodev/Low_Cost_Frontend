@@ -19,6 +19,7 @@ export default function ProductList({ products }) {
           <tr>
             <th>Nombre</th>
             <th>Precio</th>
+            <th>Precio USD</th>
             <th>Stock</th>
             <th>Categoría</th>
             <th>Marca</th>
