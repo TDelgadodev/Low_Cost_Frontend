@@ -208,7 +208,7 @@ export const Profile = () => {
                     <Field
                       id="dni"
                       type="number"
-                      placeholder="Ingrese su DNI"
+                      placeholder="Ingresá tu DNI"
                       name="dni"
                       as={Form.Control}
                       style={{
@@ -227,7 +227,7 @@ export const Profile = () => {
                     <Field
                       id="address"
                       type="text"
-                      placeholder="Ingresa tu calle"
+                      placeholder="Ingresá tu calle"
                       name="address"
                       as={Form.Control}
                       style={{
@@ -266,7 +266,7 @@ export const Profile = () => {
                     <Field
                       id="postCode"
                       type="number"
-                      placeholder="Codigo Postal"
+                      placeholder="Código Postal"
                       name="postCode"
                       as={Form.Control}
                       style={{

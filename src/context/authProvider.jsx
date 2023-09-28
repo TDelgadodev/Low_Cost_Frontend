@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import {
   loginAuthService,
@@ -16,6 +16,18 @@ const AuthProvider = ({ children }) => {
   const [userProfile, setUserProfile] = useState(null);
   const [alert, setAlert] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const storedToken = localStorage.getItem("LowCostToken");
+
+    if (storedToken) {
+      const decodedToken = jwtDecode(storedToken);
+
+      if (decodedToken && decodedToken.user) {
+        setUser(decodedToken.user);
+      }
+    }
+  }, []);
 
   const handleAlert = (error) => {
     setAlert(error.message);
@@ -35,7 +47,7 @@ const AuthProvider = ({ children }) => {
   const login = async (info) => {
     try {
       const { token } = await loginAuthService(info);
-      sessionStorage.setItem("LowCostToken", token);
+      localStorage.setItem("LowCostToken", token);
       const decodedToken = token ? jwtDecode(token) : null;
 
       if (token && decodedToken && decodedToken.user) {
@@ -66,6 +78,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = () => {
+    localStorage.removeItem("LowCostToken");
     setUser(null);
   };
 

@@ -122,7 +122,7 @@ function Header() {
                   {user ? (
                     <Nav.Link>
                       <Link to={`/profile/${user.id}`} className={`${styles.typo}`}>
-                        <Button>
+                        <Button style={{ backgroundColor: 'orangered' }}>
                           <AccountCircleOutlinedIcon />
                         </Button>
                       </Link>

@@ -11,9 +11,13 @@ export const ShowProductsListByCategory = () => {
     }
   }, [filteredProductsCategory]);
 
+  const filteredProducts = filteredProductsCategory
+  console.log("productos por categoria:", filteredProducts)
+
+
   return (
     <div>
-        <h2>Hello world</h2>
+      <h2>Hello world</h2>
     </div>
   );
 };

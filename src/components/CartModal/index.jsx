@@ -5,10 +5,12 @@ import CancelIcon from '@mui/icons-material/Cancel';
 import useModal from '../../hooks/useModal';
 import { getTotalProductsInCart } from '../../utils/cart.utils';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 import styles from './CartModal.module.css';
 
 const ShoppingCart = () => {
 
+    const navigate = useNavigate();
     const { isOpen, toggleModal } = useModal()
     const { cart, clearCart, /* sendOrder, */ orderTotal } = useCart()
     const totalProductsInCart = getTotalProductsInCart(cart.cartItems);
@@ -69,7 +71,10 @@ const ShoppingCart = () => {
                             </Row>
                             <Col className="d-flex justify-content-center mb-4">
                                 <Button size='md' variant="outline-danger" className="me-3" onClick={clearCart}>Vaciar Carrito</Button>
-                                <Link to="/finish-buying">
+                                <Link to="/finish-buying" onClick={() => {
+                                    navigate("/finish-buying");
+                                    window.location.reload();
+                                }}>
                                     <Button size='md' variant="primary">Comprar</Button>
                                 </Link>
                             </Col>

@@ -8,13 +8,13 @@ export const CategoriesDB = () => {
   const { categories } = useCategories();
   const { getProductByCategory } = useProducts();
   const [selectedCategory, setSelectedCategory] = useState(null);
-  
 
-const handleCategoryClick = (category) => {
-  console.log(category);
-  setSelectedCategory(category);
-  getProductByCategory(category);
-};
+
+  const handleCategoryClick = (category) => {
+    console.log(category);
+    setSelectedCategory(category);
+    getProductByCategory(category);
+  };
 
 
   return (
@@ -32,7 +32,7 @@ const handleCategoryClick = (category) => {
                 <Link
                   key={category.id}
                   className="col-lg-6 mb-4"
-                  onClick={() => handleCategoryClick(category.name)} 
+                  onClick={() => handleCategoryClick(category.name)}
                 >
                   <div className="card bg-dark text-white shadow">
                     <div className="card-body">{category.name}</div>
