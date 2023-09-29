@@ -11,7 +11,7 @@ import { useState } from "react";
 export const Register = () => {
   const { register } = useAuth();
   const [registrationSuccess, setRegistrationSuccess] = useState(false);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   const initialValues = {
     name: "",
@@ -100,24 +100,6 @@ export const Register = () => {
               ></ErrorMessage>
             </Form.Group>
             <Form.Group className="mb-2">
-              <Form.Label htmlFor="email" style={{ fontFamily: 'Poppins' }}>Email</Form.Label>
-              <Field
-                id="email"
-                type="email"
-                placeholder="Ingresá tu email"
-                name="email"
-                as={Form.Control}
-                style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
-                onFocus={() => formik.setFieldError("email", "")}
-              ></Field>
-              <ErrorMessage
-                name="email"
-                component={Form.Text}
-                style={{ fontFamily: 'Poppins' }}
-                className="text-danger ms-2"
-              ></ErrorMessage>
-            </Form.Group>
-            <Form.Group className="mb-2">
               <Form.Label htmlFor="email" style={{ fontFamily: 'Poppins' }}>Número</Form.Label>
               <Field
                 id="phone"
@@ -130,6 +112,24 @@ export const Register = () => {
               ></Field>
               <ErrorMessage
                 name="phone"
+                component={Form.Text}
+                style={{ fontFamily: 'Poppins' }}
+                className="text-danger ms-2"
+              ></ErrorMessage>
+            </Form.Group>
+            <Form.Group className="mb-2">
+              <Form.Label htmlFor="email" style={{ fontFamily: 'Poppins' }}>Email</Form.Label>
+              <Field
+                id="email"
+                type="email"
+                placeholder="Ingresá tu email"
+                name="email"
+                as={Form.Control}
+                style={{ borderColor: 'rgba(206, 206, 206, 0.795)', fontFamily: 'Poppins' }}
+                onFocus={() => formik.setFieldError("email", "")}
+              ></Field>
+              <ErrorMessage
+                name="email"
                 component={Form.Text}
                 style={{ fontFamily: 'Poppins' }}
                 className="text-danger ms-2"

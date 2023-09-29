@@ -65,7 +65,7 @@ const AuthProvider = ({ children }) => {
 
   const getProfile = async () => {
     try {
-      const token = sessionStorage.getItem("LowCostToken");
+      const token = localStorage.getItem("LowCostToken");
       if (!token) {
         return null;
       }

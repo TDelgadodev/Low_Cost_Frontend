@@ -13,15 +13,28 @@ export const Profile = () => {
   const { getProfile, userProfile } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
 
+  useEffect(() => {
+    if (!userProfile) {
+      // Si userProfile aún no se ha cargado, obtenerlo
+      getProfile();
+    } else {
+      // userProfile ya se ha cargado, establecer isLoading en false
+      setIsLoading(false);
+    }
+  }, [getProfile, userProfile]);
+
+  console.log('perfil de usuario:', userProfile)
+  console.log(userProfile?.user?.name)
+
   const initialValues = {
     name: userProfile?.user?.name || "",
     surname: userProfile?.user?.surname || "",
     email: userProfile?.user?.email || "",
     phone: userProfile?.user?.phone.toString() || "",
     dni: userProfile?.user?.dni || "",
-    address: userProfile?.user?.address?.street || "",
-    numberAddress: userProfile?.user?.address?.numberAdress,
-    postCode: userProfile?.user?.address?.postalCode || "",
+    street: userProfile?.user?.address?.street || "",
+    numberAddress: userProfile?.user?.address?.numberAddress || "",
+    postCode: userProfile?.user?.address?.postCode || "",
   };
 
   const validationSchema = Yup.object({
@@ -32,7 +45,7 @@ export const Profile = () => {
       .required("Debe ingresar su número telefónico")
       .matches(/^\d+$/, "El teléfono debe ser numérico"),
     dni: Yup.number().integer(),
-    address: Yup.string(),
+    street: Yup.string(),
     numberAddress: Yup.number().integer(),
     postCode: Yup.number().integer(),
   });
@@ -63,9 +76,11 @@ export const Profile = () => {
         id: userProfile.user.id,
       };
 
+      console.log("Valores a enviar al servidor:", formattedValues);
+
       await updateProfileService(
         formattedValues,
-        sessionStorage.getItem("LowCostToken")
+        localStorage.getItem("LowCostToken")
       );
       await getProfile();
 
@@ -74,23 +89,13 @@ export const Profile = () => {
     } catch (error) {
       console.error("Error updating user:", error);
       setIsLoading(false);
-      toast.error("Ocurrió un error al actualizar la información.");
+      if (error.response && error.response.data && error.response.data.error) {
+        toast.error(error.response.data.error.message);
+      } else {
+        toast.error("Ocurrió un error al actualizar la información.");
+      }
     }
   };
-
-  useEffect(() => {
-    if (!userProfile) {
-      setIsLoading(true);
-      getProfile();
-    }
-  }, [getProfile, userProfile]);
-
-  useEffect(() => {
-    if (userProfile) {
-      setIsLoading(false);
-    }
-  }, [userProfile]);
-
 
   return (
     <div>
@@ -101,6 +106,7 @@ export const Profile = () => {
       )}
       <Formik
         initialValues={initialValues}
+        enableReinitialize
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
@@ -224,10 +230,10 @@ export const Profile = () => {
                   </Form.Group>
                   <Form.Group className="mb-2 mt-3">
                     <Field
-                      id="address"
+                      id="street"
                       type="text"
                       placeholder="Ingresá tu calle"
-                      name="address"
+                      name="street"
                       as={Form.Control}
                       style={{
                         borderColor: "rgba(206, 206, 206, 0.795)",
@@ -235,7 +241,7 @@ export const Profile = () => {
                       }}
                     ></Field>
                     <ErrorMessage
-                      name="address"
+                      name="street"
                       component={Form.Text}
                       style={{ fontFamily: "Poppins" }}
                       className="text-danger ms-2"
@@ -289,7 +295,7 @@ export const Profile = () => {
                         className="w-80 p-2"
                         size="lg"
                         type="submit"
-                        disabled={isLoading} 
+                        disabled={isLoading}
                         onClick={() => handleUpdateProfile(formik.values)}
                       >
                         {isLoading ? "Guardando..." : "Guardar"}{" "}
@@ -306,4 +312,4 @@ export const Profile = () => {
       </Formik>
     </div>
   );
-};
+}

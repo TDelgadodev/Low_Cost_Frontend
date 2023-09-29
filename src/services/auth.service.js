@@ -37,7 +37,7 @@ export const loginAuthService = async (info) => {
   }
 };
 
-export const profileUserService = async (userId,token) => {
+export const profileUserService = async (userId, token) => {
   try {
     const url = `${apiUrlAuth}profile/${userId}`;
     const { data } = await axios.get(url, {
@@ -54,17 +54,25 @@ export const profileUserService = async (userId,token) => {
 
 export const updateProfileService = async (updatedData, token) => {
   try {
-    const url = `${apiUrlAuth}profile/${updatedData.id}`; 
-    await axios.put(url, updatedData, {
+    const url = `${apiUrlAuth}${updatedData.id}`;
+    console.log("URL de la solicitud:", url); // Agrega este console.log para verificar la URL de la solicitud
+
+    const response = await axios.put(url, updatedData, {
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
       },
     });
+
+    console.log("Respuesta del servidor:", response.data); // Agrega este console.log para verificar la respuesta del servidor
+
+    return response.data;
   } catch (error) {
-    throw new Error(error.response.data.error.message);
+    console.error("Error en la función updateProfileService:", error);
+    throw error;
   }
 };
+
 
 export const getCodeToResetPasswordService = async (email) => {
   try {
@@ -82,7 +90,7 @@ export const getCodeToResetPasswordService = async (email) => {
 
 const resetPasswordService = async (email, code, newPassword) => {
   try {
-    const apiUrlAuth = "http://localhost:3000/api/users/"; 
+    const apiUrlAuth = "http://localhost:3000/api/users/";
     const response = await axios.post(
       `${apiUrlAuth}reset-password/${encodeURIComponent(email)}`,
       {
