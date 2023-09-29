@@ -94,4 +94,24 @@ export const fetchMetricsDataUsers = async () => {
       throw new Error(error.response.data);
     }
   };
+
+  export const editProductPricesService = async (startId, endId, newPrice) => {
+    try {
+      const url = `${apiUrl}edit/product-prices`;
+      const data = {
+        startId,
+        endId,
+        newPrice,
+      };
+      const response = await axios.put(url, data, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return response.data;
+    } catch (error) {
+      throw new Error(error.response.data);
+    }
+  };
+  
   

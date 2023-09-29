@@ -5,14 +5,16 @@ import Divider from "@mui/material/Divider";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import GroupIcon from '@mui/icons-material/Group';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
-import Inventory2Icon from '@mui/icons-material/Inventory2';
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import SearchIcon from '@mui/icons-material/Search';
+import GroupIcon from "@mui/icons-material/Group";
+import EqualizerIcon from "@mui/icons-material/Equalizer";
+import Inventory2Icon from "@mui/icons-material/Inventory2";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import SearchIcon from "@mui/icons-material/Search";
+import EditNoteIcon from '@mui/icons-material/EditNote';
 import { Link } from "react-router-dom";
 import styles from "./SideBarDashboard.module.css";
 import { Home } from "@mui/icons-material";
+
 
 const drawerWidth = 240;
 
@@ -34,7 +36,9 @@ export default function SideBar() {
         variant="permanent"
         anchor="left"
       >
-        <a href="/"><img src="/logowhite.png" alt="logo" className={`${styles.logo}`} /></a>
+        <a href="/">
+          <img src="/logowhite.png" alt="logo" className={`${styles.logo}`} />
+        </a>
 
         <List>
           <ListItemButton component={Link} to="/dashboard">
@@ -76,6 +80,12 @@ export default function SideBar() {
         </List>
         <Divider />
         <List>
+          <ListItemButton component={Link} to="/dashboard/edit-price">
+            <ListItemIcon sx={{ color: "white" }}>
+              <EditNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Editar precio masivamente" />
+          </ListItemButton>
           <ListItemButton component={Link} to="/">
             <ListItemIcon sx={{ color: "white" }}>
               <Home />

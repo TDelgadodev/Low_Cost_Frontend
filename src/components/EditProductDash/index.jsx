@@ -136,7 +136,7 @@ export const EditProductDash = () => {
               </Form.Group>
               <Form.Group className="col-12 col-md-6 mb-3">
                 <Form.Label htmlFor="price" className="form-label">
-                  Precio *
+                Precio * (Sin punto o coma)
                 </Form.Label>
                 <Field
                   type="number"

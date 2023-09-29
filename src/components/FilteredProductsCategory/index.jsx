@@ -23,6 +23,7 @@ export const ShowProductsListByCategory = () => {
         }
 
         const products = await getProductByCategory(categoryIdNumber);
+        console.log(products);
         setProductsInCategory(products);
       } catch (error) {
         console.error(error.message);

@@ -40,7 +40,8 @@ export const LastProductDB = () => {
               )}
             </div>
             <p>{lastProduct.description}</p>
-            <p>{lastProduct.price}</p>
+            <p>Precio: {lastProduct.price}</p>
+            <p>Precio en USD: {lastProduct.priceUSD ? lastProduct.priceUSD : 'N/A'}</p>
             <p>Stock: {lastProduct.stock}</p>
             <p>OFerta: {lastProduct.offer ? "Sí" : "No"}</p>
           </div>
