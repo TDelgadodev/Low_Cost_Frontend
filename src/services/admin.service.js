@@ -95,13 +95,14 @@ export const fetchMetricsDataUsers = async () => {
     }
   };
 
-  export const editProductPricesService = async (startId, endId, newPrice) => {
+  export const editProductPricesService = async (startId, endId, updateValue, isPercentage) => {
     try {
       const url = `${apiUrl}edit/product-prices`;
       const data = {
         startId,
         endId,
-        newPrice,
+        updateValue,
+        isPercentage,
       };
       const response = await axios.put(url, data, {
         headers: {
@@ -113,5 +114,6 @@ export const fetchMetricsDataUsers = async () => {
       throw new Error(error.response.data);
     }
   };
+  
   
   

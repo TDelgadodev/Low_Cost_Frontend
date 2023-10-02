@@ -2,42 +2,97 @@ import { useState } from 'react';
 import { editProductPricesService } from '../../services/admin.service';
 
 function EditPriceDash() {
-  const [startId, setStartId] = useState('');
-  const [endId, setEndId] = useState('');
-  const [newPrice, setNewPrice] = useState('');
+  const [startIdAbsolute, setStartIdAbsolute] = useState('');
+  const [endIdAbsolute, setEndIdAbsolute] = useState('');
+  const [updateValueAbsolute, setUpdateValueAbsolute] = useState('');
+  const [startIdPercentage, setStartIdPercentage] = useState('');
+  const [endIdPercentage, setEndIdPercentage] = useState('');
+  const [percentageValue, setPercentageValue] = useState('');
+  const [isPercentage, setIsPercentage] = useState(false);
   const [message, setMessage] = useState('');
 
   const handleEditPrices = async () => {
     try {
-      const result = await editProductPricesService(startId, endId, newPrice);
-      setMessage(result.message); // Manejar la respuesta de la API
+      console.log("startId:", isPercentage ? startIdPercentage : startIdAbsolute);
+      console.log("endId:", isPercentage ? endIdPercentage : endIdAbsolute);
+      console.log("valueToUpdate:", isPercentage ? percentageValue : updateValueAbsolute);
+  
+      const result = await editProductPricesService(
+        isPercentage ? startIdPercentage : startIdAbsolute,
+        isPercentage ? endIdPercentage : endIdAbsolute,
+        isPercentage ? percentageValue : updateValueAbsolute,
+        isPercentage
+      );
+      
+      console.log("Result from backend:", result);
+  
+      setMessage(result.message);
     } catch (error) {
-      setMessage(error.message); // Manejar errores
+      setMessage(error.message);
     }
+  };
+  
+
+  const handleTogglePercentage = () => {
+    setIsPercentage(!isPercentage);
   };
 
   return (
     <div>
       <h2>Edit Product Prices</h2>
-      <input
-        type="text"
-        placeholder="Start ID"
-        value={startId}
-        onChange={(e) => setStartId(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="End ID"
-        value={endId}
-        onChange={(e) => setEndId(e.target.value)}
-      />
-      <input
-        type="text"
-        placeholder="New Price"
-        value={newPrice}
-        onChange={(e) => setNewPrice(e.target.value)}
-      />
-      <button onClick={handleEditPrices}>Edit Prices</button>
+      <div>
+        <h3>Update by Value</h3>
+        <input
+          type="number"
+          placeholder="Start ID"
+          value={startIdAbsolute}
+          onChange={(e) => setStartIdAbsolute(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="End ID"
+          value={endIdAbsolute}
+          onChange={(e) => setEndIdAbsolute(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Update Value"
+          value={updateValueAbsolute}
+          onChange={(e) => setUpdateValueAbsolute(e.target.value)}
+        />
+        <button onClick={handleEditPrices}>Edit Prices</button>
+      </div>
+      <hr />
+      <div>
+        <h3>Update by Percentage</h3>
+        <input
+          type="text"
+          placeholder="Start ID"
+          value={startIdPercentage}
+          onChange={(e) => setStartIdPercentage(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="End ID"
+          value={endIdPercentage}
+          onChange={(e) => setEndIdPercentage(e.target.value)}
+        />
+        <input
+          type="text"
+          placeholder="Percentage"
+          value={percentageValue}
+          onChange={(e) => setPercentageValue(e.target.value)}
+        />
+        <label>
+          <input
+            type="checkbox"
+            checked={isPercentage}
+            onChange={handleTogglePercentage}
+          />
+          Apply Percentage
+        </label>
+        <button onClick={handleEditPrices}>Edit Prices</button>
+      </div>
       {message && <p>{message}</p>}
     </div>
   );
