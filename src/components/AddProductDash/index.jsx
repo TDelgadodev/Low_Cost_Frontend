@@ -18,7 +18,7 @@ export const AddProductDash = () => {
   const initialValues = {
     title: "",
     price: "",
-    priceUSD: "", 
+    priceUSD: "",
     description: "",
     brandId: "",
     categoryId: "",
@@ -73,6 +73,7 @@ export const AddProductDash = () => {
       setSubmitting(false);
     }
   };
+
   return (
     <Container className="pt-5">
       <Formik
@@ -87,7 +88,7 @@ export const AddProductDash = () => {
             </div>
             <hr />
             <Row>
-              <Form.Group className="col-12 col-md-6 mb-3">
+              <Form.Group className="col-12 col-md-12 mb-3">
                 <Form.Label htmlFor="name" className="form-label">
                   Título *
                 </Form.Label>
@@ -132,8 +133,9 @@ export const AddProductDash = () => {
                 <Field
                   type="number"
                   className={`form-control`}
+                  style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
                   name="priceUSD"
-                  placeholder="Ingrese el precio en USD"
+                  placeholder="Ingresá el precio en USD"
                   onFocus={() => formik.setFieldError("priceUSD", "")}
                   value={formik.values.priceUSD}
                 />
