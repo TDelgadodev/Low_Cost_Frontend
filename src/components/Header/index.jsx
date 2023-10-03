@@ -27,6 +27,8 @@ function Header() {
 
   const handleLogout = () => {
     logout();
+    navigate("/login");
+    window.location.reload();
   };
 
   const { getProductKeyword } = useProducts();

@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import { Home } from "../pages/Home";
 import { Login } from "../pages/Login";
 import { Register } from "../pages/Register";
@@ -6,7 +6,6 @@ import { CompletedPurchase } from "../pages/CompletedPurchase";
 import Search from "../pages/Search";
 import { Detail } from "../pages/Detail";
 import { Profile } from "../pages/Profile";
-import ProtectedRoutes from "./protectedRoutes";
 import useAuth from "../hooks/useAuth";
 import { GetCodeResetMain } from "../pages/GetCodeReset/GetCodeReset";
 import { Dashboard } from "../pages/Dashboard";
@@ -19,10 +18,11 @@ import { EditProductDash } from "../components/EditProductDash";
 import DeleteProduct from "../components/DeleteProduct";
 import SearchDash from "../components/SearchDash";
 import { ShowProductsListByCategory } from "../components/FilteredProductsCategory";
-import  EditPriceDash  from "../components/EditPriceDash";
+import EditPriceDash from "../components/EditPriceDash";
 
 export const AppRoutes = () => {
   const { user } = useAuth();
+  console.log("usuario:", user)
 
   return (
     <Routes>
@@ -30,14 +30,7 @@ export const AppRoutes = () => {
       <Route path="/search/*" element={<Search />} />
       <Route path="/product/:id" element={<Detail />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/login" element={<Login />} />
-      <Route
-        element={<ProtectedRoutes canActive={user} redirectPath="/login" />}
-      >
-        <Route path="/profile/:id" element={<Profile />} />
-      </Route>
       <Route path="/get-code" element={<GetCodeResetMain />} />
-      <Route path="/finish-buying" element={<CompletedPurchase />} />
       <Route path="/purchase-accepted" element={<PurchaseAccepted />} />
       <Route path="/purchase-denied" element={<PurchaseDenied />} />
       <Route path="/dashboard" element={<Dashboard />} />
@@ -49,6 +42,11 @@ export const AppRoutes = () => {
       <Route path="/dashboard/products/create" element={<AddProductDash />} />
       <Route path="/dashboard/products/edit/:id" element={<EditProductDash />} />
       <Route path="/dashboard/delete-product/:id" element={<DeleteProduct />} />
+
+      {/* Rutas protegidas */}
+      <Route path="/login" element={user ? (<Navigate to="/" />) : (<Login />)} />
+      <Route path="/profile/*" element={user ? (<Profile />) : (<Navigate to="/login" />)} />
+      <Route path="/finish-buying" element={user ? (<CompletedPurchase />) : (<Navigate to="/login" />)} />
     </Routes>
   );
 };

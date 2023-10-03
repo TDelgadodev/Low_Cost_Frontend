@@ -10,20 +10,35 @@ import { useCart } from "../../hooks/useCart";
 import CartProduct from "../../components/CartModal/CartProduct";
 import { useNavigate } from "react-router-dom";
 import styles from "./index.module.css"; /*  */
+import useAuth from "../../hooks/useAuth";
 
 export const CompletedPurchase = () => {
+  const { getProfile, userProfile } = useAuth();
   const [preferenceId, setPreferenceId] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
+  useEffect(() => {
+    if (!userProfile) {
+      // Si userProfile aún no se ha cargado, obtenerlo
+      getProfile();
+    } else {
+      // userProfile ya se ha cargado, establecer isLoading en false
+      setIsLoading(false);
+    }
+  }, [getProfile, userProfile]);
+
+  console.log('perfil de usuario:', userProfile)
+  console.log(userProfile?.user?.name)
+
   const initialValues = {
-    name: "",
-    surname: "",
-    email: "",
-    phone: "",
-    dni: "",
-    street: "",
-    streetNumber: "",
-    postCode: "",
+    name: userProfile?.user?.name || "",
+    surname: userProfile?.user?.surname || "",
+    email: userProfile?.user?.email || "",
+    phone: userProfile?.user?.phone.toString() || "",
+    dni: userProfile?.user?.dni || "",
+    street: userProfile?.user?.address?.street || "",
+    numberAddress: userProfile?.user?.address?.numberAddress || "",
+    postCode: userProfile?.user?.address?.postCode || "",
   };
 
   initMercadoPago("TEST-70a33ced-250d-4afe-92bd-5f8a057bb918");
@@ -150,7 +165,10 @@ export const CompletedPurchase = () => {
   };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={handleSubmit}>
+    <Formik
+      initialValues={initialValues}
+      enableReinitialize
+      onSubmit={handleSubmit}>
       {(formik) => (
         <Form
           onSubmit={formik.handleSubmit}
@@ -293,14 +311,14 @@ export const CompletedPurchase = () => {
                   <Form.Group className="mb-3">
                     <Field
                       style={{ borderColor: "rgba(206, 206, 206, 0.795)" }}
-                      id="streetNumber"
+                      id="numberAddress"
                       type="number"
                       placeholder="Ingresá tu nº de calle"
-                      name="streetNumber"
+                      name="numberAddress"
                       as={Form.Control}
                     ></Field>
                     <ErrorMessage
-                      name="streetNumber"
+                      name="numberAddress"
                       component={Form.Text}
                       className="text-danger ms-2"
                     ></ErrorMessage>

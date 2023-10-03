@@ -8,8 +8,10 @@ import { updateProfileService } from "../../services/auth.service";
 import { toast } from "react-toastify";
 import WhatsApp from "../../components/WhatsApp";
 import ShoppingCart from "../../components/CartModal";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
+  const navigate = useNavigate();
   const { getProfile, userProfile } = useAuth();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -85,7 +87,9 @@ export const Profile = () => {
       await getProfile();
 
       setIsLoading(false);
+      navigate("/");
       toast.success("¡Información actualizada con éxito!");
+      window.location.reload();
     } catch (error) {
       console.error("Error updating user:", error);
       setIsLoading(false);
