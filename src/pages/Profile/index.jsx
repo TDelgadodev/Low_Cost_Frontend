@@ -78,8 +78,6 @@ export const Profile = () => {
         id: userProfile.user.id,
       };
 
-      console.log("Valores a enviar al servidor:", formattedValues);
-
       await updateProfileService(
         formattedValues,
         localStorage.getItem("LowCostToken")

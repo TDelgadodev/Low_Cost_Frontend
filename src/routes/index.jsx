@@ -22,7 +22,7 @@ import EditPriceDash from "../components/EditPriceDash";
 
 export const AppRoutes = () => {
   const { user } = useAuth();
-  console.log("usuario:", user)
+  const isAdmin = user && user.rolId === 1;
 
   return (
     <Routes>
@@ -33,20 +33,22 @@ export const AppRoutes = () => {
       <Route path="/get-code" element={<GetCodeResetMain />} />
       <Route path="/purchase-accepted" element={<PurchaseAccepted />} />
       <Route path="/purchase-denied" element={<PurchaseDenied />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/dashboard/search/*" element={<SearchDash />} />
-      <Route path="/dashboard/users" element={<TableUserDash />} />
-      <Route path="/dashboard/products" element={<TableProductsDash />} />
-      <Route path="/dashboard/filterProducts" element={<ShowProductsListByCategory />} />
-      <Route path="/dashboard/edit-price" element={<EditPriceDash />} />
-      <Route path="/dashboard/products/create" element={<AddProductDash />} />
-      <Route path="/dashboard/products/edit/:id" element={<EditProductDash />} />
-      <Route path="/dashboard/delete-product/:id" element={<DeleteProduct />} />
 
       {/* Rutas protegidas */}
       <Route path="/login" element={user ? (<Navigate to="/" />) : (<Login />)} />
       <Route path="/profile/*" element={user ? (<Profile />) : (<Navigate to="/login" />)} />
       <Route path="/finish-buying" element={user ? (<CompletedPurchase />) : (<Navigate to="/login" />)} />
+
+      {/* Rutas de admin protegidas */}
+      <Route path="/dashboard/*" element={isAdmin ? (<Dashboard />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/search/*" element={isAdmin ? (<SearchDash />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/users" element={isAdmin ? (<TableUserDash />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/products" element={isAdmin ? (<TableProductsDash />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/filterProducts" element={isAdmin ? (<ShowProductsListByCategory />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/edit-price" element={isAdmin ? (<EditPriceDash />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/products/create" element={isAdmin ? (<AddProductDash />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/products/edit/:id" element={isAdmin ? (<EditProductDash />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/delete-product/:id" element={isAdmin ? (<DeleteProduct />) : (<Navigate to="/" />)} />
     </Routes>
   );
 };
