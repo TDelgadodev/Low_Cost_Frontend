@@ -6,12 +6,12 @@ import { Link } from "react-router-dom";
 export const CategoriesDB = () => {
   const { categories } = useCategories();
   const { getProductByCategory } = useProducts();
-  
+
 
   const handleCategoryClick = (categoryId) => {
     getProductByCategory(categoryId)
-    console.log('log de categoryId en CategoriesInDB',categoryId);
-}
+    console.log('log de categoryId en CategoriesInDB', categoryId);
+  }
 
 
   return (
@@ -27,10 +27,11 @@ export const CategoriesDB = () => {
             {categories && categories.length > 0 ? (
               categories.map((category) => (
                 <Link
-                to={`/dashboard/filterProducts?category=${category.id}`}
-                key={category.id}
+                  to={`/dashboard/filterProducts/${category.id}`}
+                  key={category.id}
+                  style={{ textDecoration: 'none', textAlign: 'center' }}
                   className="col-lg-6 mb-4"
-                  onClick={() => handleCategoryClick(category.id)} 
+                  onClick={() => handleCategoryClick(category.id)}
                 >
                   <div className="card bg-dark text-white shadow">
                     <div className="card-body">{category.name}</div>

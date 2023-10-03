@@ -44,7 +44,7 @@ export const AppRoutes = () => {
       <Route path="/dashboard/search/*" element={isAdmin ? (<SearchDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/users" element={isAdmin ? (<TableUserDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/products" element={isAdmin ? (<TableProductsDash />) : (<Navigate to="/" />)} />
-      <Route path="/dashboard/filterProducts" element={isAdmin ? (<ShowProductsListByCategory />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/filterProducts/:category" element={isAdmin ? (<ShowProductsListByCategory />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/edit-price" element={isAdmin ? (<EditPriceDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/products/create" element={isAdmin ? (<AddProductDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/products/edit/:id" element={isAdmin ? (<EditProductDash />) : (<Navigate to="/" />)} />

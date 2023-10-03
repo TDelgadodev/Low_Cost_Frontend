@@ -1,0 +1,17 @@
+.firstColumn {
+    margin-left: 0;
+    padding-left: 0;
+    width: 50px;
+  }
+  
+  .rowsTable td{
+    width: 60px;
+  }
+  
+  .linksDashboardActions i{
+    color: white;
+  }
+  
+  .linksDashboardActions button{
+    margin-left: 5px;
+  }

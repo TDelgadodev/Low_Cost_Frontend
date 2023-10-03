@@ -11,7 +11,7 @@ export default function CategoriesList() {
     const context = useCategories();
     const categories = context.categories;
 
-    const { getProductByCategory} = useProducts()
+    const { getProductByCategory } = useProducts()
 
     const handleCategoryClick = (categoryId) => {
         getProductByCategory(categoryId)
@@ -40,7 +40,9 @@ export default function CategoriesList() {
                                 <ul className={`${styles.categoriesList}`} >
                                     {categories.map((category) => (
                                         <li key={category.id}>
-                                            <Link to={`/search`} onClick={() => handleCategoryClick(category.id)}>{category.name}</Link>
+                                            <Link
+                                                to={`/search`}
+                                                onClick={() => handleCategoryClick(category.id)}>{category.name}</Link>
                                         </li>
                                     ))}
                                 </ul>
