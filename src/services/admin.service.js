@@ -115,4 +115,29 @@ export const editProductPricesService = async (startId, endId, updateValue, isPe
   }
 };
 
+export const updatePricesByCategoryService = async (categoryId, updateValue, isPercentage) => {
+  try {
+    const parsedCategoryId = parseInt(categoryId);
+    const parsedUpdateValue = isPercentage ? parseFloat(updateValue) : parseInt(updateValue);
+
+    const url = `${apiUrl}edit/product-prices-by-category`;
+    const data = {
+      categoryId: parsedCategoryId, 
+      updateValue: parsedUpdateValue, 
+      isPercentage,
+    };
+
+    const response = await axios.put(url, data, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    return response.data;
+  } catch (error) {
+    throw new Error(error.response.data);
+  }
+};
+
+
 

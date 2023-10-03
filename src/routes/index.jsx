@@ -19,6 +19,7 @@ import DeleteProduct from "../components/DeleteProduct";
 import SearchDash from "../components/SearchDash";
 import { ShowProductsListByCategory } from "../components/FilteredProductsCategory";
 import EditPriceDash from "../components/EditPriceDash";
+import  EditCategoryPrices  from "../components/EditPriceByCategory";
 
 export const AppRoutes = () => {
   const { user } = useAuth();
@@ -46,6 +47,7 @@ export const AppRoutes = () => {
       <Route path="/dashboard/products" element={isAdmin ? (<TableProductsDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/filterProducts/:category" element={isAdmin ? (<ShowProductsListByCategory />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/edit-price" element={isAdmin ? (<EditPriceDash />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/edit-price-by-category" element={isAdmin ? (<EditCategoryPrices />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/products/create" element={isAdmin ? (<AddProductDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/products/edit/:id" element={isAdmin ? (<EditProductDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/delete-product/:id" element={isAdmin ? (<DeleteProduct />) : (<Navigate to="/" />)} />

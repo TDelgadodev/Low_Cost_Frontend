@@ -12,11 +12,7 @@ function EditPriceDash() {
   const [message, setMessage] = useState('');
 
   const handleEditPrices = async () => {
-    try {
-      console.log("startId:", isPercentage ? startIdPercentage : startIdAbsolute);
-      console.log("endId:", isPercentage ? endIdPercentage : endIdAbsolute);
-      console.log("valueToUpdate:", isPercentage ? percentageValue : updateValueAbsolute);
-  
+    try {  
       const result = await editProductPricesService(
         isPercentage ? startIdPercentage : startIdAbsolute,
         isPercentage ? endIdPercentage : endIdAbsolute,
@@ -66,19 +62,19 @@ function EditPriceDash() {
       <div>
         <h3>Update by Percentage</h3>
         <input
-          type="text"
+          type="number"
           placeholder="Start ID"
           value={startIdPercentage}
           onChange={(e) => setStartIdPercentage(e.target.value)}
         />
         <input
-          type="text"
+          type="number"
           placeholder="End ID"
           value={endIdPercentage}
           onChange={(e) => setEndIdPercentage(e.target.value)}
         />
         <input
-          type="text"
+          type="number"
           placeholder="Percentage"
           value={percentageValue}
           onChange={(e) => setPercentageValue(e.target.value)}

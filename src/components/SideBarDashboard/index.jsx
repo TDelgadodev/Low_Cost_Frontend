@@ -86,6 +86,12 @@ export default function SideBar() {
             </ListItemIcon>
             <ListItemText primary="Editar precio masivamente" />
           </ListItemButton>
+          <ListItemButton component={Link} to="/dashboard/edit-price-by-category">
+            <ListItemIcon sx={{ color: "white" }}>
+              <EditNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Editar precio por categoria" />
+          </ListItemButton>
           <ListItemButton component={Link} to="/">
             <ListItemIcon sx={{ color: "white" }}>
               <Home />
