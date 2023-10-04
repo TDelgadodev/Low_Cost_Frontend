@@ -42,6 +42,27 @@ class BannerUploader extends Component {
       });
     }
   };
+  handleDeleteOldImages = async () => {
+    try {
+      const response = await axios.delete("http://localhost:3000/api/upload/delete-images");
+
+      if (response.data.ok) {
+        this.setState({
+          uploadMessage: "",
+          errorMessage: "",
+        });
+        alert("Imágenes antiguas eliminadas con éxito.");
+      } else {
+        this.setState({
+          errorMessage: "Error al eliminar las imágenes antiguas.",
+        });
+      }
+    } catch (error) {
+      this.setState({
+        errorMessage: "Error al eliminar las imágenes antiguas: " + error.message,
+      });
+    }
+  };
 
   render() {
     const { uploadMessage, errorMessage } = this.state;
@@ -51,6 +72,7 @@ class BannerUploader extends Component {
         <h2>Cargar Banners</h2>
         <input type="file" multiple accept="image/*" onChange={this.handleFileChange} />
         <button onClick={this.handleUpload}>Subir Banners</button>
+        <button onClick={this.handleDeleteOldImages}>Eliminar Imágenes Antiguas</button>
         {uploadMessage && <p>{uploadMessage}</p>}
         {errorMessage && <p>{errorMessage}</p>}
         <CarouselBanner images={[]} />

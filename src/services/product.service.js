@@ -65,7 +65,6 @@ const filterProductsByCategory = async (category) => {
               },
         })
         const products = response.data.data
-        console.log(products);
         return products
     } catch (error) {
         throw new Error('Hubo un error al obtener los productos por categoria')
