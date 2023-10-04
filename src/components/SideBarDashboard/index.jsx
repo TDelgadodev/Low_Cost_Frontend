@@ -84,14 +84,23 @@ export default function SideBar() {
             <ListItemIcon sx={{ color: "white" }}>
               <EditNoteIcon />
             </ListItemIcon>
-            <ListItemText primary="Editar precio masivamente" />
+            <ListItemText primary="Editar Precio Masivamente" />
           </ListItemButton>
           <ListItemButton component={Link} to="/dashboard/edit-price-by-category">
             <ListItemIcon sx={{ color: "white" }}>
               <EditNoteIcon />
             </ListItemIcon>
-            <ListItemText primary="Editar precio por categoria" />
+            <ListItemText primary="Editar Precio por Categoría" />
           </ListItemButton>
+          <ListItemButton component={Link} to="/dashboard/dinamic-carousel">
+            <ListItemIcon sx={{ color: "white" }}>
+              <EditNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Editar Carrusel Home" />
+          </ListItemButton>
+        </List>
+        <Divider />
+        <List>
           <ListItemButton component={Link} to="/">
             <ListItemIcon sx={{ color: "white" }}>
               <Home />
@@ -100,6 +109,6 @@ export default function SideBar() {
           </ListItemButton>
         </List>
       </Drawer>
-    </Box>
+    </Box >
   );
 }
