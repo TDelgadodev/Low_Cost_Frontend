@@ -1,28 +1,45 @@
+import { Component } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from './BannersHomeStatic.module.css'
+import axios from 'axios';
 
-const BannerStatic = () => {
-    return (
-        <Container>
-            <Row>
-                <Col md={4} sm={6} xs={12} className="mb-3">
-                    <div className={`${styles.banner}`}>
-                        <img src="anuncio.jpg" alt="Banner 1" />
-                    </div>
-                </Col>
-                <Col md={4} sm={6} xs={12} className="mb-3">
-                    <div className={`${styles.banner}`}>
-                        <img src="anuncio.jpg" alt="Banner 2" />
-                    </div>
-                </Col>
-                <Col md={4} sm={6} xs={12} className="mb-3">
-                    <div className={`${styles.banner}`}>
-                        <img src="anuncio.jpg" alt="Banner 3" />
-                    </div>
-                </Col>
-            </Row>
-        </Container>
-    )
+class BannerStatic extends Component {
+    state = {
+        imageUrls: [],
+    };
+
+    componentDidMount() {
+        // Realiza una solicitud al servidor para obtener las rutas de las imágenes
+        axios.get("http://localhost:3000/api/upload/get-static-banners")
+            .then((response) => {
+                this.setState({ imageUrls: response.data.data });
+                console.log('response static:', response.data.data);
+            })
+            .catch((error) => {
+                console.error("Error al obtener las rutas de las imágenes:", error);
+            });
+    }
+    render() {
+        const { imageUrls } = this.state;
+
+        return (
+            <Container>
+                <Row>
+                    {imageUrls && imageUrls.length > 0 ? (
+                        imageUrls.map((imageInfo, index) => (
+                            <Col key={index} md={4} sm={6} xs={12} className="mb-3">
+                                <div className={`${styles.banner}`}>
+                                    <img src={imageInfo.path} alt={`Banner ${index + 1}`} />
+                                </div>
+                            </Col>
+                        ))
+                    ) : (
+                        <p>No hay imágenes para mostrar.</p>
+                    )}
+                </Row>
+            </Container>
+        );
+    }
 }
 
 export default BannerStatic

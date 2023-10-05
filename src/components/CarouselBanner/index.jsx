@@ -10,7 +10,7 @@ class CarouselBanner extends Component {
 
     componentDidMount() {
         // Realiza una solicitud al servidor para obtener las rutas de las imágenes
-        axios.get("http://localhost:3000/api/admin/horizontal-banners")
+        axios.get("http://localhost:3000/api/upload/horizontal-banners")
             .then((response) => {
                 this.setState({ imageUrls: response.data });
                 console.log('response:', response.data);

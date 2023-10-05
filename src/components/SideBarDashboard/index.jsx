@@ -98,6 +98,12 @@ export default function SideBar() {
             </ListItemIcon>
             <ListItemText primary="Editar Carrusel Home" />
           </ListItemButton>
+          <ListItemButton component={Link} to="/dashboard/static-banners">
+            <ListItemIcon sx={{ color: "white" }}>
+              <EditNoteIcon />
+            </ListItemIcon>
+            <ListItemText primary="Editar Banners Home" />
+          </ListItemButton>
         </List>
         <Divider />
         <List>

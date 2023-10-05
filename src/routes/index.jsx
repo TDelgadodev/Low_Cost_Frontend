@@ -21,6 +21,7 @@ import { ShowProductsListByCategory } from "../components/FilteredProductsCatego
 import EditPriceDash from "../components/EditPriceDash";
 import EditCategoryPrices from "../components/EditPriceByCategory";
 import BannerUploader from "../components/BannerUploader";
+import BannerStaticUploader from "../components/BannerStaticUploader"
 
 export const AppRoutes = () => {
   const { user } = useAuth();
@@ -53,6 +54,7 @@ export const AppRoutes = () => {
       <Route path="/dashboard/products/edit/:id" element={isAdmin ? (<EditProductDash />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/delete-product/:id" element={isAdmin ? (<DeleteProduct />) : (<Navigate to="/" />)} />
       <Route path="/dashboard/dinamic-carousel" element={isAdmin ? (<BannerUploader />) : (<Navigate to="/" />)} />
+      <Route path="/dashboard/static-banners" element={isAdmin ? (<BannerStaticUploader />) : (<Navigate to="/" />)} />
     </Routes>
   );
 };
