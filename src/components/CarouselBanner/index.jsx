@@ -43,7 +43,9 @@ class CarouselBanner extends Component {
                             </div>
                         ))
                     ) : (
-                        <p>No hay imágenes para mostrar.</p>
+                        <div>
+                            <img src='/banner1.jpg' alt='banner1' />
+                        </div>
                     )}
                 </Slider>
             </div>

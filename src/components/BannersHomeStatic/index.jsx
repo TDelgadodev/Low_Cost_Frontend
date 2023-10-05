@@ -21,6 +21,8 @@ class BannerStatic extends Component {
     }
     render() {
         const { imageUrls } = this.state;
+        const defaultImageUrls = ['/anuncio.jpg', '/anuncio.jpg', '/anuncio.jpg'];
+
 
         return (
             <Container>
@@ -34,7 +36,13 @@ class BannerStatic extends Component {
                             </Col>
                         ))
                     ) : (
-                        <p>No hay imágenes para mostrar.</p>
+                        defaultImageUrls.map((defaultImageUrl, index) => (
+                            <Col key={index} md={4} sm={6} xs={12} className="mb-3">
+                                <div className={`${styles.banner}`}>
+                                    <img src={defaultImageUrl} alt={`StaticBanners`} />
+                                </div>
+                            </Col>
+                        ))
                     )}
                 </Row>
             </Container>

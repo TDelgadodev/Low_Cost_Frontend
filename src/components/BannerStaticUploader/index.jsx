@@ -10,12 +10,12 @@ class BannerUploader extends Component {
         errorMessage: "",
     };
 
-    handleFileChange = (e) => {
+    handleFilesChange = (e) => {
         const files = e.target.files;
         this.setState({ images: files });
     };
 
-    handleUpload = async () => {
+    handleUploads = async () => {
         const { images } = this.state;
         const formData = new FormData();
 
@@ -24,7 +24,7 @@ class BannerUploader extends Component {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/api/upload/upload-images-static", formData, {
+            const response = await axios.post("http://localhost:3000/api/upload/upload-banners-static", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -42,7 +42,7 @@ class BannerUploader extends Component {
             });
         }
     };
-    handleDeleteOldImages = async () => {
+    handleDeleteOldsImages = async () => {
         try {
             const response = await axios.delete("http://localhost:3000/api/upload/delete-static-images");
 
@@ -70,9 +70,9 @@ class BannerUploader extends Component {
         return (
             <div>
                 <h2>Cargar Banners</h2>
-                <input type="file" multiple accept="image/*" onChange={this.handleFileChange} />
-                <button onClick={this.handleUpload}>Subir Banners</button>
-                <button onClick={this.handleDeleteOldImages}>Eliminar Imágenes Antiguas</button>
+                <input type="file" multiple accept="image/*" onChange={this.handleFilesChange} />
+                <button onClick={this.handleUploads}>Subir Banners</button>
+                <button onClick={this.handleDeleteOldsImages}>Eliminar Imágenes Antiguas</button>
                 {uploadMessage && <p>{uploadMessage}</p>}
                 {errorMessage && <p>{errorMessage}</p>}
                 <BannerStatic images={[]} />
