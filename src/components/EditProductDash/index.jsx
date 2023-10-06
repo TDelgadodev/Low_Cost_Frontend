@@ -32,7 +32,7 @@ export const EditProductDash = () => {
 
   const validationSchema = Yup.object({
     title: Yup.string().required("El título es obligatorio"),
-    price: Yup.number().required("El precio es obligatorio"),
+    price: Yup.number(),
     priceUSD: Yup.number().nullable(),
     description: Yup.string().required("La descripción es obligatoria"),
     brandId: Yup.string().required("La marca es obligatoria"),
@@ -52,7 +52,7 @@ export const EditProductDash = () => {
           setInitialValues({
             title: productData.name,
             price: productData.price,
-            priceUSD: productData.priceUSD || "", 
+            priceUSD: productData.priceUSD || "",
             description: productData.description,
             brandId: productData.brandId,
             categoryId: productData.categoryId,
@@ -114,9 +114,9 @@ export const EditProductDash = () => {
             </div>
             <hr />
             <Row>
-              <Form.Group className="col-12 col-md-6 mb-3">
+              <Form.Group className="col-12 mb-3">
                 <Form.Label htmlFor="title" className="form-label">
-                  Titulo *
+                  Título *
                 </Form.Label>
                 <Field
                   type="text"
@@ -136,7 +136,7 @@ export const EditProductDash = () => {
               </Form.Group>
               <Form.Group className="col-12 col-md-6 mb-3">
                 <Form.Label htmlFor="price" className="form-label">
-                Precio * (Sin punto o coma)
+                  Precio * (Sin punto o coma)
                 </Form.Label>
                 <Field
                   type="number"
@@ -235,7 +235,7 @@ export const EditProductDash = () => {
                   className="text-danger ms-2"
                 ></ErrorMessage>
               </Form.Group>
-              <Form.Group className="col-12 col-md-6 mb-3">
+              <Form.Group className="col-12 mb-3">
                 <Form.Label htmlFor="stock" className="form-label">
                   Stock *
                 </Form.Label>
@@ -254,24 +254,26 @@ export const EditProductDash = () => {
                 style={{ fontFamily: "Poppins" }}
                 className="text-danger ms-2"
               ></ErrorMessage>
-              <Form.Group className="col-12 col-md-6 mb-3">
-                <div className="form-check form-switch">
-                  <Field
-                    className="form-check-input"
-                    type="checkbox"
-                    name="offer"
-                    id="flexSwitchCheckOffer"
-                    value={formik.values.offer}
-                  />
-                  <Form.Label
-                    className="form-check-label"
-                    htmlFor="flexSwitchCheckOffer"
-                  >
-                    Oferta
-                  </Form.Label>
+              <Form.Group className="col-4 mb-3">
+                <div className="d-flex justify-content-around">
+                  <div className="form-check form-switch">
+                    <Field
+                      className="form-check-input"
+                      type="checkbox"
+                      name="offer"
+                      id="flexSwitchCheckOffer"
+                    /* value={formik.values.offer} */
+                    />
+                    <Form.Label
+                      className="form-check-label"
+                      htmlFor="flexSwitchCheckOffer"
+                    >
+                      Oferta
+                    </Form.Label>
+                  </div>
                 </div>
               </Form.Group>
-              <Form.Group className="col-12 mb-3">
+              <Form.Group className="col-4 mb-3">
                 <div className="d-flex justify-content-around">
                   <div className="form-check form-switch">
                     <Field
@@ -279,7 +281,7 @@ export const EditProductDash = () => {
                       type="checkbox"
                       name="visible"
                       id="flexSwitchCheckVisible"
-                      value={formik.values.visible}
+                    /* value={formik.values.visible} */
                     />
                     <Form.Label
                       className="form-check-label"
@@ -297,7 +299,9 @@ export const EditProductDash = () => {
                 ></ErrorMessage>
               </Form.Group>
               <Form.Group className="col-12 mb-3">
-                <Form.Label htmlFor="">Imagenes *</Form.Label>
+                <Form.Label htmlFor="">
+                  Imágenes * <small>(máx 3 archivos)</small>
+                </Form.Label>
                 <div className="input-group">
                   <input
                     type="file"
@@ -317,7 +321,7 @@ export const EditProductDash = () => {
                 <div className="d-flex align-items-center justify-content-end">
                   <button
                     type="button"
-                    className="btn btn-success"
+                    className="mx-2 btn btn-success"
                     onClick={() => document.getElementById("imageFile").click()}
                   >
                     Seleccionar

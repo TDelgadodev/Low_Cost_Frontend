@@ -5,13 +5,13 @@ import ProductList from '../ProductList';
 
 export default function SearchDash() {
   const { filteredKeyword, getProductKeyword } = useProducts();
-  const [hasSearched, setHasSearched] = useState(false); 
-  const [searchedKeyword, setSearchedKeyword] = useState(''); 
+  const [hasSearched, setHasSearched] = useState(false);
+  const [searchedKeyword, setSearchedKeyword] = useState('');
 
   const handleSearch = async (keyword) => {
     try {
       await getProductKeyword(keyword);
-      setSearchedKeyword(keyword); 
+      setSearchedKeyword(keyword);
     } finally {
       setHasSearched(true);
     }
@@ -19,11 +19,13 @@ export default function SearchDash() {
 
   return (
     <div>
-      <SearchForm onSearch={handleSearch} />
+      <div className='pb-3'>
+        <SearchForm onSearch={handleSearch} />
+      </div>
       {searchedKeyword && (
-        <h3 className='text-center'>
+        <h4 className='text-center'>
           Resultados de búsqueda para: {searchedKeyword}
-        </h3>
+        </h4>
       )}
       {filteredKeyword ? (
         <ProductList products={filteredKeyword} />

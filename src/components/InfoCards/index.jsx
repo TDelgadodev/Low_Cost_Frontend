@@ -2,7 +2,7 @@ import { AttachMoney, Autorenew, DeliveryDining } from "@mui/icons-material";
 import { Col, Container, Row } from "react-bootstrap";
 import styles from './InfoCards.module.css'
 
-export default function InfoCards() {
+export const InfoCards = () => {
     return (
         <Container>
             <Row className={`justify-items-center align-items-center justify-content-center mb-5 ${styles.itemsContainer}`}>
@@ -21,7 +21,7 @@ export default function InfoCards() {
                 <Col xs={10} sm={10} md={3} lg={3} xl={3} className={`d-flex align-items-center mx-3 my-3 ${styles.textItems}`}>
                     <AttachMoney className={`${styles.itemsIcon}`}></AttachMoney>
                     <div>
-                        <p>ENVÍO GRATUITO</p><small>Sin costo dentro de zona norte</small>
+                        <p>ENVÍO GRATUITO</p><small>Dentro de Buenos Aires, Zona Norte</small>
                     </div>
                 </Col>
             </Row>

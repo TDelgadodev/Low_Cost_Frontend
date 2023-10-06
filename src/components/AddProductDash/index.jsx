@@ -30,7 +30,7 @@ export const AddProductDash = () => {
 
   const validationSchema = Yup.object({
     title: Yup.string().required("El título es obligatorio"),
-    price: Yup.number().required("El precio es obligatorio"),
+    price: Yup.number()/* .required("El precio es obligatorio") */,
     priceUSD: Yup.number().nullable(),
     description: Yup.string().required("La descripción es obligatoria"),
     brandId: Yup.string().required("La marca es obligatoria"),

@@ -1,6 +1,5 @@
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { ErrorMessage, Field, Formik } from "formik";
-import InfoCards from "../../components/infoCards";
 import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
 import { useState, useEffect } from "react";
@@ -9,8 +8,9 @@ import { Wallet, initMercadoPago } from "@mercadopago/sdk-react";
 import { useCart } from "../../hooks/useCart";
 import CartProduct from "../../components/CartModal/CartProduct";
 import { useNavigate } from "react-router-dom";
-import styles from "./index.module.css"; /*  */
 import useAuth from "../../hooks/useAuth";
+import { InfoCards } from "../../components/InfoCards";
+import styles from "./index.module.css"; /*  */
 
 export const CompletedPurchase = () => {
   const { getProfile, userProfile } = useAuth();
@@ -409,6 +409,9 @@ export const CompletedPurchase = () => {
               Una vez que completes tu compra, recibirás por correo electrónico
               las indicaciones detalladas junto con los datos necesarios para
               coordinar la entrega de tu producto en el menor tiempo posible.
+            </p>
+            <p className={`${styles.text2} my-5`}>
+              Importante: El precio final no abarca los gastos de envío, si estos aplican. El costo del envío se abonará después de que el producto haya sido entregado. Para obtener una cotización del envío, por favor, comuníquese al siguiente número: +54 9 11 2888-3246.
             </p>
           </Col>
           <InfoCards />

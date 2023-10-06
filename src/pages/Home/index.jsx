@@ -7,7 +7,8 @@ import ShoppingCart from "../../components/CartModal";
 import WhatsApp from "../../components/WhatsApp";
 import CarouselCategories from "../../components/CarouselCategories";
 import BannerStatic from "../../components/BannersHomeStatic";
-import InfoCards from "../../components/infoCards";
+import { InfoCards } from "../../components/InfoCards";
+
 
 export const Home = () => {
 

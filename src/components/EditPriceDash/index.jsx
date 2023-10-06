@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { editProductPricesService } from '../../services/admin.service';
+/* import { Divider } from '@mui/material'; */
 
 function EditPriceDash() {
   const [startIdAbsolute, setStartIdAbsolute] = useState('');
@@ -12,22 +13,22 @@ function EditPriceDash() {
   const [message, setMessage] = useState('');
 
   const handleEditPrices = async () => {
-    try {  
+    try {
       const result = await editProductPricesService(
         isPercentage ? startIdPercentage : startIdAbsolute,
         isPercentage ? endIdPercentage : endIdAbsolute,
         isPercentage ? percentageValue : updateValueAbsolute,
         isPercentage
       );
-      
+
       console.log("Result from backend:", result);
-  
+
       setMessage(result.message);
     } catch (error) {
       setMessage(error.message);
     }
   };
-  
+
 
   const handleTogglePercentage = () => {
     setIsPercentage(!isPercentage);
@@ -35,9 +36,10 @@ function EditPriceDash() {
 
   return (
     <div>
-      <h2>Edit Product Prices</h2>
-      <div>
-        <h3>Update by Value</h3>
+      <h3 className='pb-5'>Editar Precios por Mayor</h3>
+      <div className='pb-3'>
+        <h4>Establecer valores fijos</h4>
+        <p>Seleccione de su lista de productos un ID inicial y un ID final para determinar un valor fijo a los productos seleccionados.</p>
         <input
           type="number"
           placeholder="Start ID"
@@ -46,21 +48,24 @@ function EditPriceDash() {
         />
         <input
           type="number"
+          className='mx-3'
           placeholder="End ID"
           value={endIdAbsolute}
           onChange={(e) => setEndIdAbsolute(e.target.value)}
         />
         <input
           type="number"
-          placeholder="Update Value"
+          placeholder="Valor fijo"
           value={updateValueAbsolute}
           onChange={(e) => setUpdateValueAbsolute(e.target.value)}
         />
-        <button onClick={handleEditPrices}>Edit Prices</button>
+        <button className='mx-3' style={{ color: 'white', backgroundColor: '#007BFF' }} onClick={handleEditPrices}>Editar</button>
       </div>
       <hr />
-      <div>
-        <h3>Update by Percentage</h3>
+      <div className='pt-3'>
+        <h4>Establecer valores por porcentaje</h4>
+        <p>Seleccione de su lista de productos un ID inicial y un ID final para determinar un valor porcentual para aumentar los productos seleccionados.</p>
+        <p>Atención: Antes de editar marque la casilla Aplicar Porcentaje. No es necesario colocar el simbolo %</p>
         <input
           type="number"
           placeholder="Start ID"
@@ -69,25 +74,27 @@ function EditPriceDash() {
         />
         <input
           type="number"
+          className='mx-3'
           placeholder="End ID"
           value={endIdPercentage}
           onChange={(e) => setEndIdPercentage(e.target.value)}
         />
         <input
           type="number"
-          placeholder="Percentage"
+          placeholder="Porcentaje"
           value={percentageValue}
           onChange={(e) => setPercentageValue(e.target.value)}
         />
         <label>
           <input
             type="checkbox"
+            className='mx-3'
             checked={isPercentage}
             onChange={handleTogglePercentage}
           />
-          Apply Percentage
+          Aplicar Porcentaje
         </label>
-        <button onClick={handleEditPrices}>Edit Prices</button>
+        <button className='mx-3' style={{ color: 'white', backgroundColor: '#007BFF' }} onClick={handleEditPrices}>Editar</button>
       </div>
       {message && <p>{message}</p>}
     </div>

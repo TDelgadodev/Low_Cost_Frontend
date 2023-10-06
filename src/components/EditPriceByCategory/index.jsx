@@ -15,8 +15,8 @@ function EditCategoryPrices() {
   const [isPercentage, setIsPercentage] = useState(false);
   const [message, setMessage] = useState("");
   const [editedProducts, setEditedProducts] = useState([]);
-  const [isRequestSuccessful, setIsRequestSuccessful] = useState(false); 
-  const [currentPage, setCurrentPage] = useState(1); 
+  const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
   const ProductsPerPage = 12;
 
 
@@ -43,7 +43,7 @@ function EditCategoryPrices() {
 
       if (response) {
         setEditedProducts(response);
-        setIsRequestSuccessful(true); 
+        setIsRequestSuccessful(true);
       }
       setMessage(result.message);
     } catch (error) {
@@ -60,51 +60,52 @@ function EditCategoryPrices() {
 
   useEffect(() => {
     async function fetchInitialProducts() {
-        try {
-          const response = await filterProductsByCategory(categoryId);
-  
-          if (response) {
-            setEditedProducts(response);
-          }
-        } catch (error) {
-          console.error('Error al obtener productos por categoría', error);
+      try {
+        const response = await filterProductsByCategory(categoryId);
+
+        if (response) {
+          setEditedProducts(response);
         }
+      } catch (error) {
+        console.error('Error al obtener productos por categoría', error);
       }
-  
-      if (categoryId) {
-        fetchInitialProducts();
-      }
+    }
+
+    if (categoryId) {
+      fetchInitialProducts();
+    }
   }, [categoryId]);
   return (
     <div>
-      <h2>Edit Category Prices</h2>
-      <div>
-        <label>Category ID:</label>
+      <h3 className='pb-3'>Editar Precios por Categoría</h3>
+      <p>Seleccione el número correspondiente a la categoría que desea para determinar un valor porcentual mayor y, así, incrementar únicamente los productos de dicha categoría. Luego de colocar el número de categoría se desplegará una lista ordenada con los productos pertinentes a esa categoría.</p>
+      <p>Atención: Antes de editar marque la casilla Aplicar Porcentaje. No es necesario colocar el simbolo %</p>
+      <div className='pb-5'>
+        <label>ID Categoría:</label>
         <input
           type="number"
+          className='mx-3'
           value={categoryId}
           onChange={(e) => setCategoryId(e.target.value)}
         />
-      </div>
-      <div>
-        <label>Update Value:</label>
+        <label>Nuevo Valor:</label>
         <input
           type="number"
+          className='mx-3'
           value={updateValue}
           onChange={(e) => setUpdateValue(e.target.value)}
         />
-      </div>
-      <div>
         <label>
           <input
             type="checkbox"
+            className='mx-3'
             checked={isPercentage}
             onChange={handleTogglePercentage}
           />
-          Apply Percentage
+          Aplicar Porcentaje
         </label>
+        <button className='mx-3' style={{ color: 'white', backgroundColor: '#007BFF' }} onClick={handleEditPrices}>Edit Prices</button>
       </div>
-      <button onClick={handleEditPrices}>Edit Prices</button>
       {message && <p>{message}</p>}
       {editedProducts.length > 0 && (
         <div>

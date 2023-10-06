@@ -1,4 +1,5 @@
 import { Component } from "react";
+import { toast } from "react-toastify";
 import axios from "axios";
 import CarouselBanner from "../CarouselBanner";
 
@@ -30,16 +31,28 @@ class BannerUploader extends Component {
         },
       });
 
-
       this.setState({
         uploadedImages: response.data.data,
         uploadMessage: "Imágenes cargadas con éxito",
         images: [], // Restablece el estado de las imágenes
       });
+
+      toast.success(
+        "Imágenes cargadas con éxito."
+      );
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 2000);
+
     } catch (error) {
       this.setState({
         errorMessage: "Error al cargar las imágenes: " + error.message,
       });
+
+      toast.error(
+        "Error al cargar las imágenes."
+      );
     }
   };
   handleDeleteOldImages = async () => {
@@ -51,11 +64,22 @@ class BannerUploader extends Component {
           uploadMessage: "",
           errorMessage: "",
         });
-        alert("Imágenes antiguas eliminadas con éxito.");
+
+        toast.success(
+          "Imágenes anteriores eliminadas con éxito."
+        );
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
       } else {
         this.setState({
           errorMessage: "Error al eliminar las imágenes antiguas.",
         });
+        toast.error(
+          "Error al eliminar las imágenes anteriores."
+        );
       }
     } catch (error) {
       this.setState({
@@ -69,13 +93,20 @@ class BannerUploader extends Component {
 
     return (
       <div>
-        <h2>Cargar Banners</h2>
+        <h3 className='pb-3'>Cargar Banners para Carrusel del Home</h3>
+        <p>A continuación debe cargar 3 imágenes para el carrusel, en el caso de que no se cargue ningúna se establecerá una imagen por defecto.</p>
+        <p>En el caso de que quiera sustituir imágenes cargadas por usted mismo anteriormente, primero seleccione el botón Eliminar Imágenes Anteriores.</p>
+        <p>Para cargar imágenes primero seleccione Elegir archivos, cargue 3 banners y luego presione Subir Banners.</p>
+        <p className='pb-3'>Atención: Los archivos deben estar en formato JPG/PNG y con dimensiones de 2815px por 625px en horizontal.</p>
         <input type="file" multiple accept="image/*" onChange={this.handleFileChange} />
-        <button onClick={this.handleUpload}>Subir Banners</button>
-        <button onClick={this.handleDeleteOldImages}>Eliminar Imágenes Antiguas</button>
+        <button onClick={this.handleUpload} className='mx-3' style={{ color: 'white', backgroundColor: '#007BFF' }}>Subir Banners</button>
+        <button onClick={this.handleDeleteOldImages} style={{ color: 'white', backgroundColor: '#007BFF' }}>Eliminar Imágenes Anteriores</button>
         {uploadMessage && <p>{uploadMessage}</p>}
         {errorMessage && <p>{errorMessage}</p>}
-        <CarouselBanner images={[]} />
+        <div className='pt-5'>
+          <p>Vista previa:</p>
+          <CarouselBanner images={[]} />
+        </div>
       </div>
     );
   }

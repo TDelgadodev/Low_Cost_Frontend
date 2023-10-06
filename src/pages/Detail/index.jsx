@@ -1,5 +1,5 @@
 import { Button, Container } from "react-bootstrap";
-import { CreditScoreOutlined, DeliveryDining } from "@mui/icons-material";
+import { CreditScoreOutlined, /* DeliveryDining */ } from "@mui/icons-material";
 import WhatsApp from "../../components/WhatsApp";
 import ShoppingCart from "../../components/CartModal";
 import { useParams } from "react-router-dom";
@@ -9,10 +9,10 @@ import { useCart } from "../../hooks/useCart";
 import { toast } from 'react-toastify'
 import Carrousel from "../../components/CarrouselIMG";
 import PaginationCard from "../../components/PaginationCards";
-import InfoCards from "../../components/infoCards";
 import Modal from 'react-modal';
 import CancelIcon from '@mui/icons-material/Cancel';
 import Divider from "@mui/material/Divider";
+import { InfoCards } from "../../components/InfoCards";
 import styles from "./index.module.css";
 
 
@@ -31,6 +31,7 @@ export const Detail = () => {
     const loadProductDetails = async () => {
       try {
         const productDetails = await getProduct(id);
+
         setProduct(productDetails);
       } catch (error) {
         console.error("Error obteniendo el detalle de producto:", error);
@@ -74,13 +75,23 @@ export const Detail = () => {
           <small className={`${styles.categoryName}`}>Categoría - {product.category.name}</small>
           <hr className="my-3" />
           <h2 className={`${styles.productName} pt-1`}>{product.name}</h2>
-          <p className={`${styles.productPrice}`}>${product.price.toLocaleString('es-AR')}</p>
+          <p className={`${styles.productPrice}`}>
+            {product.price === 0 ? (
+              <>
+                {product.priceUSD.toLocaleString('es-AR')} (USD)
+              </>
+            ) : (
+              <>
+                ${product.price.toLocaleString('es-AR')}
+              </>
+            )}
+          </p>
           <p className={`${styles.productStock}`}>{product.stock} Unidades Disponibles</p>
           <hr className="my-4" />
           <a className={`${styles.productPay}`} onClick={openModal}><CreditScoreOutlined /> Ver todos los medios de pago </a>
           <hr className="my-4" />
-          <a href="#" className={`${styles.productPay}`}><DeliveryDining /> Calcular costo de envío</a>
-          <hr className="my-4" />
+          {/* <a href="#" className={`${styles.productPay}`}><DeliveryDining /> Calcular costo de envío</a>
+          <hr className="my-4" /> */}
           <Button variant="primary" onClick={() => { handleAddToCart(product) }}
             style={{ width: '100%' }}>Agregar al Carrito</Button>
         </div>

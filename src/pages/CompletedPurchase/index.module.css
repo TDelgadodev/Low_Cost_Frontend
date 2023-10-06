@@ -5,6 +5,13 @@
     color: grey;
 }
 
+.text2 {
+    font-family: Poppins;
+    text-align: center;
+    line-height: 25px;
+    color: #007BFF;
+}
+
 .title {
     font-family: Poppins;
     text-align: center;
