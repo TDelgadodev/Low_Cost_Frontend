@@ -35,7 +35,7 @@ function CarouselCategories() {
             <Slider {...desktopSettings} className={`${styles.sliderContainerDesktop} d-none d-md-block`}>
                 {categories.map((category) => (
                     <div key={category.id} className={`${styles.structure}`}>
-                        <Link to={`/search`}>
+                        <Link to={`/store`}>
                             <img src={`/categories/${category.image}`}
                                 alt={category.name}
                                 style={{ width: '135px' }}
@@ -48,7 +48,7 @@ function CarouselCategories() {
             <Slider {...mobileSettings} className={`${styles.sliderContainerDesktop} d-md-none`}>
                 {categories.map((category) => (
                     <div key={category.id}>
-                        <Link to={`/search/${category.id}`}>
+                        <Link to={`/store/${category.id}`}>
                             <img src={`/categories/${category.image}`}
                                 alt={category.name}
                                 style={{ width: '75px' }}

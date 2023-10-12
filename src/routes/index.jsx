@@ -22,6 +22,7 @@ import EditPriceDash from "../components/EditPriceDash";
 import EditCategoryPrices from "../components/EditPriceByCategory";
 import BannerUploader from "../components/BannerUploader";
 import BannerStaticUploader from "../components/BannerStaticUploader"
+import PageNotFound from "../components/PageNotFound";
 
 export const AppRoutes = () => {
   const { user } = useAuth();
@@ -30,17 +31,18 @@ export const AppRoutes = () => {
   return (
     <Routes>
       <Route path="/" element={<Home />} />
-      <Route path="/search/*" element={<Search />} />
+      <Route path="/store/*" element={<Search />} />
       <Route path="/product/:id" element={<Detail />} />
       <Route path="/register" element={<Register />} />
       <Route path="/get-code" element={<GetCodeResetMain />} />
       <Route path="/purchase-accepted" element={<PurchaseAccepted />} />
       <Route path="/purchase-denied" element={<PurchaseDenied />} />
+      <Route path="*" element={<PageNotFound />} />
 
       {/* Rutas protegidas */}
-      <Route path="/login" element={user ? (<Navigate to="/" />) : (<Login />)} />
-      <Route path="/profile/*" element={user ? (<Profile />) : (<Navigate to="/login" />)} />
-      <Route path="/finish-buying" element={user ? (<CompletedPurchase />) : (<Navigate to="/login" />)} />
+      <Route path="/signIn" element={user ? (<Navigate to="/" />) : (<Login />)} />
+      <Route path="/profile/*" element={user ? (<Profile />) : (<Navigate to="/signIn" />)} />
+      <Route path="/finish-buying" element={user ? (<CompletedPurchase />) : (<Navigate to="/signIn" />)} />
 
       {/* Rutas de admin protegidas */}
       <Route path="/dashboard/*" element={isAdmin ? (<Dashboard />) : (<Navigate to="/" />)} />
