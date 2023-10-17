@@ -41,7 +41,7 @@ export default function CategoriesList() {
                                     {categories.map((category) => (
                                         <li key={category.id}>
                                             <Link
-                                                to={`/search`}
+                                                to={`/store`}
                                                 onClick={() => handleCategoryClick(category.id)}>{category.name}</Link>
                                         </li>
                                     ))}

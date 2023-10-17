@@ -35,7 +35,7 @@ function MyCarousel() {
             <Slider {...desktopSettings} className={`${styles.sliderContainerDesktop} d-none d-md-block`}>
                 {brands.map((brand) => (
                     <div key={brand.id}>
-                        <Link to={`/search`}>
+                        <Link to={`/store`}>
                             <img src={`/brands/${brand.image}`}
                                 alt={brand.name}
                                 style={{ width: '90px' }}
@@ -47,7 +47,7 @@ function MyCarousel() {
             <Slider {...mobileSettings} className={`${styles.sliderContainerDesktop} d-md-none`}>
                 {brands.map((brand) => (
                     <div key={brand.id}>
-                        <Link to={`/search`}>
+                        <Link to={`/store`}>
                             <img src={`/brands/${brand.image}`}
                                 alt={brand.name}
                                 style={{ width: '75px' }}

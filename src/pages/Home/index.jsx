@@ -24,7 +24,7 @@ export const Home = () => {
         <h2 className={`pb-5 pt-2 ${styles.homeTitle}`} style={{ color: '#007BFF', textAlign: 'center' }}>¡CONOCÉ TODAS NUESTRAS OFERTAS!</h2>
         <BannerStatic></BannerStatic>
         <CarouselCategories></CarouselCategories>
-        <h3 className={`${styles.homeTitle} pb-5 pt-2`}>DESTACADOS DEL MES</h3>
+        <h3 className={`${styles.homeTitle} pb-5 pt-2`} id="ofertas">DESTACADOS DEL MES</h3>
       </Container>
       <Container>
         <PaginationCard></PaginationCard>

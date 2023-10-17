@@ -27,7 +27,7 @@ function Header() {
 
   const handleLogout = () => {
     logout();
-    navigate("/login");
+    navigate("/signIn");
     window.location.reload();
   };
 
@@ -38,7 +38,7 @@ function Header() {
   const handleSubmit = (event) => {
     event.preventDefault();
     getProductKeyword(keyword);
-    navigate(`/search?keyword=${encodeURIComponent(keyword)}`);
+    navigate(`/store?keyword=${encodeURIComponent(keyword)}`);
   };
 
   const handleChange = (event) => {
@@ -101,8 +101,8 @@ function Header() {
                   <Nav.Link href="/" className={`${styles.typo}`}>
                     <Button>Inicio</Button>
                   </Nav.Link>
-                  <Nav.Link href="/search" className={`${styles.typo}`}>
-                    <Button>Tienda</Button>
+                  <Nav.Link href="#ofertas" className={`${styles.typo}`}>
+                    <Button>Ofertas</Button>
                   </Nav.Link>
                   <Nav.Link href="/catalogo-agosto.pdf" target="_blank" className={`${styles.typo}`}>
                     <Button>Revista</Button>
@@ -136,7 +136,7 @@ function Header() {
                     </Nav.Link>
                   ) : (
                     <Nav.Link>
-                      <Link to="/login" className={`${styles.typo}`}>
+                      <Link to="/signIn" className={`${styles.typo}`}>
                         <Button>
                           <AccountCircleOutlinedIcon />
                         </Button>

@@ -37,7 +37,7 @@ export const Register = () => {
       await register(values);
       toast.success("Registro exitoso");
       setRegistrationSuccess(true);
-      navigate("/login");
+      navigate("/signIn");
     } catch (error) {
       throw new Error(error.response.data.error.message)
     }
