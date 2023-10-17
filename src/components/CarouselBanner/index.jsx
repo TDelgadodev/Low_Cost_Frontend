@@ -10,10 +10,11 @@ class CarouselBanner extends Component {
 
     componentDidMount() {
         // Realiza una solicitud al servidor para obtener las rutas de las imágenes
-        axios.get("http://localhost:3000/api/upload/horizontal-banners")
+        /* axios.get("http://localhost:3000/api/upload/horizontal-banners") */
+        axios.get("https://gabriellanzillotti.wnpower.host/api/upload/horizontal-banners")
             .then((response) => {
-                this.setState({ imageUrls: response.data });
-                console.log('response:', response.data);
+                this.setState({ imageUrls: response.data.data });
+                console.log('response:', response.data.data);
             })
             .catch((error) => {
                 console.error("Error al obtener las rutas de las imágenes:", error);
@@ -39,7 +40,7 @@ class CarouselBanner extends Component {
                     {imageUrls && imageUrls.length > 0 ? (
                         imageUrls.map((imageUrl, index) => (
                             <div key={index}>
-                                <img src={imageUrl} alt={`Banner ${index + 1}`} />
+                                <img src={imageUrl.path} alt={`Banner ${index + 1}`} />
                             </div>
                         ))
                     ) : (
