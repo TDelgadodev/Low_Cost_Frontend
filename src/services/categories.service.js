@@ -7,7 +7,6 @@ export const getCategoriesService = async () => {
         const url = `${apiUrl}`
         const response = await axios.get(url);
         const categories = response.data.data;
-        /* console.log("respuesta", categories); */
         return categories
     } catch (error) {
         console.log(error)

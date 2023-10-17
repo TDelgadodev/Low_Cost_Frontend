@@ -57,7 +57,6 @@ export const Detail = () => {
   if (!product) {
     return <p>El producto no esta disponible.</p>;
   }
-  console.log("producto:", product)
 
   return (
     <>

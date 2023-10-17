@@ -17,7 +17,6 @@ const BrandsProvider = ({ children }) => {
         try {
             setLoading(true)
             const brandsData = await getBrandsService()
-            /* console.log('datos de marca', brandsData) */
             setBrands(brandsData)
             setLoading(false)
         } catch (error) {

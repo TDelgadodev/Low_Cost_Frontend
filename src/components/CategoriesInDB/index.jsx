@@ -10,7 +10,6 @@ export const CategoriesDB = () => {
 
   const handleCategoryClick = (categoryId) => {
     getProductByCategory(categoryId)
-    console.log('log de categoryId en CategoriesInDB', categoryId);
   }
 
 

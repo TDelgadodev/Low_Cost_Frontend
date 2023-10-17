@@ -14,7 +14,6 @@ export const GetCodeResetMain = () => {
     try {
       const { email } = values; 
       const response = await getCodeToResetPasswordService(email);
-      console.log(response);
       toast.success('Codigo enviado con exito!');
       setResetData({ email }); 
       setStep("resetPassword");
@@ -26,10 +25,8 @@ export const GetCodeResetMain = () => {
   const handleSubmitResetPassword = async (values) => {
     try {
       const { codeReset, newPassword } = values;
-      console.log(values);
       const email = resetData?.email;
       const response = await resetPasswordService(email,codeReset.toString(), newPassword);
-      console.log(response);
       toast.success('Contraseña restablecida con éxito!');
     } catch (error) {
       console.error("Error restableciendo la contraseña:", error);

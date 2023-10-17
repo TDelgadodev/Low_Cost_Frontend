@@ -17,16 +17,11 @@ export const Profile = () => {
 
   useEffect(() => {
     if (!userProfile) {
-      // Si userProfile aún no se ha cargado, obtenerlo
       getProfile();
     } else {
-      // userProfile ya se ha cargado, establecer isLoading en false
       setIsLoading(false);
     }
   }, [getProfile, userProfile]);
-
-  console.log('perfil de usuario:', userProfile)
-  console.log(userProfile?.user?.name)
 
   const initialValues = {
     name: userProfile?.user?.name || "",
@@ -60,7 +55,6 @@ export const Profile = () => {
         ...values,
         phone: parseInt(values.phone),
       };
-      console.log(formattedValues);
       setIsLoading(false);
     } catch (error) {
       console.error(error);
