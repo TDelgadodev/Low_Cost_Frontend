@@ -18,14 +18,21 @@ export default function ProductCard({ product }) {
 
     const imageUrl = product.imageUrls && product.imageUrls[0] ? product.imageUrls[0] : '/nofoto.png';
 
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth' // Esto hace que el desplazamiento sea suave
+        });
+    };
+
     return (
         <Card className={`${styles.cardContainer}`}>
-            <Link to={`/product/${product.id}`}>
+            <Link to={`/product/${product.id}`} onClick={scrollToTop}>
                 <Card.Img variant="top" src={imageUrl}
                     className={`${styles.cardImg}`} />
             </Link>
             <Card.Body>
-                <Link to={`/product/${product.id}`} className={`${styles.cardLink}`}>
+                <Link to={`/product/${product.id}`} className={`${styles.cardLink}`} onClick={scrollToTop}>
                     <p className={`pb-3 ${styles.cardName}`}>{product.name}</p>
                 </Link>
                 <Card.Text className={`${styles.cardPrice}`}>

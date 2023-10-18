@@ -8,7 +8,7 @@ import styles from './PaginationSearch.module.css'
 
 export default function PaginationSearch() {
     const { filteredKeyword, filteredProductsCategory, filteredProductsBrand } = useProducts();
-    const ProductsPerPage = 8;
+    const ProductsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(1);
     const [currentProducts, setCurrentProducts] = useState([]);
 
