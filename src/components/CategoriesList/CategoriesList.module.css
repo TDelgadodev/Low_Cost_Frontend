@@ -1,7 +1,17 @@
+@media (max-width: 425px) {
+    .menuButton {
+        /* background-color: #007BFF; */
+        background-color: orangered;
+        width: 250px;
+        margin: 0px -65px
+    }
+}
+
 .menuButton {
     /* background-color: #007BFF; */
     background-color: orangered;
-    display: flex;
+    width: 500px;
+    margin: 0px -195px;
 }
 
 .menuButton a {
@@ -16,22 +26,17 @@
 }
 
 .categoriesList {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Filas con un ancho mínimo de 200px */
     list-style: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 60px;
-    /* background-color: #007BFF; */
+    padding: 10px;
     background-color: orangered;
-    text-align: justify;
+    text-align: center;
     line-height: 35px;
-    justify-content: center;
-    width: 100%;
 }
 
 .categoriesList li {
-    margin-right: 10px;
     font-size: 0.9rem;
     font-family: Poppins;
     font-weight: 300;
