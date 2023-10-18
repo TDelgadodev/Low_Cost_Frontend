@@ -80,7 +80,6 @@ export const EditProductDash = () => {
         updatedValues,
         id
       );
-      console.log(values);
       const editedProduct = updatedProductResponse.data?.editedProduct[0];
       if (editedProduct === 1) {
         setTimeout(() => {
@@ -91,7 +90,6 @@ export const EditProductDash = () => {
           getMetricsProducts();
         }, 2000);
       }
-      console.log(editedProduct);
     } catch (error) {
       console.error("Error al actualizar el producto:", error);
     } finally {

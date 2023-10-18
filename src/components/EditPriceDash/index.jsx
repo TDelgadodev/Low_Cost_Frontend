@@ -20,9 +20,6 @@ function EditPriceDash() {
         isPercentage ? percentageValue : updateValueAbsolute,
         isPercentage
       );
-
-      console.log("Result from backend:", result);
-
       setMessage(result.message);
     } catch (error) {
       setMessage(error.message);

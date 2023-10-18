@@ -55,17 +55,12 @@ export const profileUserService = async (userId, token) => {
 export const updateProfileService = async (updatedData, token) => {
   try {
     const url = `${apiUrlAuth}${updatedData.id}`;
-    console.log("URL de la solicitud:", url); // Agrega este console.log para verificar la URL de la solicitud
-
     const response = await axios.put(url, updatedData, {
       headers: {
         Authorization: token,
         "Content-Type": "application/json",
       },
     });
-
-    console.log("Respuesta del servidor:", response.data); // Agrega este console.log para verificar la respuesta del servidor
-
     return response.data;
   } catch (error) {
     console.error("Error en la función updateProfileService:", error);

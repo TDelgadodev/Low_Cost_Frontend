@@ -16,7 +16,6 @@ export const TableProductsDash = () => {
   const startIndex = (currentPage - 1) * ProductsPerPage;
   const endIndex = startIndex + ProductsPerPage;
   
-  console.log(metricsProducts)
   return (
     <>
       <div className="d-flex justify-content-between">

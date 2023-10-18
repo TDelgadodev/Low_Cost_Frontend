@@ -19,16 +19,11 @@ export const CompletedPurchase = () => {
 
   useEffect(() => {
     if (!userProfile) {
-      // Si userProfile aún no se ha cargado, obtenerlo
       getProfile();
     } else {
-      // userProfile ya se ha cargado, establecer isLoading en false
       setIsLoading(false);
     }
   }, [getProfile, userProfile]);
-
-  console.log('perfil de usuario:', userProfile)
-  console.log(userProfile?.user?.name)
 
   const initialValues = {
     name: userProfile?.user?.name || "",
@@ -129,9 +124,6 @@ export const CompletedPurchase = () => {
           cartItems,
         }
       );
-
-      console.log('Datos del carrito:', cartItems);
-      console.log('Datos del formulario:', values);
 
       if (response.status === 200) {
         alert("Correo electrónico enviado al vendedor y al usuario");

@@ -45,7 +45,6 @@ const AdminProvider = ({ children }) => {
   const createProductProvider = async (formData) => {
     try {
       const data = await createProductService(formData);
-      console.log("createProductProvider called with data:", data);
       setCreateProduct(data);
       return data;
     } catch (error) {
@@ -57,7 +56,6 @@ const AdminProvider = ({ children }) => {
   const deleteProductProvider = async (id) => {
     try {
       const data = await deleteProductService(id);
-      console.log("deleteProductProvider called with data:", data);
       return data;
     } catch (error) {
       console.log("deleteProductProvider error:", error);
@@ -77,7 +75,6 @@ const AdminProvider = ({ children }) => {
   const updateProductProvider = async (formData,id) => {
     try {
       const updatedProduct = await updateProductService(formData,id);
-      console.log("Producto actualizado:", updatedProduct);
       return updatedProduct;
     } catch (error) {
       console.error("Error al actualizar el producto:", error);

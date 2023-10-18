@@ -88,7 +88,6 @@ export const updateProductService = async (formData, id) => {
         "Content-Type": "application/json",
       },
     });
-    console.log(formData);
     return response.data;
   } catch (error) {
     throw new Error(error.response.data);

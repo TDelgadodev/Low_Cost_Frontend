@@ -65,7 +65,6 @@ const ProductsProvider = ({ children }) => {
                 product.imageUrls = JSON.parse(product.imageUrls);
             })
             setFilteredKeyword(productKeywordData)
-            console.log("Product Keyword Data:", productKeywordData);
         } catch (error) {
             console.error("Error fetching product keyword data:", error.message);
         } finally {
@@ -84,7 +83,6 @@ const ProductsProvider = ({ children }) => {
                 });
     
                 setFilteredProductsCategory(productByCategoryData);
-                console.log(filteredProductsCategory);
             }
         } catch (error) {
             console.error("Error fetching product by category data:", error.message);

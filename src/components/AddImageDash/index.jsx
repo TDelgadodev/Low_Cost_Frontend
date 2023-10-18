@@ -44,7 +44,6 @@ export const ProductAddImage = ({file, setFieldValue, main, name}) => {
           id={name}
           hidden
           onChange={(event) => {
-            console.log(name);
             setFieldValue(name, event.target.files[0]);
           }}
         />
