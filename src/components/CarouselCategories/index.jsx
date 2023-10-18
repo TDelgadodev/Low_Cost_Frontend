@@ -20,8 +20,8 @@ function CarouselCategories() {
         slidesToShow: 6,
         slidesToScroll: 1,
         autoplay: true,
-        speed: 2500,
-        autoplaySpeed: 500,
+        speed: 1500,
+        autoplaySpeed: 300,
         cssEase: "ease-out"
     };
 

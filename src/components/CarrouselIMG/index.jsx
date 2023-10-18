@@ -10,7 +10,7 @@ const Carrousel = ({ images }) => {
         {images.map((imageUrl, index) => (
           <Carousel.Item key={index} className="custom-carousel-item">
             <img
-              className="d-block w-100 custom-carousel-item img-fluid"
+              className="d-block w-100"
               src={imageUrl}
               alt={`Imagen ${index + 1}`}
             />

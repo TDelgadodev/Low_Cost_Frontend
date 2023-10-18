@@ -6,7 +6,7 @@ import { useProducts } from '../../hooks/useProduct';
 
 export default function PaginationCard() {
     const { filteredProducts } = useProducts()
-    const ProductsPerPage = 8;
+    const ProductsPerPage = 15;
 
     const [currentPage, setCurrentPage] = useState(1);
 
