@@ -161,9 +161,9 @@ export const CompletedPurchase = () => {
   }, [preferenceId]);
 
   const areAllFieldsFilled = (values) => {
-    const { name, surname, email, phone, dni, street, streetNumber, postCode } = values;
+    const { name, surname, email, phone, dni, street, numberAddress, postCode } = values;
     return (
-      name && surname && email && phone && dni && street && streetNumber && postCode
+      name && surname && email && phone && dni && street && numberAddress && postCode
     );
   };
 

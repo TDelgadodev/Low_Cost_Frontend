@@ -99,7 +99,7 @@ class BannerUploader extends Component {
         <p>A continuación debe cargar 3 imágenes para el carrusel, en el caso de que no se cargue ningúna se establecerá una imagen por defecto.</p>
         <p>En el caso de que quiera sustituir imágenes cargadas por usted mismo anteriormente, primero seleccione el botón Eliminar Imágenes Anteriores.</p>
         <p>Para cargar imágenes primero seleccione Elegir archivos, cargue 3 banners y luego presione Subir Banners.</p>
-        <p className='pb-3'>Atención: Los archivos deben estar en formato JPG/PNG y con dimensiones de 2815px por 625px en horizontal.</p>
+        <p className='pb-3'>Atención: Los archivos deben estar en formato JPG/PNG y con dimensiones de 2670px por 625px en horizontal.</p>
         <input type="file" multiple accept="image/*" onChange={this.handleFileChange} />
         <button onClick={this.handleUpload} className='mx-3' style={{ color: 'white', backgroundColor: '#007BFF' }}>Subir Banners</button>
         <button onClick={this.handleDeleteOldImages} style={{ color: 'white', backgroundColor: '#007BFF' }}>Eliminar Imágenes Anteriores</button>

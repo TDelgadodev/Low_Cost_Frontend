@@ -29,7 +29,17 @@ export default function ProductCard({ product }) {
                     <p className={`pb-3 ${styles.cardName}`}>{product.name}</p>
                 </Link>
                 <Card.Text className={`${styles.cardPrice}`}>
-                    <b>${product.price.toLocaleString('es-AR')}</b>
+                    <b>
+                        {product.price === 0 ? (
+                            <>
+                                {product.priceUSD.toLocaleString('es-AR')} (USD)
+                            </>
+                        ) : (
+                            <>
+                                ${product.price.toLocaleString('es-AR')}
+                            </>
+                        )}
+                    </b>
                 </Card.Text>
                 <Button
                     variant="primary"
@@ -48,6 +58,7 @@ ProductCard.propTypes = {
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         price: PropTypes.number.isRequired,
+        priceUSD: PropTypes.number.isRequired,
         id: PropTypes.number.isRequired
     }).isRequired
 }
