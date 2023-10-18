@@ -1,17 +1,32 @@
-@media (max-width: 425px) {
-    .menuButton {
-        /* background-color: #007BFF; */
-        background-color: orangered;
-        width: 250px;
-        margin: 0px -65px
+.categoriesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    /* Filas con un ancho mínimo de 200px */
+    list-style: none;
+    padding: 10px;
+    background-color: orangered;
+    text-align: center;
+    line-height: 35px;
+    width: 250px;
+    margin: 0px -65px;
+}
+
+@media (min-width: 768px) {
+    .categoriesList {
+        width: 450px;
+        margin: 0px -195px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .categoriesList {
+        width: 500px;
+        margin: 0px -195px;
     }
 }
 
 .menuButton {
-    /* background-color: #007BFF; */
     background-color: orangered;
-    width: 500px;
-    margin: 0px -195px;
 }
 
 .menuButton a {
@@ -23,17 +38,6 @@
 .menuButton a:hover {
     color: greenyellow;
     font-family: Poppins;
-}
-
-.categoriesList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    /* Filas con un ancho mínimo de 200px */
-    list-style: none;
-    padding: 10px;
-    background-color: orangered;
-    text-align: center;
-    line-height: 35px;
 }
 
 .categoriesList li {
