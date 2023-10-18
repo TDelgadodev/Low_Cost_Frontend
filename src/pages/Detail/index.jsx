@@ -73,7 +73,7 @@ export const Detail = () => {
         )}
         <div className={`${styles.infoContainer} m-3`}>
           <small className={`${styles.categoryName}`}>Categoría - {product.category.name}</small> <br />
-          <small className={`${styles.categoryName}`}>Marca - {product.brand.name}</small>
+          {/* <small className={`${styles.categoryName}`}>Marca - {product.brand.name}</small> */}
           <hr className="my-3" />
           <h2 className={`${styles.productName} pt-1`}>{product.name}</h2>
           <p className={`${styles.productPrice}`}>
