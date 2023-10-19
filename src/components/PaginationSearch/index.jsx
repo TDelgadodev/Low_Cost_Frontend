@@ -4,7 +4,8 @@ import { Col, Container, Row } from 'react-bootstrap';
 import ProductCard from '../ProductCard';
 import { useProducts } from '../../hooks/useProduct';
 import OrderSelector from '../OrderSelector';
-import styles from './PaginationSearch.module.css'
+import { RingLoader } from 'react-spinners';
+/* import styles from './PaginationSearch.module.css' */
 
 export default function PaginationSearch() {
     const { filteredKeyword, filteredProductsCategory, filteredProductsBrand } = useProducts();
@@ -59,9 +60,14 @@ export default function PaginationSearch() {
     return (
         <>
             <OrderSelector orderBy={orderBy} handleOrderByChange={handleOrderByChange} />
-            {!currentProducts || currentProducts.length === 0 ? (
+            {currentProducts === null ? (
                 <Row className='p-5 m-5'>
-                    <h4 className={`${styles.subtext}`}>¡Buscá algún producto!</h4>
+                    <RingLoader
+                        type="Oval"
+                        color="#007bff"
+                        height={100}
+                        width={100}
+                    />
                 </Row>
             ) : (
                 <Container>

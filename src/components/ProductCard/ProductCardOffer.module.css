@@ -10,6 +10,9 @@
     color: grey !important;
     font-family: Poppins;
     font-size: 0.9rem !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cardPrice {
