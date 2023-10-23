@@ -12,32 +12,28 @@ export default function PaginationSearch() {
     const ProductsPerPage = 20;
     const [currentPage, setCurrentPage] = useState(1);
     const [currentProducts, setCurrentProducts] = useState([]);
+    const [orderBy, setOrderBy] = useState('');
 
     const handlePageChange = (event, pageNumber) => {
         setCurrentPage(pageNumber);
     };
-
-    const [orderBy, setOrderBy] = useState('')
 
     const handleOrderByChange = (event) => {
         setOrderBy(event.target.value);
     };
 
     useEffect(() => {
-
-        const startIndex = (currentPage - 1) * ProductsPerPage;
-        const endIndex = startIndex + ProductsPerPage;
-
         let productsToDisplay = [];
 
         if (filteredKeyword) {
-            productsToDisplay = filteredKeyword.slice(startIndex, endIndex);
+            productsToDisplay = filteredKeyword;
         } else if (filteredProductsBrand) {
-            productsToDisplay = filteredProductsBrand.slice(startIndex, endIndex);
+            productsToDisplay = filteredProductsBrand;
         } else if (filteredProductsCategory) {
-            productsToDisplay = filteredProductsCategory.slice(startIndex, endIndex);
+            productsToDisplay = filteredProductsCategory;
         }
 
+        // Aplicar orden a todos los productos
         if (orderBy === 'name_asc') {
             productsToDisplay.sort((a, b) => a.name.localeCompare(b.name));
         } else if (orderBy === 'name_desc') {
@@ -51,11 +47,13 @@ export default function PaginationSearch() {
         if (productsToDisplay.length > 0) {
             setCurrentProducts(productsToDisplay);
         }
+    }, [filteredKeyword, filteredProductsCategory, filteredProductsBrand, orderBy]);
 
-    }, [filteredKeyword, filteredProductsCategory, filteredProductsBrand, currentPage, orderBy]);
+    const startIndex = (currentPage - 1) * ProductsPerPage;
+    const endIndex = startIndex + ProductsPerPage;
 
-    const filteredProducts = filteredKeyword || filteredProductsCategory || filteredProductsBrand;
-    const totalPages = filteredProducts ? Math.ceil(filteredProducts.length / ProductsPerPage) : 1;
+    const paginatedProducts = currentProducts.slice(startIndex, endIndex);
+    const totalPages = Math.ceil(currentProducts.length / ProductsPerPage);
 
     return (
         <>
@@ -72,7 +70,7 @@ export default function PaginationSearch() {
             ) : (
                 <Container>
                     <Row>
-                        {currentProducts.map((product) => (
+                        {paginatedProducts.map((product) => (
                             <Col xs={6} sm={6} md={4} lg={3} xl={3} key={product.id} className="pb-5">
                                 <ProductCard product={product} />
                             </Col>

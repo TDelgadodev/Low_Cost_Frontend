@@ -3,17 +3,22 @@ import { ErrorMessage, Field, Formik } from "formik";
 import * as Yup from "yup";
 import { useParams } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { BrandsContext } from "../../context/BrandsProvider";
+import { CategoriesContext } from "../../context/CategoriesProvider";
 
 export const EditProductDash = () => {
   const {
-    metricsProducts,
     getProductDetailsProvider,
     updateProductProvider,
     getMetricsProducts,
   } = useAdmin();
+
+  const { brands } = useContext(BrandsContext);
+  const { categories } = useContext(CategoriesContext);
+
   const navigate = useNavigate();
 
   const { id } = useParams();
@@ -199,9 +204,9 @@ export const EditProductDash = () => {
                   <option hidden defaultValue>
                     Seleccione...
                   </option>
-                  {metricsProducts.data.map((product, index) => (
-                    <option key={index} value={product.brand?.id}>
-                      {product.brand?.name}
+                  {brands.map((brands, index) => (
+                    <option key={index} value={brands.id}>
+                      {brands.name}
                     </option>
                   ))}
                 </Field>
@@ -220,9 +225,9 @@ export const EditProductDash = () => {
                   <option hidden defaultValue>
                     Seleccione...
                   </option>
-                  {metricsProducts.data.map((product, index) => (
-                    <option key={index} value={product.category?.id}>
-                      {product.category?.name}
+                  {categories.map((categories, index) => (
+                    <option key={index} value={categories.id}>
+                      {categories.name}
                     </option>
                   ))}
                 </Field>

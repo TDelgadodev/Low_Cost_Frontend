@@ -1,5 +1,5 @@
 import { useProducts } from "../../hooks/useProduct";
-import { useEffect, useState } from "react"; 
+import { useEffect, useState } from "react";
 
 export const LastProductDB = () => {
   const { lastProduct, loading } = useProducts();
@@ -26,13 +26,13 @@ export const LastProductDB = () => {
             </h5>
           </div>
           <div className="card-body">
-          <h2>{lastProduct.name}</h2>
+            <h2>{lastProduct.name}</h2>
             <div className="text-center">
               {imageUrls.length > 0 ? (
                 <img
                   className="img-fluid px-3 px-sm-4 mt-3 mb-4"
                   style={{ width: "20rem" }}
-                  src={imageUrls[0]} 
+                  src={imageUrls[0]}
                   alt="Last Product"
                 />
               ) : (
@@ -40,7 +40,7 @@ export const LastProductDB = () => {
               )}
             </div>
             <p>{lastProduct.description}</p>
-            <p>Precio: {lastProduct.price}</p>
+            <p>Precio: {lastProduct.price.toLocaleString('es-AR')}</p>
             <p>Precio en USD: {lastProduct.priceUSD ? lastProduct.priceUSD : 'N/A'}</p>
             <p>Stock: {lastProduct.stock}</p>
             <p>OFerta: {lastProduct.offer ? "Sí" : "No"}</p>

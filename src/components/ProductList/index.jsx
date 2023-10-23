@@ -24,7 +24,8 @@ export default function ProductList({ products }) {
             <th>Categoría</th>
             <th>Marca</th>
             <th>Oferta</th>
-            <th>Visible</th> 
+            <th>Visible</th>
+            <th>Acciones</th>
           </tr>
         </thead>
         <tbody>

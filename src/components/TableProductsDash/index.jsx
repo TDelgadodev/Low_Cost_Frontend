@@ -8,14 +8,14 @@ import { Link } from "react-router-dom";
 export const TableProductsDash = () => {
   const { metricsProducts } = useAdmin();
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const ProductsPerPage = 12;
   const handlePageChange = (event, pageNumber) => {
     setCurrentPage(pageNumber);
   };
   const startIndex = (currentPage - 1) * ProductsPerPage;
   const endIndex = startIndex + ProductsPerPage;
-  
+
   return (
     <>
       <div className="d-flex justify-content-between">
@@ -51,7 +51,7 @@ export const TableProductsDash = () => {
                 <tr className={`${styles.rowsTable}`} key={product.id}>
                   <td>{startIndex + index + 1}</td>
                   <td>{product.name}</td>
-                  <td>${product.price}</td>
+                  <td>${product.price.toLocaleString('es-AR')}</td>
                   <td>${product.priceUSD ? product.priceUSD : 'N/A'}</td>
                   <td>{product.category ? product.category.name : 'N/A'}</td>
                   <td>{product.brand ? product.brand.name : 'N/A'}</td>

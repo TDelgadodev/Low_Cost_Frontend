@@ -15,7 +15,7 @@ function EditCategoryPrices() {
   const [isPercentage, setIsPercentage] = useState(false);
   const [message, setMessage] = useState("");
   const [editedProducts, setEditedProducts] = useState([]);
-  const [isRequestSuccessful, setIsRequestSuccessful] = useState(false);
+  const [/* isRequestSuccessful */, setIsRequestSuccessful] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const ProductsPerPage = 12;
 
