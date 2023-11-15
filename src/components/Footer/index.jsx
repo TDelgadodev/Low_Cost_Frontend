@@ -25,9 +25,9 @@ function Footer() {
           </Col>
           <Col sm={12} md={6} className="p-4">
             <h4 className={`${styles.footerTitle}`}>¡Contactáme!</h4>
-            <p className={`${styles.footerText}`}><EmailIcon className={`${styles.contactIcons}`}></EmailIcon>gabrielnicolas.dg@gmail.com</p>
-            <p className={`${styles.footerText}`}><LocalPhoneIcon className={`${styles.contactIcons}`}></LocalPhoneIcon>(+54) 9 11 3903 - 4290</p>
-            <p className={`${styles.footerText}`}><FmdGoodIcon className={`${styles.contactIcons}`}></FmdGoodIcon>Vieytes 730. Presidente Derqui. Pilar. CP1635</p>
+            <p className={`${styles.footerText}`}><EmailIcon className={`${styles.contactIcons}`}></EmailIcon>lowcost2024@gmail.com</p>
+            <p className={`${styles.footerText}`}><LocalPhoneIcon className={`${styles.contactIcons}`}></LocalPhoneIcon>(+54) 9 11 2888-3246</p>
+            <p className={`${styles.footerText}`}><FmdGoodIcon className={`${styles.contactIcons}`}></FmdGoodIcon>Gaspar Campos 1215. San Miguel</p>
           </Col>
           <Col sm={12} className={`${styles.footerCopyright}`}>
             <p className={`${styles.footerTextCopyright}`}>© 2023 All rights reserved <br /> This website is made with ❤️ by T&G STUDIO</p>

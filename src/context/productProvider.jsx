@@ -25,7 +25,7 @@ const ProductsProvider = ({ children }) => {
         }
     }
 
-    async function getLastProduct (){
+    async function getLastProduct() {
         try {
             setLoading(true)
             const lastProduct = await getLastProductService();
@@ -49,7 +49,7 @@ const ProductsProvider = ({ children }) => {
                 setFilteredProducts(productOfferData);
             } else {
                 console.error("La respuesta del servidor está vacía o no es válida.");
-            }    
+            }
         } catch (error) {
             console.error("Error fetching product offer data:", error.message);
         } finally {
@@ -81,7 +81,7 @@ const ProductsProvider = ({ children }) => {
                 productByCategoryData.forEach((product) => {
                     product.imageUrls = JSON.parse(product.imageUrls);
                 });
-    
+
                 setFilteredProductsCategory(productByCategoryData);
             }
         } catch (error) {
@@ -116,7 +116,13 @@ const ProductsProvider = ({ children }) => {
 
     useEffect(() => {
         getLastProduct();
-      }, []);
+    }, []);
+
+    useEffect(() => {
+        if (filteredProductsCategory !== null) {
+            getProductByCategory(filteredProductsCategory);
+        }
+    }, [filteredProductsCategory]);
 
     useEffect(() => {
         if (filteredProductsCategory !== null) {
@@ -146,7 +152,7 @@ const ProductsProvider = ({ children }) => {
 
     const contextValues = {
         idProduct,
-        lastProduct, 
+        lastProduct,
         getLastProduct,
         filteredProducts,
         filteredKeyword,

@@ -40,6 +40,7 @@ export const TableProductsDash = () => {
               <th scope="col">Categoria</th>
               <th scope="col">Marca</th>
               <th scope="col">Descuento</th>
+              <th scope="col">Visible</th>
               <th scope="col">Acciones</th>
             </tr>
           </thead>
@@ -56,6 +57,7 @@ export const TableProductsDash = () => {
                   <td>{product.category ? product.category.name : 'N/A'}</td>
                   <td>{product.brand ? product.brand.name : 'N/A'}</td>
                   <td>{product.offer ? "Sí" : "No"}</td>
+                  <td>{product.visible ? "Sí" : "No"}</td>
                   <td className={`${styles.linksDashboardActions}`}>
                     <Button>
                       <Link to={`/dashboard/products/edit/${product.id}`}>
