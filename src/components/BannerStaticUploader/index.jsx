@@ -25,8 +25,8 @@ class BannerUploader extends Component {
         }
 
         try {
-            const response = await axios.post("http://localhost:3000/api/upload/upload-banners-static", formData, {
-                /* const response = await axios.post("https://gabriellanzillotti.wnpower.host/api/upload/upload-banners-static", formData, { */
+            /* const response = await axios.post("http://localhost:3000/api/upload/upload-banners-static", formData, { */
+                const response = await axios.post("http://lowcostarg.com.ar/api/upload/upload-banners-static", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -58,8 +58,8 @@ class BannerUploader extends Component {
     };
     handleDeleteOldsImages = async () => {
         try {
-            const response = await axios.delete("http://localhost:3000/api/upload/delete-static-images");
-            /* const response = await axios.delete("https://gabriellanzillotti.wnpower.host/api/upload/delete-static-images"); */
+            /* const response = await axios.delete("http://localhost:3000/api/upload/delete-static-images"); */
+            const response = await axios.delete("http://lowcostarg.com.ar/api/upload/delete-static-images");
 
             if (response.data.ok) {
                 this.setState({

@@ -51,8 +51,8 @@ export const CompletedPurchase = () => {
       const cartItems = cart.cartItems;
 
       const response = await axios.post(
-        "http://localhost:3000/mp/create_preference",
-        /* "https://gabriellanzillotti.wnpower.host/mp/create_preference", */
+        /* "http://localhost:3000/mp/create_preference", */
+        "http://lowcostarg.com.ar/mp/create_preference",
         {
           description,
           price,
@@ -83,8 +83,8 @@ export const CompletedPurchase = () => {
       setPreferenceId(id);
     }
     const response = await axios.post(
-      "http://localhost:3000/mp/buyer_info",
-      /* "https://gabriellanzillotti.wnpower.host/mp/buyer_info", */
+      /* "http://localhost:3000/mp/buyer_info", */
+      "http://lowcostarg.com.ar/mp/buyer_info",
       {
         values,
         cartItems
@@ -117,8 +117,8 @@ export const CompletedPurchase = () => {
       const cartItems = cart.cartItems;
 
       const response = await axios.post(
-        "http://localhost:3000/api/users/finish-purchase",
-        /* "https://gabriellanzillotti.wnpower.host/api/users/finish-purchase", */
+        /* "http://localhost:3000/api/users/finish-purchase", */
+        "http://lowcostarg.com.ar/api/users/finish-purchase",
         {
           values,
           cartItems,

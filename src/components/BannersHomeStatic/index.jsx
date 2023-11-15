@@ -10,8 +10,8 @@ class BannerStatic extends Component {
 
     componentDidMount() {
         // Realiza una solicitud al servidor para obtener las rutas de las imágenes
-        axios.get("http://localhost:3000/api/upload/get-static-banners")
-            /* axios.get("https://gabriellanzillotti.wnpower.host/api/upload/get-static-banners") */
+        /* axios.get("http://localhost:3000/api/upload/get-static-banners") */
+            axios.get("http://lowcostarg.com.ar/api/upload/get-static-banners")
             .then((response) => {
                 this.setState({ imageUrls: response.data.data });
                 console.log('response static:', response.data.data);
