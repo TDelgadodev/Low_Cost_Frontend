@@ -11,7 +11,7 @@ class CarouselBanner extends Component {
     componentDidMount() {
         // Realiza una solicitud al servidor para obtener las rutas de las imágenes
         /* axios.get("http://localhost:3000/api/upload/horizontal-banners") */
-        axios.get("http://lowcostarg.com.ar/api/upload/horizontal-banners")
+        axios.get("https://lowcostarg.com.ar/api/upload/horizontal-banners")
             .then((response) => {
                 this.setState({ imageUrls: response.data.data });
                 console.log('response:', response.data.data);

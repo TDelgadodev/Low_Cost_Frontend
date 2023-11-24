@@ -52,7 +52,7 @@ export const CompletedPurchase = () => {
 
       const response = await axios.post(
         /* "http://localhost:3000/mp/create_preference", */
-        "http://lowcostarg.com.ar/mp/create_preference",
+        "https://lowcostarg.com.ar/mp/create_preference",
         {
           description,
           price,
@@ -84,7 +84,7 @@ export const CompletedPurchase = () => {
     }
     const response = await axios.post(
       /* "http://localhost:3000/mp/buyer_info", */
-      "http://lowcostarg.com.ar/mp/buyer_info",
+      "https://lowcostarg.com.ar/mp/buyer_info",
       {
         values,
         cartItems
@@ -118,7 +118,7 @@ export const CompletedPurchase = () => {
 
       const response = await axios.post(
         /* "http://localhost:3000/api/users/finish-purchase", */
-        "http://lowcostarg.com.ar/api/users/finish-purchase",
+        "https://lowcostarg.com.ar/api/users/finish-purchase",
         {
           values,
           cartItems,
