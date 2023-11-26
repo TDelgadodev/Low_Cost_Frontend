@@ -3,7 +3,6 @@ import styles from './Footer.module.css'
 import FacebookIcon from '@mui/icons-material/Facebook';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import InstagramIcon from '@mui/icons-material/Instagram';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import YouTubeIcon from '@mui/icons-material/YouTube';
 import EmailIcon from '@mui/icons-material/Email';
 import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
@@ -17,10 +16,9 @@ function Footer() {
           <Col sm={12} md={6} className="p-4">
             <img src="/logowhite.png" alt="" className={`${styles.footerLogo}`} />
             <p className={`${styles.footerText}`}>Más de 15.000 Productos para tu satisfacción. <br /> Confiabilidad para lo que importa.</p>
-            <a href="#"><FacebookIcon className={`${styles.footerIcons}`}></FacebookIcon></a>
+            <a href="https://www.facebook.com/people/LOW-COST/100088533799658/" target='_blank' rel="noreferrer"><FacebookIcon className={`${styles.footerIcons}`}></FacebookIcon></a>
+            <a href="https://www.instagram.com/lowcost2024" target='_blank' rel="noreferrer"><InstagramIcon className={`${styles.footerIcons}`}></InstagramIcon></a>
             <a href="#"><TwitterIcon className={`${styles.footerIcons}`}></TwitterIcon></a>
-            <a href="#"><InstagramIcon className={`${styles.footerIcons}`}></InstagramIcon></a>
-            <a href="#"><LinkedInIcon className={`${styles.footerIcons}`}></LinkedInIcon></a>
             <a href="#"><YouTubeIcon className={`${styles.footerIcons}`}></YouTubeIcon></a>
           </Col>
           <Col sm={12} md={6} className="p-4">

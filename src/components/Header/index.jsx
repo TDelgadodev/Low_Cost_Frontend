@@ -74,16 +74,22 @@ function Header() {
               id={`offcanvasNavbar-expand-${expand}`}
               aria-labelledby={`offcanvasNavbarLabel-expand-${expand}`}
               placement="end"
+              className={styles.offCanvas}
+              style={{ backgroundColor: '#007BFF' }}
             >
               <Offcanvas.Header closeButton>
-                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`}>
-                  LowCost
+                <Offcanvas.Title id={`offcanvasNavbarLabel-expand-${expand}`} style={{ color: 'white' }}>
+                  <img
+                    src="../logowhite.png"
+                    alt="logo"
+                    className={`${styles.logo}`}
+                  />
                 </Offcanvas.Title>
               </Offcanvas.Header>
               <Offcanvas.Body className={`${styles.offcanvasBody}`}>
                 <Nav className={`justify-content-end flex-grow-1 pe-5`}>
                   <Form
-                    className="d-flex align-items-center pe-3"
+                    className={`${styles.formSearch} d-flex align-items-center pe-3`}
                     onSubmit={handleSubmit}
                   >
                     <Form.Control
@@ -104,7 +110,7 @@ function Header() {
                   <Nav.Link href="#ofertas" className={`${styles.typo}`}>
                     <Button>Ofertas</Button>
                   </Nav.Link>
-                  <Nav.Link href="/catalogo-agosto.pdf" target="_blank" className={`${styles.typo}`}>
+                  <Nav.Link href="https://heyzine.com/flip-book/e50e493d19.html" target="_blank" className={`${styles.typo}`}>
                     <Button>Revista</Button>
                   </Nav.Link>
                   <Nav.Link href="#contacto" className={`${styles.typo}`}>
