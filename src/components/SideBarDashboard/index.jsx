@@ -14,11 +14,19 @@ import EditNoteIcon from '@mui/icons-material/EditNote';
 import { Link } from "react-router-dom";
 import styles from "./SideBarDashboard.module.css";
 import { Home } from "@mui/icons-material";
+import { useState } from "react";
 
 
 const drawerWidth = 240;
 
 export default function SideBar() {
+
+  const [open, setOpen] = useState(true);
+
+  const toggleDrawer = () => {
+    setOpen(!open);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <Drawer
@@ -27,14 +35,17 @@ export default function SideBar() {
           width: drawerWidth,
           flexShrink: 0,
           "& .MuiDrawer-paper": {
-            width: drawerWidth,
+            width: open ? drawerWidth : 0,
             boxSizing: "border-box",
             backgroundColor: "#007BFF",
             color: "white",
+            overflowX: 'hidden',
+            transition: 'width 0.2s',
           },
         }}
         variant="permanent"
         anchor="left"
+        open={open}
       >
         <a href="/">
           <img src="/logowhite.png" alt="logo" className={`${styles.logo}`} />
@@ -115,6 +126,12 @@ export default function SideBar() {
           </ListItemButton>
         </List>
       </Drawer>
+      <Box sx={{ flexGrow: 1 }} />
+      <Box>
+        <button onClick={toggleDrawer}>
+          {open ? "Cerrar Menú" : "Abrir Menú"}
+        </button>
+      </Box>
     </Box >
   );
 }
