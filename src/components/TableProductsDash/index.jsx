@@ -34,6 +34,7 @@ export const TableProductsDash = () => {
               <th className={`${styles.firstColumn}`} scope="col">
                 #
               </th>
+              <th scope="col">Id</th>
               <th scope="col">Producto</th>
               <th scope="col">Precio</th>
               <th scope="col">Precio USD</th>
@@ -51,6 +52,7 @@ export const TableProductsDash = () => {
               .map((product, index) => (
                 <tr className={`${styles.rowsTable}`} key={product.id}>
                   <td>{startIndex + index + 1}</td>
+                  <td>{product.id}</td>
                   <td>{product.name}</td>
                   <td>${product.price.toLocaleString('es-AR')}</td>
                   <td>${product.priceUSD ? product.priceUSD : 'N/A'}</td>
