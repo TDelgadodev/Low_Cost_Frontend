@@ -110,7 +110,7 @@ function Header() {
                   <Nav.Link href="#ofertas" className={`${styles.typo}`}>
                     <Button>Ofertas</Button>
                   </Nav.Link>
-                  <Nav.Link href="https://heyzine.com/flip-book/e50e493d19.html" target="_blank" className={`${styles.typo}`}>
+                  <Nav.Link href="hhttps://heyzine.com/flip-book/a3f5088bfd.html" target="_blank" className={`${styles.typo}`}>
                     <Button>Revista</Button>
                   </Nav.Link>
                   <Nav.Link href="#contacto" className={`${styles.typo}`}>
